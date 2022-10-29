@@ -22,6 +22,7 @@ class World {
             requestAnimationFrame(function () {
                 self.draw();
             });
+            this.character.moveRight();
         }
     }
 }

@@ -13,6 +13,8 @@ class MovableObject {
     }
     moveRight() {
         console.log("moveRight");
+        // e = document.onkeydown;
+        // this.checkKey(onkeydown);
     }
     moveLeft() {
         console.log("moveLeft");

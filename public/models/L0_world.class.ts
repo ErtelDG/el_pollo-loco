@@ -27,6 +27,7 @@ class World {
 
          this.addCharacterToMap(this.character);
          this.addObjectsToMap(this.enemies);
+    
 
          //draw wird immer wieder
          let self = this;

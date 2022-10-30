@@ -1,40 +1,47 @@
 "use strict";
 class World {
-    character = new Character();
-    enemies = [new Chicken(), new Chicken(), new Chicken()];
-    clouds = [new Cloud()];
-    backgrounds = [new BackgroundObject()];
     canvas;
     ctx;
     constructor(canvas) {
         (this.ctx = canvas.getContext("2d")), (this.canvas = canvas);
         this.draw();
     }
+    character = new Character();
+    enemies = [new Chicken(), new Chicken(), new Chicken()];
+    clouds = [new Cloud("img/5_background/layers/4_clouds/1.png")];
+    backgrounds = [
+        new BackgroundObject("img/5_background/layers/air.png", 0),
+        new BackgroundObject("img/5_background/layers/3_third_layer/1.png", 0),
+        new BackgroundObject("img/5_background/layers/2_second_layer/1.png", 0),
+        new BackgroundObject("img/5_background/layers/1_first_layer/1.png", 0),
+    ];
     draw() {
         if (this.ctx != null) {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-            this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-            this.enemies.forEach((enemy) => {
-                if (this.ctx != null) {
-                    this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
-                }
-            });
-            this.clouds.forEach((cloud) => {
-                if (this.ctx != null) {
-                    this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
-                }
-            });
-            this.backgrounds.forEach((background) => {
-                if (this.ctx != null) {
-                    this.ctx.drawImage(background.img, background.x, background.y, background.width, background.height);
-                }
-            });
+            this.addObjectsToMap(this.backgrounds);
+            this.addObjectsToMap(this.clouds);
+            this.addCharacterToMap(this.character);
+            this.addObjectsToMap(this.enemies);
             //draw wird immer wieder
             let self = this;
             requestAnimationFrame(function () {
                 self.draw();
             });
-            this.character.moveRight();
+        }
+    }
+    addCharacterToMap(character) {
+        if (this.ctx != null) {
+            this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
+        }
+    }
+    addObjectsToMap(obj) {
+        obj.forEach((obj_x) => {
+            this.drawImage(obj_x);
+        });
+    }
+    drawImage(objectToDraw) {
+        if (this.ctx != null) {
+            this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
         }
     }
 }

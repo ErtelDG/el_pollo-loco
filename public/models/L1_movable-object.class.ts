@@ -1,11 +1,10 @@
 class MovableObject {
    constructor() {}
    x: number = 120;
-   y: number = 250;
+   y: number = 230;
    img: any;
    height: number = 150;
    width: number = 100;
-   
 
    // loadImage ('img/test.png')
    loadImage(path: string) {
@@ -14,7 +13,7 @@ class MovableObject {
    }
 
    moveRight() {
-         console.log("moveRight");
+      console.log("moveRight");
       // e = document.onkeydown;
       // this.checkKey(onkeydown);
    }

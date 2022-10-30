@@ -1,7 +1,7 @@
 class MovableObject {
    constructor() {}
    x: number = 120;
-   y: number = 80;
+   y: number = 250;
    img: any;
    height: number = 150;
    width: number = 100;
@@ -21,15 +21,4 @@ class MovableObject {
    moveLeft() {
       console.log("moveLeft");
    }
-
-//    checkKey(e: any) {
-//       e = e || window.event;
-//       if (e != null) {
-//          if (e.keyCode == "39") {
-//             // right arrow
-//             console.log("moveRight");
-//             this.x = this.x+1;
-//          }
-//       }
-//    }
 }

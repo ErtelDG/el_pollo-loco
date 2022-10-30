@@ -2,6 +2,8 @@
 class World {
     character = new Character();
     enemies = [new Chicken(), new Chicken(), new Chicken()];
+    clouds = [new Cloud()];
+    backgrounds = [new BackgroundObject()];
     canvas;
     ctx;
     constructor(canvas) {
@@ -15,6 +17,16 @@ class World {
             this.enemies.forEach((enemy) => {
                 if (this.ctx != null) {
                     this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
+                }
+            });
+            this.clouds.forEach((cloud) => {
+                if (this.ctx != null) {
+                    this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
+                }
+            });
+            this.backgrounds.forEach((background) => {
+                if (this.ctx != null) {
+                    this.ctx.drawImage(background.img, background.x, background.y, background.width, background.height);
                 }
             });
             //draw wird immer wieder

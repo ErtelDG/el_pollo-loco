@@ -3,6 +3,7 @@ let world: World;
 let canvasHeight: number = 400;
 let canvasWidth: number = 720;
 let keyboard = new KeyboardKeys();
+let level;
 
 function init() {
    canvas = document.getElementById("canvas") as HTMLCanvasElement;

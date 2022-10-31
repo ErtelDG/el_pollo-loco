@@ -5,6 +5,7 @@ class MovableObject {
    img: any;
    height: number = 150;
    width: number = 100;
+   imageCache:any = [];
 
    // loadImage ('img/test.png')
    loadImage(path: string) {
@@ -12,10 +13,20 @@ class MovableObject {
       this.img.src = path;
    }
 
+   /**
+    *     *
+    * @param {Array} arr - ['img/image1.png','img/image2.png',....]
+    */
+   loadImages(arr: any[]) {
+      arr.forEach((path: string) => {
+         let img = new Image();
+         img.src = path;
+         this.imageCache.push(img);
+      });
+   }
+
    moveRight() {
       console.log("moveRight");
-      // e = document.onkeydown;
-      // this.checkKey(onkeydown);
    }
    moveLeft() {
       console.log("moveLeft");

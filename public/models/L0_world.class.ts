@@ -1,8 +1,9 @@
 class World {
    canvas;
    ctx;
-   constructor(canvas: HTMLCanvasElement) {
-      (this.ctx = canvas.getContext("2d")), (this.canvas = canvas);
+   constructor(canvas: any) {
+      this.ctx = canvas.getContext("2d"),
+      this.canvas = canvas;
       this.draw();
    }
 

@@ -3,7 +3,8 @@ class World {
     canvas;
     ctx;
     constructor(canvas) {
-        (this.ctx = canvas.getContext("2d")), (this.canvas = canvas);
+        this.ctx = canvas.getContext("2d"),
+            this.canvas = canvas;
         this.draw();
     }
     character = new Character();

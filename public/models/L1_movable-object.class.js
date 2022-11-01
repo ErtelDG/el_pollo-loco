@@ -34,4 +34,9 @@ class MovableObject {
             this.x -= this.speed;
         }, 1000 / 60);
     }
+    animationEnemiesWalking(images) {
+        let i = this.currentImage % images.length;
+        this.img = this.imageCache[i];
+        this.currentImage++;
+    }
 }

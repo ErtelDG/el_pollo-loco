@@ -1,9 +1,9 @@
 "use strict";
 class World {
     character = new Character();
-    enemies = level1.enemies;
-    clouds = level1.clouds;
-    backgrounds = level1.backgroundObjects;
+    enemies = level.enemies;
+    clouds = level.clouds;
+    backgrounds = level.backgroundObjects;
     canvas;
     ctx;
     keyboard;

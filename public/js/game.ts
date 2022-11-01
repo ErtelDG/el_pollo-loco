@@ -3,9 +3,10 @@ let world: World;
 let canvasHeight: number = 400;
 let canvasWidth: number = 720;
 let keyboard = new KeyboardKeys();
-let level = level1;
+
 
 function init() {
+   createdLevel();
    canvas = document.getElementById("canvas") as HTMLCanvasElement;
    canvas.width = canvasWidth;
    canvas.height = canvasHeight;

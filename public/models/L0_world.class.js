@@ -1,9 +1,10 @@
 "use strict";
 class World {
     character = new Character();
-    enemies = level.enemies;
-    clouds = level.clouds;
-    backgrounds = level.backgroundObjects;
+    level = level1;
+    // enemies = level1.enemies;
+    // clouds = level1.clouds;
+    // backgrounds = level1.backgroundObjects;
     canvas;
     ctx;
     keyboard;
@@ -21,10 +22,10 @@ class World {
         if (this.ctx != null) {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.translate(this.camera_x, 0);
-            this.addObjectsToMap(this.backgrounds);
-            this.addObjectsToMap(this.clouds);
+            this.addObjectsToMap(this.level.backgroundObjects);
+            this.addObjectsToMap(this.level.clouds);
             this.addCharacterToMap(this.character);
-            this.addObjectsToMap(this.enemies);
+            this.addObjectsToMap(this.level.enemies);
             this.ctx.translate(-this.camera_x, 0);
             //draw wird immer wieder
             let self = this;

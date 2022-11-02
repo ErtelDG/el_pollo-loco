@@ -53,15 +53,13 @@ class MovableObject {
    }
 
    moveRight() {
-        this.x += this.speed;
-        this.otherDirection = false;
-        
+      this.x += this.speed;
+    
    }
 
    moveLeft() {
-      setInterval(() => {
-         this.x -= this.speed;
-      }, 1000 / 60);
+      this.x -= this.speed;
+     
    }
 
    animationObjects(images: string | any[], Cach: any[]) {

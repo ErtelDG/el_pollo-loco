@@ -8,7 +8,6 @@ class Chicken extends MovableObject {
       "img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
    ];
    walking_enemie_sound = new Audio("audio/chicken.mp3");
-   
 
    constructor() {
       super();
@@ -19,13 +18,15 @@ class Chicken extends MovableObject {
       this.animate();
    }
    animate() {
-      this.moveLeft();
+      setInterval(() => {
+         this.moveLeft();
+      }, 1000 / 60);
       setInterval(() => {
          this.animationObjects(this.IMAGES_WALKING, this.imageCache);
       }, 120);
       setInterval(() => {
-         this.walking_enemie_sound.volume = 0.03;
-                  this.walking_enemie_sound.play();
-               }, 5000);
+         this.walking_enemie_sound.volume = 0.005;
+         this.walking_enemie_sound.play();
+      }, 5000);
    }
 }

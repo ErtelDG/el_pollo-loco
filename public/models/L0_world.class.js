@@ -34,13 +34,11 @@ class World {
     }
     addCharacterToMap(character) {
         if (character.otherDirection) {
-            this.ctx.save();
-            this.ctx.translate(character.width, 0);
-            this.ctx.scale(-1, 1);
-            character.x = character.x * -1;
+            this.flipImage(character);
         }
         if (this.ctx != null) {
             this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
+            this.drawRectangle(this.character.x, this.character.y, this.character.width, this.character.height);
         }
         if (character.otherDirection) {
             this.ctx.restore();
@@ -50,11 +48,26 @@ class World {
     addObjectsToMap(obj) {
         obj.forEach((obj_x) => {
             this.drawImage(obj_x);
+            this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
         });
     }
     drawImage(objectToDraw) {
         if (this.ctx != null) {
             this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
+            this.drawRectangle(objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
         }
+    }
+    drawRectangle(x, y, width, height) {
+        this.ctx.beginPath();
+        this.ctx.lineWidth = "5";
+        this.ctx.strokeStyle = "blue";
+        this.ctx.rect(x, y, width, height);
+        this.ctx.stroke();
+    }
+    flipImage(character) {
+        this.ctx.save();
+        this.ctx.translate(character.width, 0);
+        this.ctx.scale(-1, 1);
+        character.x = character.x * -1;
     }
 }

@@ -27,6 +27,7 @@ class Character extends MovableObject {
    ];
 
    walking_sound = new Audio("audio/running.mp3");
+   jump_sound = new Audio("audio/jump.mp3");
 
    constructor() {
       super();
@@ -42,16 +43,31 @@ class Character extends MovableObject {
          this.walking_sound.pause();
          if (world.character.world.keyboard.RIGHT && this.x < world.level.level_end) {
             this.moveRight();
-            this.walking_sound.play();
+              this.otherDirection = false;
+            if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
+               this.walking_sound.pause();
+            } else {
+               this.walking_sound.play();
+            }
+            this.walking_sound.volume = 0.1;
          }
          if (world.character.world.keyboard.LEFT && this.x > 0) {
-            this.x -= this.speed;
-            this.otherDirection = true;
-            this.walking_sound.play();
+            this.moveLeft();
+             this.otherDirection = true;
+            if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
+               this.walking_sound.pause();
+            } else {
+               this.walking_sound.play();
+            }
+
+            this.walking_sound.volume = 0.1;
          }
 
          if ((world.character.world.keyboard.UP && !this.isAboveGround()) || (world.character.world.keyboard.SPACE && !this.isAboveGround())) {
             this.jump();
+            this.jump_sound.volume = 0.01;
+            this.jump_sound.play();
+            this.walking_sound.pause();
          }
 
          world.camera_x = -this.x + 100;

@@ -1,12 +1,14 @@
 "use strict";
 class Cloud extends MovableObject {
-    y = 10;
     width = canvasWidth;
     height = 250;
-    constructor(imgPath) {
+    IMAGES_CLOUD = ["img/5_background/layers/4_clouds/1.png", "img/5_background/layers/4_clouds/2.png"];
+    constructor() {
         super();
-        this.loadImage(imgPath);
-        this.x = Math.random() * 500; //Zahl zwischen 200 und 700
+        this.loadImage(this.IMAGES_CLOUD[0]);
+        this.loadImages(this.IMAGES_CLOUD);
+        this.x = -720 + Math.random() * 7200; //Zahl zwischen 200 und 700
+        this.y = 10 + Math.random() * 50;
         this.moveCloud();
     }
     moveCloud() {

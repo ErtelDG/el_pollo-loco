@@ -23,7 +23,7 @@ function createdLevel(this: any) {
          new Chicken(),
          new Endboss(),
       ],
-      [new Cloud("img/5_background/layers/4_clouds/1.png")],
+      [new Cloud(), new Cloud(), new Cloud(),new Cloud(),new Cloud(),new Cloud(),new Cloud(),new Cloud(),new Cloud(),new Cloud(),new Cloud(),new Cloud(),new Cloud()],
       [
          new BackgroundObject("img/5_background/layers/air.png", -719),
          new BackgroundObject("img/5_background/layers/3_third_layer/2.png", -719),

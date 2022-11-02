@@ -11,6 +11,7 @@ class MovableObject {
     currentImage = 0;
     speed = 0.15;
     otherDirection = false;
+    offsetY = this.y + this.height;
     speedY = 0;
     acceleration = 3;
     applyGravity() {
@@ -60,5 +61,9 @@ class MovableObject {
     }
     jump() {
         this.speedY = 30;
+    }
+    // Bessere Formel zur Kollisionsberechnung (Genauer)
+    isColliding(mo) {
+        return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     }
 }

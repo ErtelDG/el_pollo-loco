@@ -1,19 +1,16 @@
-class MovableObject {
-   constructor() {}
-   x: number = 120;
-   y: number = 230;
-   img: any;
-   height: number = 150;
-   width: number = 100;
-   imageCache: any = [];
-   imageCacheJump: any = [];
-   currentImage = 0;
+class MovableObject extends DrawableObject {
+   constructor() {
+      super();
+   }
+  
+   
    speed = 0.15;
    otherDirection = false;
    offsetY: number = this.y + this.height;
    speedY = 0;
-
+   energy = 100;
    acceleration = 3;
+   lastHit = 0;
 
    applyGravity() {
       setInterval(() => {
@@ -28,31 +25,6 @@ class MovableObject {
       return this.y < 150;
    }
 
-   // loadImage ('img/test.png')
-   loadImage(path: string) {
-      this.img = new Image(); //Image() analog=> this.img = document.getElementById('image') <img id="image" src>
-      this.img.src = path;
-   }
-
-   /**
-    *     *
-    * @param {Array} arr - ['img/image1.png','img/image2.png',....]
-    */
-   loadImagesWalking(arr: any[]) {
-      arr.forEach((path: string) => {
-         let img = new Image();
-         img.src = path;
-         this.imageCache.push(img);
-      });
-   }
-
-   loadImagesJump(arr: any[]) {
-      arr.forEach((path: string) => {
-         let img = new Image();
-         img.src = path;
-         this.imageCacheJump.push(img);
-      });
-   }
 
    moveRight() {
       this.x += this.speed;
@@ -73,7 +45,25 @@ class MovableObject {
    }
 
    // Bessere Formel zur Kollisionsberechnung (Genauer)
-   isColliding(mo:any) {
+   isColliding(mo: any) {
       return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+   }
+
+   hit() {
+      this.energy -= 10;
+      if (this.energy < 0) {
+         this.energy = 0;
+      } else {
+         this.lastHit = new Date().getTime();
+      }
+   }
+
+   isHurt() {
+      let timepassed = (new Date().getTime() - this.lastHit) / 1000;
+      return timepassed < 5;
+   }
+
+   isDead() {
+      return this.energy == 0;
    }
 }

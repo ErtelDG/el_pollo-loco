@@ -26,6 +26,18 @@ class Character extends MovableObject {
       "img/2_character_pepe/3_jump/J-39.png",
    ];
 
+   IMAGES_DEAD = [
+      "img/2_character_pepe/5_dead/D-51.png",
+      "img/2_character_pepe/5_dead/D-52.png",
+      "img/2_character_pepe/5_dead/D-53.png",
+      "img/2_character_pepe/5_dead/D-54.png",
+      "img/2_character_pepe/5_dead/D-55.png",
+      "img/2_character_pepe/5_dead/D-56.png",
+      "img/2_character_pepe/5_dead/D-57.png",
+   ];
+
+   IMAGES_HURT = ["img/2_character_pepe/4_hurt/H-41.png", "img/2_character_pepe/4_hurt/H-42.png", "img/2_character_pepe/4_hurt/H-43.png"];
+
    walking_sound = new Audio("audio/running.mp3");
    jump_sound = new Audio("audio/jump.mp3");
 
@@ -34,6 +46,8 @@ class Character extends MovableObject {
       this.loadImage("img/2_character_pepe/2_walk/W-21.png");
       this.loadImagesWalking(this.IMAGES_WALKING);
       this.loadImagesJump(this.IMAGES_JUMPING);
+      this.loadImagesDead(this.IMAGES_DEAD);
+      this.loadImagesHurt(this.IMAGES_HURT);
       this.applyGravity();
       this.animate();
    }
@@ -43,7 +57,7 @@ class Character extends MovableObject {
          this.walking_sound.pause();
          if (world.character.world.keyboard.RIGHT && this.x < world.level.level_end) {
             this.moveRight();
-              this.otherDirection = false;
+            this.otherDirection = false;
             if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
                this.walking_sound.pause();
             } else {
@@ -53,7 +67,7 @@ class Character extends MovableObject {
          }
          if (world.character.world.keyboard.LEFT && this.x > 0) {
             this.moveLeft();
-             this.otherDirection = true;
+            this.otherDirection = true;
             if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
                this.walking_sound.pause();
             } else {
@@ -74,7 +88,11 @@ class Character extends MovableObject {
       }, 1000 / 60);
 
       setInterval(() => {
-         if (this.isAboveGround()) {
+         if (this.isDead()) {
+            this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);
+         }else if(this.isHurt()){
+            this.animationObjects(this.IMAGES_HURT, this.imageCacheHeart)
+         }  else if (this.isAboveGround()) {
             this.animationObjects(this.IMAGES_JUMPING, this.imageCacheJump);
          } else {
             if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {

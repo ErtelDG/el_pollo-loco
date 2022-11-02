@@ -13,7 +13,7 @@ class Chicken extends MovableObject {
         super();
         this.loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 200 + Math.random() * 500; //Zahl zwischen 200 und 700
+        this.x = 500 + Math.random() * 6500; //Zahl zwischen 200 und 700
         this.speed = this.speed + Math.random() * 0.8;
         this.animate();
     }
@@ -24,6 +24,6 @@ class Chicken extends MovableObject {
         }, 120);
         setInterval(() => {
             this.walking_enemie_sound.play();
-        }, 5000);
+        }, 15000);
     }
 }

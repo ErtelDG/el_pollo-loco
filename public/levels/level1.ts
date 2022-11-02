@@ -1,9 +1,28 @@
 let level1: any;
 
-
 function createdLevel(this: any) {
    level1 = new Level(
-      [new Chicken(), new Chicken(), new Chicken(), new Endboss()],
+      [
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Chicken(),
+         new Endboss(),
+      ],
       [new Cloud("img/5_background/layers/4_clouds/1.png")],
       [
          new BackgroundObject("img/5_background/layers/air.png", -719),

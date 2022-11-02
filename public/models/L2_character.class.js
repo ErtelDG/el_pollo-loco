@@ -2,7 +2,7 @@
 class Character extends MovableObject {
     height = 225;
     width = 120;
-    y = 155;
+    y = 50;
     world;
     speed = 10;
     IMAGES_WALKING = [
@@ -13,19 +13,31 @@ class Character extends MovableObject {
         "img/2_character_pepe/2_walk/W-25.png",
         "img/2_character_pepe/2_walk/W-26.png",
     ];
+    IMAGES_JUMPING = [
+        "img/2_character_pepe/3_jump/J-31.png",
+        "img/2_character_pepe/3_jump/J-32.png",
+        "img/2_character_pepe/3_jump/J-33.png",
+        "img/2_character_pepe/3_jump/J-34.png",
+        "img/2_character_pepe/3_jump/J-35.png",
+        "img/2_character_pepe/3_jump/J-36.png",
+        "img/2_character_pepe/3_jump/J-37.png",
+        "img/2_character_pepe/3_jump/J-38.png",
+        "img/2_character_pepe/3_jump/J-39.png",
+    ];
     walking_sound = new Audio("audio/running.mp3");
     constructor() {
         super();
         this.loadImage("img/2_character_pepe/2_walk/W-21.png");
-        this.loadImages(this.IMAGES_WALKING);
+        this.loadImagesWalking(this.IMAGES_WALKING);
+        this.loadImagesJump(this.IMAGES_JUMPING);
+        this.applyGravity();
         this.animate();
     }
     animate() {
         setInterval(() => {
             this.walking_sound.pause();
             if (world.character.world.keyboard.RIGHT && this.x < world.level.level_end) {
-                this.x += this.speed;
-                this.otherDirection = false;
+                this.moveRight();
                 this.walking_sound.play();
             }
             if (world.character.world.keyboard.LEFT && this.x > 0) {
@@ -33,17 +45,20 @@ class Character extends MovableObject {
                 this.otherDirection = true;
                 this.walking_sound.play();
             }
+            if ((world.character.world.keyboard.UP && !this.isAboveGround()) || (world.character.world.keyboard.SPACE && !this.isAboveGround())) {
+                this.jump();
+            }
             world.camera_x = -this.x + 100;
         }, 1000 / 60);
         setInterval(() => {
-            if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {
-                let i = this.currentImage % this.IMAGES_WALKING.length; //result => 0,1,2,3,4,5,0,1,2 ....
-                this.img = this.imageCache[i];
-                this.currentImage++;
+            if (this.isAboveGround()) {
+                this.animationObjects(this.IMAGES_JUMPING, this.imageCacheJump);
+            }
+            else {
+                if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {
+                    this.animationObjects(this.IMAGES_WALKING, this.imageCache);
+                }
             }
         }, 50);
-    }
-    jump() {
-        console.log("jumpUp");
     }
 }

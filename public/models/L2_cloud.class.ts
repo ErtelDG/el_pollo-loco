@@ -5,7 +5,7 @@ class Cloud extends MovableObject {
    constructor() {
       super();
       this.loadImage(this.IMAGES_CLOUD[0]);
-      this.loadImages(this.IMAGES_CLOUD);
+      this.loadImagesWalking(this.IMAGES_CLOUD);
       this.x = -720 + Math.random() * 7200; //Zahl zwischen 200 und 700
       this.y = 10 + Math.random() * 50;
       this.moveCloud();

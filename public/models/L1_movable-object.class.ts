@@ -6,9 +6,25 @@ class MovableObject {
    height: number = 150;
    width: number = 100;
    imageCache: any = [];
+   imageCacheJump: any = [];
    currentImage = 0;
    speed = 0.15;
    otherDirection = false;
+   speedY = 0;
+   acceleration = 3;
+
+   applyGravity() {
+      setInterval(() => {
+         if (this.isAboveGround() || this.speedY > 0) {
+            this.y -= this.speedY;
+            this.speedY -= this.acceleration;
+         }
+      }, 50);
+   }
+
+   isAboveGround() {
+      return this.y < 150;
+   }
 
    // loadImage ('img/test.png')
    loadImage(path: string) {
@@ -20,7 +36,7 @@ class MovableObject {
     *     *
     * @param {Array} arr - ['img/image1.png','img/image2.png',....]
     */
-   loadImages(arr: any[]) {
+   loadImagesWalking(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();
          img.src = path;
@@ -28,8 +44,18 @@ class MovableObject {
       });
    }
 
+   loadImagesJump(arr: any[]) {
+      arr.forEach((path: string) => {
+         let img = new Image();
+         img.src = path;
+         this.imageCacheJump.push(img);
+      });
+   }
+
    moveRight() {
-      console.log("moveRight");
+        this.x += this.speed;
+        this.otherDirection = false;
+        
    }
 
    moveLeft() {
@@ -37,9 +63,14 @@ class MovableObject {
          this.x -= this.speed;
       }, 1000 / 60);
    }
-   animationEnemiesWalking(images: string | any[]) {
+
+   animationObjects(images: string | any[], Cach: any[]) {
       let i = this.currentImage % images.length;
-      this.img = this.imageCache[i];
+      this.img = Cach[i];
       this.currentImage++;
+   }
+
+   jump() {
+      this.speedY = 30;
    }
 }

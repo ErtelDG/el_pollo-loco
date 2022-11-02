@@ -7,14 +7,14 @@ class Coin extends MovableObject {
    constructor() {
       super();
       this.loadImage(this.IMAGES_WALKING[0]);
-      this.loadImages(this.IMAGES_WALKING);
+      this.loadImagesWalking(this.IMAGES_WALKING);
       this.x = 500 + Math.random() * 6500; //Zahl zwischen 200 und 700
       this.y = 75 + Math.random() * 200;
       this.animate();
    }
    animate() {
       setInterval(() => {
-         this.animationEnemiesWalking(this.IMAGES_WALKING);
+         this.animationObjects(this.IMAGES_WALKING, this.imageCache);
       }, 120);
    }
 }

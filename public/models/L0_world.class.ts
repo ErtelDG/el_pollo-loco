@@ -41,7 +41,7 @@ class World {
          this.ctx.translate(this.camera_x, 0);
          this.addObjectsToMap(this.level.backgroundObjects);
 
-         this.addToMap(this.statusBar);
+    this.addToMap(this.statusBar);
 
          this.addToMap(this.character);
          this.addObjectsToMap(this.level.clouds);
@@ -59,18 +59,18 @@ class World {
       }
    }
 
-   addToMap(character: any) {
-      if (character.otherDirection) {
-         this.flipImage(character);
+   addToMap(obj_x: any) {
+      if (obj_x.otherDirection) {
+         this.flipImage(obj_x);
       }
       if (this.ctx != null) {
-         this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
-         this.drawRectangle(this.character.x, this.character.y, this.character.width, this.character.height);
+         this.ctx.drawImage(obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+         this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       }
 
-      if (character.otherDirection) {
+      if (obj_x.otherDirection) {
          this.ctx.restore();
-         character.x = character.x * -1;
+         obj_x.x = obj_x.x * -1;
       }
    }
 

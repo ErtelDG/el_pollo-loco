@@ -1,8 +1,9 @@
 "use strict";
 class World {
+    ctx;
     character = new Character();
     statusBar = new StatusBar();
-    ctx;
+    throwableObject = [new ThrowableObject()];
     level = level1;
     canvas;
     keyboard;
@@ -38,6 +39,7 @@ class World {
             this.addObjectsToMap(this.level.clouds);
             this.addObjectsToMap(this.level.enemies);
             this.addObjectsToMap(this.level.coins);
+            this.addObjectsToMap(this.throwableObject);
             this.ctx.translate(-this.camera_x, 0);
             //draw wird immer wieder
             let self = this;

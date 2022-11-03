@@ -3,11 +3,6 @@ class DrawableObject {
     ctx;
     img;
     imageCache = [];
-    imageCacheIdle = [];
-    imageCacheWalking = [];
-    imageCacheJump = [];
-    imageCacheDead = [];
-    imageCacheHeart = [];
     imageCacheImagesStatusbarHp = [];
     currentImage = 0;
     x = 120;
@@ -36,39 +31,11 @@ class DrawableObject {
      *     *
      * @param {Array} arr - ['img/image1.png','img/image2.png',....]
      */
-    loadImagesIdle(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCacheIdle.push(img);
-        });
-    }
     loadImagesWalking(arr) {
         arr.forEach((path) => {
             let img = new Image();
             img.src = path;
             this.imageCache.push(img);
-        });
-    }
-    loadImagesJump(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCacheJump.push(img);
-        });
-    }
-    loadImagesDead(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCacheDead.push(img);
-        });
-    }
-    loadImagesHurt(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            this.imageCacheHeart.push(img);
         });
     }
 }

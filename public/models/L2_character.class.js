@@ -5,6 +5,11 @@ class Character extends MovableObject {
     y = 50;
     world;
     speed = 10;
+    imageCacheIdle = [];
+    imageCacheWalking = [];
+    imageCacheJump = [];
+    imageCacheDead = [];
+    imageCacheHeart = [];
     IMAGES_IDLE = [
         "img/2_character_pepe/1_idle/idle/I-1.png",
         "img/2_character_pepe/1_idle/idle/I-2.png",
@@ -109,5 +114,33 @@ class Character extends MovableObject {
                 this.animationObjects(this.IMAGES_IDLE, this.imageCacheIdle);
             }
         }, 50);
+    }
+    loadImagesJump(arr) {
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCacheJump.push(img);
+        });
+    }
+    loadImagesDead(arr) {
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCacheDead.push(img);
+        });
+    }
+    loadImagesHurt(arr) {
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCacheHeart.push(img);
+        });
+    }
+    loadImagesIdle(arr) {
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCacheIdle.push(img);
+        });
     }
 }

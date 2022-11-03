@@ -4,6 +4,18 @@ class Character extends MovableObject {
    y: number = 50;
    world: any;
    speed = 10;
+   IMAGES_IDLE = [
+      "img/2_character_pepe/1_idle/idle/I-1.png",
+      "img/2_character_pepe/1_idle/idle/I-2.png",
+      "img/2_character_pepe/1_idle/idle/I-3.png",
+      "img/2_character_pepe/1_idle/idle/I-4.png",
+      "img/2_character_pepe/1_idle/idle/I-5.png",
+      "img/2_character_pepe/1_idle/idle/I-6.png",
+      "img/2_character_pepe/1_idle/idle/I-7.png",
+      "img/2_character_pepe/1_idle/idle/I-8.png",
+      "img/2_character_pepe/1_idle/idle/I-9.png",
+      "img/2_character_pepe/1_idle/idle/I-10.png",
+   ];
 
    IMAGES_WALKING = [
       "img/2_character_pepe/2_walk/W-21.png",
@@ -44,6 +56,7 @@ class Character extends MovableObject {
    constructor() {
       super();
       this.loadImage("img/2_character_pepe/2_walk/W-21.png");
+      this.loadImagesIdle(this.IMAGES_IDLE);
       this.loadImagesWalking(this.IMAGES_WALKING);
       this.loadImagesJump(this.IMAGES_JUMPING);
       this.loadImagesDead(this.IMAGES_DEAD);
@@ -90,14 +103,14 @@ class Character extends MovableObject {
       setInterval(() => {
          if (this.isDead()) {
             this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);
-         }else if(this.isHurt()){
-            this.animationObjects(this.IMAGES_HURT, this.imageCacheHeart)
-         }  else if (this.isAboveGround()) {
+         } else if (this.isHurt()) {
+            this.animationObjects(this.IMAGES_HURT, this.imageCacheHeart);
+         } else if (this.isAboveGround()) {
             this.animationObjects(this.IMAGES_JUMPING, this.imageCacheJump);
+         } else if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {
+            this.animationObjects(this.IMAGES_WALKING, this.imageCache);
          } else {
-            if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {
-               this.animationObjects(this.IMAGES_WALKING, this.imageCache);
-            }
+            this.animationObjects(this.IMAGES_IDLE, this.imageCacheIdle);
          }
       }, 50);
    }

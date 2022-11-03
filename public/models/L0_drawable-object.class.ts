@@ -2,6 +2,8 @@ class DrawableObject {
    ctx: any;
    img: any;
    imageCache: any = [];
+   imageCacheIdle: any = [];
+   imageCacheWalking: any = [];
    imageCacheJump: any = [];
    imageCacheDead: any = [];
    imageCacheHeart: any = [];
@@ -38,6 +40,14 @@ class DrawableObject {
     *     *
     * @param {Array} arr - ['img/image1.png','img/image2.png',....]
     */
+   loadImagesIdle(arr: any[]) {
+      arr.forEach((path: string) => {
+         let img = new Image();
+         img.src = path;
+         this.imageCacheIdle.push(img);
+      });
+   }
+
    loadImagesWalking(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();

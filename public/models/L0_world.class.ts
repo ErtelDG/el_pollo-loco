@@ -1,5 +1,6 @@
 class World {
    character = new Character();
+   statusBar = new StatusBar();
    level = level1;
 
    canvas;
@@ -39,6 +40,7 @@ class World {
          this.addObjectsToMap(this.level.coins);
          this.addCharacterToMap(this.character);
          this.addObjectsToMap(this.level.enemies);
+         
 
          this.character.ctx.translate(-this.camera_x, 0);
 
@@ -64,8 +66,6 @@ class World {
          character.x = character.x * -1;
       }
    }
-
-  
 
    addObjectsToMap(obj: any) {
       obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin) => {

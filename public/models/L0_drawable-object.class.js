@@ -6,6 +6,7 @@ class DrawableObject {
     imageCacheJump = [];
     imageCacheDead = [];
     imageCacheHeart = [];
+    imageCacheImagesStatusbarHp = [];
     currentImage = 0;
     x = 120;
     y = 230;
@@ -49,6 +50,13 @@ class DrawableObject {
             this.imageCacheHeart.push(img);
         });
     }
+    // loadImagesImagesStatusbarHp(arr: any[]) {
+    //    arr.forEach((path: string) => {
+    //       let img = new Image();
+    //       img.src = path;
+    //       this.imageCacheImagesStatusbarHp.push(img);
+    //    });
+    // }
     drawRectangle(x, y, width, height) {
         this.ctx.beginPath();
         this.ctx.lineWidth = "5";

@@ -1,6 +1,7 @@
 "use strict";
 class World {
     character = new Character();
+    statusBar = new StatusBar();
     level = level1;
     canvas;
     keyboard;

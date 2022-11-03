@@ -2,8 +2,7 @@ class MovableObject extends DrawableObject {
    constructor() {
       super();
    }
-  
-   
+
    speed = 0.15;
    otherDirection = false;
    offsetY: number = this.y + this.height;
@@ -22,9 +21,12 @@ class MovableObject extends DrawableObject {
    }
 
    isAboveGround() {
-      return this.y < 150;
+      if (this instanceof ThrowableObject) {
+         return true;
+      } else {
+         return this.y < 150;
+      }
    }
-
 
    moveRight() {
       this.x += this.speed;

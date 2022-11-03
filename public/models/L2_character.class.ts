@@ -10,6 +10,7 @@ class Character extends MovableObject {
    imageCacheJump: any = [];
    imageCacheDead: any = [];
    imageCacheHeart: any = [];
+   
 
    IMAGES_IDLE = [
       "img/2_character_pepe/1_idle/idle/I-1.png",

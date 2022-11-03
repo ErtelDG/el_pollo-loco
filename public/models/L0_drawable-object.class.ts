@@ -2,7 +2,6 @@ class DrawableObject {
    ctx: any;
    img: any;
    imageCache: any = [];
-  
    imageCacheImagesStatusbarHp: any = [];
    currentImage = 0;
    x: number = 120;
@@ -18,7 +17,7 @@ class DrawableObject {
       this.img.src = path;
    }
 
-   draw(objectToDraw: Chicken | Cloud | BackgroundObject | Coin) {
+   draw(objectToDraw: Chicken | Cloud | BackgroundObject | Coin | StatusBar) {
       if (this.ctx != null) {
          this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
       }
@@ -36,7 +35,6 @@ class DrawableObject {
     *     *
     * @param {Array} arr - ['img/image1.png','img/image2.png',....]
     */
- 
 
    loadImagesWalking(arr: any[]) {
       arr.forEach((path: string) => {
@@ -46,11 +44,11 @@ class DrawableObject {
       });
    }
 
-   // loadImagesImagesStatusbarHp(arr: any[]) {
-   //    arr.forEach((path: string) => {
-   //       let img = new Image();
-   //       img.src = path;
-   //       this.imageCacheImagesStatusbarHp.push(img);
-   //    });
-   // }
+   loadImagesImagesStatusbarHp(arr: any[]) {
+      arr.forEach((path: string) => {
+         let img = new Image();
+         img.src = path;
+         this.imageCacheImagesStatusbarHp.push(img);
+      });
+   }
 }

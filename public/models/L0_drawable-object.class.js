@@ -38,4 +38,11 @@ class DrawableObject {
             this.imageCache.push(img);
         });
     }
+    loadImagesImagesStatusbarHp(arr) {
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCacheImagesStatusbarHp.push(img);
+        });
+    }
 }

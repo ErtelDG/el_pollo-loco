@@ -31,9 +31,10 @@ class World {
             this.character.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.character.ctx.translate(this.camera_x, 0);
             this.addObjectsToMap(this.level.backgroundObjects);
-            this.addObjectsToMap(this.level.clouds);
+            //  this.addObjectsToMap(this.level.clouds);
             this.addObjectsToMap(this.level.coins);
-            this.addCharacterToMap(this.character);
+            this.addToMap(this.character);
+            this.addToMap(this.statusBar);
             this.addObjectsToMap(this.level.enemies);
             this.character.ctx.translate(-this.camera_x, 0);
             //draw wird immer wieder
@@ -43,7 +44,7 @@ class World {
             });
         }
     }
-    addCharacterToMap(character) {
+    addToMap(character) {
         if (character.otherDirection) {
             this.flipImage(character);
         }

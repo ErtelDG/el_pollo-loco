@@ -1,5 +1,5 @@
 class DrawableObject {
-   ctx: any;
+  
    img: any;
    imageCache: any = [];
    imageCacheImagesStatusbarHp: any = [];
@@ -17,19 +17,7 @@ class DrawableObject {
       this.img.src = path;
    }
 
-   draw(objectToDraw: Chicken | Cloud | BackgroundObject | Coin | StatusBar) {
-      if (this.ctx != null) {
-         this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
-      }
-   }
-
-   drawRectangle(x: any, y: any, width: any, height: any) {
-      this.ctx.beginPath();
-      this.ctx.lineWidth = "5";
-      this.ctx.strokeStyle = "blue";
-      this.ctx.rect(x, y, width, height);
-      this.ctx.stroke();
-   }
+  
 
    /**
     *     *

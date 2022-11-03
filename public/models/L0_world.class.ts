@@ -69,7 +69,7 @@ class World {
 
    addObjectsToMap(obj: any) {
       obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin) => {
-         this.character.drawImage(obj_x);
+         this.character.draw(obj_x);
          this.character.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       });
    }

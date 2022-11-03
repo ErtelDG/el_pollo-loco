@@ -64,10 +64,9 @@ class DrawableObject {
         this.ctx.rect(x, y, width, height);
         this.ctx.stroke();
     }
-    drawImage(objectToDraw) {
+    draw(objectToDraw) {
         if (this.ctx != null) {
             this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
-            this.drawRectangle(objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
         }
     }
 }

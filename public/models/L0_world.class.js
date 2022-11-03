@@ -58,7 +58,7 @@ class World {
     }
     addObjectsToMap(obj) {
         obj.forEach((obj_x) => {
-            this.character.drawImage(obj_x);
+            this.character.draw(obj_x);
             this.character.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
         });
     }

@@ -6,6 +6,7 @@ let canvasWidth = 720;
 let keyboard = new KeyboardKeys();
 function init() {
     createdLevel();
+    createdStatusBar();
     canvas = document.getElementById("canvas");
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;

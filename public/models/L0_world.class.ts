@@ -1,7 +1,7 @@
 class World {
    ctx: any;
    character = new Character();
-   statusBar = new StatusBar();
+   statusBar = statusBar1;
    throwableObject = [new ThrowableObject()];
    level = level1;
 
@@ -41,14 +41,13 @@ class World {
          this.ctx.translate(this.camera_x, 0);
          this.addObjectsToMap(this.level.backgroundObjects);
 
-    this.addToMap(this.statusBar);
-
          this.addToMap(this.character);
+        
          this.addObjectsToMap(this.level.clouds);
          this.addObjectsToMap(this.level.enemies);
          this.addObjectsToMap(this.level.coins);
          this.addObjectsToMap(this.throwableObject);
-
+ this.addToMap(this.statusBar);
          this.ctx.translate(-this.camera_x, 0);
 
          //draw wird immer wieder
@@ -64,7 +63,14 @@ class World {
          this.flipImage(obj_x);
       }
       if (this.ctx != null) {
-         this.ctx.drawImage(obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+         try {
+            this.ctx.drawImage(obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+            console.log("It go,", obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+         } catch (e) {
+            console.warn("Error loading image", e);
+            console.warn("Cold not load image,", obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+            debugger;
+         }
          this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       }
 

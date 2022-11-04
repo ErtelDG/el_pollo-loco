@@ -8,23 +8,24 @@ class StatusBar extends DrawableObject {
       "img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
    ];
 
-  
+   imageStatusBarHp: any = [];
+
    percentage = 100;
 
    constructor() {
       super();
       this.loadImage(this.IMAGES_STATUSBAR_HP[5]);
+      this.loadImagesStatusBarHp(this.IMAGES_STATUSBAR_HP);
       this.x = 120;
       this.y = 160;
       this.height = 75;
       this.width = 200;
-
       this.setPercentage(100);
    }
 
    setPercentage(percentage: number) {
       this.percentage = this.percentage;
-      let imagePath = this.IMAGES_STATUSBAR_HP[this.resolveImageIndex(percentage)];
+      let imagePath = this.imageStatusBarHp[this.resolveImageIndex(percentage)];
       this.img = imagePath;
    }
 
@@ -42,5 +43,13 @@ class StatusBar extends DrawableObject {
       } else {
          return 0;
       }
+   }
+
+   loadImagesStatusBarHp(arr: any[]) {
+      arr.forEach((path: string) => {
+         let img = new Image();
+         img.src = path;
+         this.imageStatusBarHp.push(img);
+      });
    }
 }

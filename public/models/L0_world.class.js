@@ -2,7 +2,7 @@
 class World {
     ctx;
     character = new Character();
-    statusBar = new StatusBar();
+    statusBar = statusBar1;
     throwableObject = [new ThrowableObject()];
     level = level1;
     canvas;
@@ -34,12 +34,12 @@ class World {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.translate(this.camera_x, 0);
             this.addObjectsToMap(this.level.backgroundObjects);
-            this.addToMap(this.statusBar);
             this.addToMap(this.character);
             this.addObjectsToMap(this.level.clouds);
             this.addObjectsToMap(this.level.enemies);
             this.addObjectsToMap(this.level.coins);
             this.addObjectsToMap(this.throwableObject);
+            this.addToMap(this.statusBar);
             this.ctx.translate(-this.camera_x, 0);
             //draw wird immer wieder
             let self = this;
@@ -53,7 +53,15 @@ class World {
             this.flipImage(obj_x);
         }
         if (this.ctx != null) {
-            this.ctx.drawImage(obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+            try {
+                this.ctx.drawImage(obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+                console.log("It go,", obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+            }
+            catch (e) {
+                console.warn("Error loading image", e);
+                console.warn("Cold not load image,", obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+                debugger;
+            }
             this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
         }
         if (obj_x.otherDirection) {

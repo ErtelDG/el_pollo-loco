@@ -6,6 +6,7 @@ let keyboard = new KeyboardKeys();
 
 function init() {
    createdLevel();
+   createdStatusBar();
    canvas = document.getElementById("canvas") as HTMLCanvasElement;
    canvas.width = canvasWidth;
    canvas.height = canvasHeight;

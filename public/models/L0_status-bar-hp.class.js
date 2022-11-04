@@ -14,7 +14,7 @@ class StatusBarHp extends DrawableObject {
         super();
         this.loadImage(this.IMAGES_ARRAY[5]);
         this.loadImages(this.IMAGES_ARRAY);
-        this.x = 120;
+        this.x = 10;
         this.y = 5;
         this.height = 40;
         this.width = 120;

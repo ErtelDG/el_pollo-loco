@@ -1,13 +1,13 @@
 "use strict";
 class ThrowableObject extends MovableObject {
-    constructor() {
+    constructor(characterX, characterY) {
         super();
-        this.x = 100;
-        this.y = 250;
+        this.x = characterX;
+        this.y = characterY;
         this.height = 60;
         this.width = 50;
         this.loadImage("img/6_salsa_bottle/1_salsa_bottle_on_ground.png");
-        this.throw(100, 100);
+        this.throw(this.x, this.y);
     }
     throw(x, y) {
         this.x = x;

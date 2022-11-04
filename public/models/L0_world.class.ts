@@ -4,11 +4,11 @@ class World {
    statusBarHp = new StatusBarHp();
    statusBarBottle = new StatusBarBottle();
    statusBarCoin = new StatusBarCoin();
-   throwableObject = [new ThrowableObject()];
    level = level1;
-   coinsPercentage = (100 / this.level.coins.length) * this.character.coins;
+   coinsInWorld = this.level.coins.length;
+   coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
    canvas;
-
+   throwableObject: any = [];
    keyboard;
    camera_x = 0;
 
@@ -17,19 +17,35 @@ class World {
       this.keyboard = keyboard;
       this.draw();
       this.setWorld();
-      this.checkCollisions();
+      this.run();
       this.checkCollectsCoins();
    }
 
-   checkCollisions() {
+   setWorld() {
+      this.character.world = this;
+   }
+
+   run() {
       setInterval(() => {
-         this.level.enemies.forEach((enemy: any) => {
-            if (this.character.isColliding(enemy)) {
-               this.character.hit();
-               this.statusBarHp.setPercentage(this.character.energy);
-            }
-         });
+         this.checkCollisions();
+         this.checkThrowObjects();
       }, 200);
+   }
+
+   checkThrowObjects() {
+      if (this.keyboard.D) {
+         let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+         this.throwableObject.push(bottle);
+      }
+   }
+
+   checkCollisions() {
+      this.level.enemies.forEach((enemy: any) => {
+         if (this.character.isColliding(enemy)) {
+            this.character.hit();
+            this.statusBarHp.setPercentage(this.character.energy);
+         }
+      });
    }
 
    checkCollectsCoins() {
@@ -40,15 +56,11 @@ class World {
                   await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1);
                }
                this.character.collectsCoin();
-               this.coinsPercentage = (100 / this.level.coins.length) * this.character.coins;
+               this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
                this.statusBarCoin.setPercentage(this.coinsPercentage);
             }
          });
-      }, 200);
-   }
-
-   setWorld() {
-      this.character.world = this;
+      }, 500);
    }
 
    draw() {
@@ -102,7 +114,7 @@ class World {
    }
 
    addObjectsToMap(obj: any) {
-      obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin) => {
+      obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin | ThrowableObject) => {
          this.drawElements(obj_x);
          this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       });
@@ -123,7 +135,7 @@ class World {
       this.ctx.stroke();
    }
 
-   drawElements(objectToDraw: Chicken | Cloud | BackgroundObject | Coin | StatusBarHp) {
+   drawElements(objectToDraw: Chicken | Cloud | BackgroundObject | Coin | StatusBarHp | ThrowableObject) {
       if (this.ctx != null) {
          this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
       }

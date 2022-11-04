@@ -18,24 +18,30 @@ class World {
       this.draw();
       this.setWorld();
       this.checkCollisions();
+      this.checkCollectsCoins();
    }
 
    checkCollisions() {
       setInterval(() => {
          this.level.enemies.forEach((enemy: any) => {
             if (this.character.isColliding(enemy)) {
-               this.character.collectsCoin();
+               this.character.hit();
                this.statusBarHp.setPercentage(this.character.energy);
             }
          });
+      }, 200);
+   }
 
-         this.level.coins.forEach((coin: any) => {
+   checkCollectsCoins() {
+      setInterval(() => {
+         this.level.coins.forEach(async (coin: any) => {
             if (this.character.isColliding(coin)) {
+               if (this.level.coins.includes(coin)) {
+                  await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1);
+               }
                this.character.collectsCoin();
                this.coinsPercentage = (100 / this.level.coins.length) * this.character.coins;
                this.statusBarCoin.setPercentage(this.coinsPercentage);
-               console.log(this.coinsPercentage);
-               console.log(this.character.coins);
             }
          });
       }, 200);

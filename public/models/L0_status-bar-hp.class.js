@@ -21,7 +21,7 @@ class StatusBarHp extends DrawableObject {
         this.setPercentage(100);
     }
     setPercentage(percentage) {
-        this.percentage = this.percentage;
+        this.percentage = percentage;
         let imagePath = this.imageStatusBarHp[this.resolveImageIndex(percentage)];
         this.img = imagePath;
     }

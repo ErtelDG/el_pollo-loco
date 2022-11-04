@@ -47,7 +47,7 @@ class MovableObject extends DrawableObject {
         return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     }
     hit() {
-        this.energy -= 10;
+        this.energy -= 1;
         if (this.energy < 0) {
             this.energy = 0;
         }
@@ -60,7 +60,7 @@ class MovableObject extends DrawableObject {
     }
     isHurt() {
         let timepassed = (new Date().getTime() - this.lastHit) / 1000;
-        return timepassed < 5;
+        return timepassed < 1;
     }
     isDead() {
         return this.energy == 0;

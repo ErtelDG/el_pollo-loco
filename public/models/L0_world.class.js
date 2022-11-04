@@ -2,7 +2,7 @@
 class World {
     ctx;
     character = new Character();
-    statusBar = statusBar1;
+    statusBar = new StatusBar();
     throwableObject = [new ThrowableObject()];
     level = level1;
     canvas;

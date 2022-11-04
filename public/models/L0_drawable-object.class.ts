@@ -1,5 +1,4 @@
 class DrawableObject {
-  
    img: any;
    imageCache: any = [];
    imageCacheImagesStatusbarHp: any = [];
@@ -16,8 +15,6 @@ class DrawableObject {
       this.img = new Image(); //Image() analog=> this.img = document.getElementById('image') <img id="image" src>
       this.img.src = path;
    }
-
-  
 
    /**
     *     *

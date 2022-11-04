@@ -1,6 +1,6 @@
 "use strict";
-class StatusBar extends DrawableObject {
-    IMAGES_STATUSBAR_HP = [
+class StatusBarHp extends DrawableObject {
+    IMAGES_ARRAY = [
         "img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png",
         "img/7_statusbars/1_statusbar/2_statusbar_health/green/20.png",
         "img/7_statusbars/1_statusbar/2_statusbar_health/green/40.png",
@@ -12,12 +12,12 @@ class StatusBar extends DrawableObject {
     percentage = 100;
     constructor() {
         super();
-        this.loadImage(this.IMAGES_STATUSBAR_HP[5]);
-        this.loadImagesStatusBarHp(this.IMAGES_STATUSBAR_HP);
+        this.loadImage(this.IMAGES_ARRAY[5]);
+        this.loadImages(this.IMAGES_ARRAY);
         this.x = 120;
-        this.y = 160;
-        this.height = 75;
-        this.width = 200;
+        this.y = 5;
+        this.height = 40;
+        this.width = 120;
         this.setPercentage(100);
     }
     setPercentage(percentage) {
@@ -45,7 +45,7 @@ class StatusBar extends DrawableObject {
             return 0;
         }
     }
-    loadImagesStatusBarHp(arr) {
+    loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
             img.src = path;

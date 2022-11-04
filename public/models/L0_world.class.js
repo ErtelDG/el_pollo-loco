@@ -2,7 +2,9 @@
 class World {
     ctx;
     character = new Character();
-    statusBar = new StatusBar();
+    statusBarHp = new StatusBarHp();
+    statusBarBottle = new StatusBarBottle();
+    statusBarCoin = new StatusBarCoin();
     throwableObject = [new ThrowableObject()];
     level = level1;
     canvas;
@@ -20,7 +22,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy);
+                    this.statusBarHp.setPercentage(this.character.energy);
                     console.log("COLLISION,", this.character.energy);
                 }
             });
@@ -40,7 +42,9 @@ class World {
             this.addObjectsToMap(this.level.coins);
             this.addObjectsToMap(this.throwableObject);
             this.ctx.translate(-this.camera_x, 0);
-            this.addToMap(this.statusBar);
+            this.addToMap(this.statusBarHp);
+            this.addToMap(this.statusBarBottle);
+            this.addToMap(this.statusBarCoin);
             this.ctx.translate(this.camera_x, 0);
             this.ctx.translate(-this.camera_x, 0);
             //draw wird immer wieder
@@ -57,7 +61,6 @@ class World {
         if (this.ctx != null) {
             try {
                 this.ctx.drawImage(obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
-                console.log("It go,", obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
             }
             catch (e) {
                 console.warn("Error loading image", e);

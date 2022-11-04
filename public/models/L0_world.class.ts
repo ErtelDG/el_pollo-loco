@@ -6,7 +6,7 @@ class World {
    statusBarCoin = new StatusBarCoin();
    throwableObject = [new ThrowableObject()];
    level = level1;
-
+   coinsPercentage = (100 / this.level.coins.length) * this.character.coins;
    canvas;
 
    keyboard;
@@ -24,9 +24,18 @@ class World {
       setInterval(() => {
          this.level.enemies.forEach((enemy: any) => {
             if (this.character.isColliding(enemy)) {
-               this.character.hit();
+               this.character.collectsCoin();
                this.statusBarHp.setPercentage(this.character.energy);
-               console.log("COLLISION,", this.character.energy);
+            }
+         });
+
+         this.level.coins.forEach((coin: any) => {
+            if (this.character.isColliding(coin)) {
+               this.character.collectsCoin();
+               this.coinsPercentage = (100 / this.level.coins.length) * this.character.coins;
+               this.statusBarCoin.setPercentage(this.coinsPercentage);
+               console.log(this.coinsPercentage);
+               console.log(this.character.coins);
             }
          });
       }, 200);

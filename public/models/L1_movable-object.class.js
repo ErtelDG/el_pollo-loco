@@ -7,6 +7,8 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     offsetY = this.y + this.height;
     speedY = 0;
+    bottles = 0;
+    coins = 0;
     energy = 100;
     acceleration = 3;
     lastHit = 0;
@@ -52,6 +54,9 @@ class MovableObject extends DrawableObject {
         else {
             this.lastHit = new Date().getTime();
         }
+    }
+    collectsCoin() {
+        this.coins += 1;
     }
     isHurt() {
         let timepassed = (new Date().getTime() - this.lastHit) / 1000;

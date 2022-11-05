@@ -29,6 +29,7 @@ class World {
             this.checkCollisions();
             this.checkCollectsCoins();
             this.checkPickBottle();
+            this.checkSplashBottle();
             this.checkThrowObjects();
         }, 200);
     }
@@ -42,6 +43,20 @@ class World {
                 this.statusBarBottle.setPercentage(this.bottlesPercentage);
             }
         }
+    }
+    checkSplashBottle() {
+        setInterval(() => {
+            if (this.throwableObject != null) {
+                this.throwableObject.forEach((bottle) => {
+                    console.log(bottle.y);
+                    if (bottle.y > 300) {
+                        if (this.throwableObject.includes(bottle)) {
+                            this.throwableObject.splice(this.throwableObject.indexOf(bottle, 0), 1);
+                        }
+                    }
+                });
+            }
+        }, 10);
     }
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {

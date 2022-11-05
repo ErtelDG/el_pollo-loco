@@ -42,8 +42,8 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObject.push(bottle);
             this.character.bottles -= 1;
-             this.bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
-             this.statusBarBottle.setPercentage(this.bottlesPercentage);
+            this.bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
+            this.statusBarBottle.setPercentage(this.bottlesPercentage);
          }
       }
    }
@@ -79,7 +79,6 @@ class World {
             this.character.collectBottle();
             this.bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
             this.statusBarBottle.setPercentage(this.bottlesPercentage);
-            console.log(this.bottlesPercentage);
          }
       });
    }

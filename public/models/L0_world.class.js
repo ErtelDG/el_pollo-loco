@@ -72,7 +72,6 @@ class World {
                 this.character.collectBottle();
                 this.bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
                 this.statusBarBottle.setPercentage(this.bottlesPercentage);
-                console.log(this.bottlesPercentage);
             }
         });
     }

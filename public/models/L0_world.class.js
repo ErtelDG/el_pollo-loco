@@ -32,6 +32,7 @@ class World {
             this.checkPickBottle();
             this.checkSplashBottle();
             this.checkThrowObjects();
+            this.checkBottleCollisionEnemies();
             this.removeSplashBottleArray();
         }, 200);
     }
@@ -61,7 +62,6 @@ class World {
         setInterval(() => {
             if (this.throwableObject != null) {
                 this.throwableObject.forEach((bottle) => {
-                    console.log(bottle.y);
                     if (bottle.y > 300) {
                         let splashBottle = new SplashBottleObject(bottle.x, bottle.y);
                         this.bottlesSplash.push(splashBottle);
@@ -80,6 +80,28 @@ class World {
                 this.statusBarHp.setPercentage(this.character.energy);
             }
         });
+    }
+    checkBottleCollisionEnemies() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                this.throwableObject.forEach((throwableBottle) => {
+                    if (throwableBottle.x + throwableBottle.width >= enemy.x &&
+                        throwableBottle.x <= enemy.x + enemy.width &&
+                        throwableBottle.y + throwableBottle.height >= enemy.y &&
+                        throwableBottle.y + throwableBottle.offsetY
+                    //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
+                    ) {
+                        let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y);
+                        this.bottlesSplash.push(splashBottle);
+                        if (this.throwableObject.includes(throwableBottle)) {
+                            this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
+                        }
+                        this.removeSplashBottleArray();
+                        console.log("Bottle trifft Enemie");
+                    }
+                });
+            });
+        }, 10);
     }
     checkCollectsCoins() {
         this.level.coins.forEach(async (coin) => {

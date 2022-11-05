@@ -14,13 +14,6 @@ function createdLevel(this: any) {
          new Chicken(),
          new Chicken(),
          new Chicken(),
-         new Chicken(),
-         new Chicken(),
-         new Chicken(),
-         new Chicken(),
-         new Chicken(),
-         new Chicken(),
-         new Chicken(),
          new Endboss(),
       ],
       [

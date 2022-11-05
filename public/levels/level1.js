@@ -13,8 +13,7 @@ function createdLevel() {
         new Chicken(),
         new Chicken(),
         new Chicken(),
-        new Endboss(),
-    ], [
+    ], [new Endboss()], [
         new Cloud(),
         new Cloud(),
         new Cloud(),

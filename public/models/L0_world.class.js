@@ -8,6 +8,8 @@ class World {
     level = level1;
     coinsInWorld = this.level.coins.length;
     coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
+    bottlesInWorld = this.level.bottles.length;
+    bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
     canvas;
     throwableObject = [];
     keyboard;
@@ -26,6 +28,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkCollectsCoins();
+            this.checkPickBottle();
             this.checkThrowObjects();
         }, 200);
     }
@@ -52,6 +55,19 @@ class World {
                 this.character.collectsCoin();
                 this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
                 this.statusBarCoin.setPercentage(this.coinsPercentage);
+            }
+        });
+    }
+    checkPickBottle() {
+        this.level.bottles.forEach(async (bottle) => {
+            if (this.character.isColliding(bottle)) {
+                if (this.level.bottles.includes(bottle)) {
+                    await this.level.bottles.splice(this.level.bottles.indexOf(bottle, 0), 1);
+                }
+                this.character.collectBottle();
+                this.bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
+                this.statusBarBottle.setPercentage(this.bottlesPercentage);
+                console.log(this.bottlesPercentage);
             }
         });
     }

@@ -111,6 +111,6 @@ function createdLevel(this: any) {
          new Coin(),
          new Coin(),
       ],
-      [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()]
+      [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()]
    );
 }

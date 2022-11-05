@@ -74,6 +74,10 @@ class MovableObject extends DrawableObject {
       this.coins += 1;
    }
 
+   collectBottle() {
+      this.bottles += 1;
+   }
+
    isHurt() {
       let timepassed = (new Date().getTime() - this.lastHit) / 1000;
       return timepassed < 1;

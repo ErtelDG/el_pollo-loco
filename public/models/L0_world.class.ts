@@ -18,7 +18,6 @@ class World {
       this.draw();
       this.setWorld();
       this.run();
-      this.checkCollectsCoins();
    }
 
    setWorld() {
@@ -28,6 +27,7 @@ class World {
    run() {
       setInterval(() => {
          this.checkCollisions();
+         this.checkCollectsCoins();
          this.checkThrowObjects();
       }, 200);
    }
@@ -49,18 +49,16 @@ class World {
    }
 
    checkCollectsCoins() {
-      setInterval(() => {
-         this.level.coins.forEach(async (coin: any) => {
-            if (this.character.isColliding(coin)) {
-               if (this.level.coins.includes(coin)) {
-                  await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1);
-               }
-               this.character.collectsCoin();
-               this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
-               this.statusBarCoin.setPercentage(this.coinsPercentage);
+      this.level.coins.forEach(async (coin: any) => {
+         if (this.character.isColliding(coin)) {
+            if (this.level.coins.includes(coin)) {
+               await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1);
             }
-         });
-      }, 500);
+            this.character.collectsCoin();
+            this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
+            this.statusBarCoin.setPercentage(this.coinsPercentage);
+         }
+      });
    }
 
    draw() {
@@ -71,7 +69,7 @@ class World {
          this.addObjectsToMap(this.level.backgroundObjects);
 
          this.addToMap(this.character);
-this.addObjectsToMap(this.level.bottles);
+         this.addObjectsToMap(this.level.bottles);
          this.addObjectsToMap(this.level.clouds);
          this.addObjectsToMap(this.level.enemies);
          this.addObjectsToMap(this.level.coins);

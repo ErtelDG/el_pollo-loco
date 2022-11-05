@@ -18,7 +18,6 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.checkCollectsCoins();
     }
     setWorld() {
         this.character.world = this;
@@ -26,6 +25,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
+            this.checkCollectsCoins();
             this.checkThrowObjects();
         }, 200);
     }
@@ -44,18 +44,16 @@ class World {
         });
     }
     checkCollectsCoins() {
-        setInterval(() => {
-            this.level.coins.forEach(async (coin) => {
-                if (this.character.isColliding(coin)) {
-                    if (this.level.coins.includes(coin)) {
-                        await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1);
-                    }
-                    this.character.collectsCoin();
-                    this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
-                    this.statusBarCoin.setPercentage(this.coinsPercentage);
+        this.level.coins.forEach(async (coin) => {
+            if (this.character.isColliding(coin)) {
+                if (this.level.coins.includes(coin)) {
+                    await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1);
                 }
-            });
-        }, 500);
+                this.character.collectsCoin();
+                this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
+                this.statusBarCoin.setPercentage(this.coinsPercentage);
+            }
+        });
     }
     draw() {
         if (this.ctx != null) {

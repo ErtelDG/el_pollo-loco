@@ -11,6 +11,7 @@ class World {
     bottlesInWorld = this.level.bottles.length;
     bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
     bottlesSplash = [];
+    deadEnemies = [];
     canvas;
     throwableObject = [];
     keyboard;
@@ -83,6 +84,7 @@ class World {
     }
     checkBottleCollisionEnemies() {
         setInterval(() => {
+            //bottle enemie collision checken
             this.level.enemies.forEach((enemy) => {
                 this.throwableObject.forEach((throwableBottle) => {
                     if (throwableBottle.x + throwableBottle.width >= enemy.x &&
@@ -91,12 +93,21 @@ class World {
                         throwableBottle.y + throwableBottle.offsetY
                     //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
                     ) {
-                        let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y);
+                        //platzende Flasche erstellen
+                        let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
                         this.bottlesSplash.push(splashBottle);
                         if (this.throwableObject.includes(throwableBottle)) {
                             this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
                         }
+                        //Splash array bereinigen
                         this.removeSplashBottleArray();
+                        //Totes Chicken hinzufügen
+                        let deadEnemy = new DeadChicken(enemy.x, enemy.y);
+                        this.deadEnemies.push(deadEnemy);
+                        //lebendes huhn entfernen vom bild
+                        if (this.level.enemies.includes(enemy)) {
+                            this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
+                        }
                         console.log("Bottle trifft Enemie");
                     }
                 });
@@ -137,6 +148,7 @@ class World {
             this.addObjectsToMap(this.level.bottles);
             this.addObjectsToMap(this.level.clouds);
             this.addObjectsToMap(this.level.enemies);
+            this.addObjectsToMap(this.deadEnemies);
             this.addObjectsToMap(this.level.coins);
             this.addObjectsToMap(this.throwableObject);
             this.ctx.translate(-this.camera_x, 0);

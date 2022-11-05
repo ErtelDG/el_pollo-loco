@@ -10,6 +10,7 @@ class World {
     coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
     bottlesInWorld = this.level.bottles.length;
     bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
+    bottlesSplash = [];
     canvas;
     throwableObject = [];
     keyboard;
@@ -31,6 +32,7 @@ class World {
             this.checkPickBottle();
             this.checkSplashBottle();
             this.checkThrowObjects();
+            this.removeSplashBottleArray();
         }, 200);
     }
     checkThrowObjects() {
@@ -44,12 +46,25 @@ class World {
             }
         }
     }
+    removeSplashBottleArray() {
+        if (this.bottlesSplash != null) {
+            this.bottlesSplash.forEach((bottle) => {
+                setTimeout(() => {
+                    if (this.bottlesSplash.includes(bottle)) {
+                        this.bottlesSplash.splice(this.bottlesSplash.indexOf(bottle, 0), 1);
+                    }
+                }, 700);
+            });
+        }
+    }
     checkSplashBottle() {
         setInterval(() => {
             if (this.throwableObject != null) {
                 this.throwableObject.forEach((bottle) => {
                     console.log(bottle.y);
                     if (bottle.y > 300) {
+                        let splashBottle = new SplashBottleObject(bottle.x, bottle.y);
+                        this.bottlesSplash.push(splashBottle);
                         if (this.throwableObject.includes(bottle)) {
                             this.throwableObject.splice(this.throwableObject.indexOf(bottle, 0), 1);
                         }
@@ -95,6 +110,7 @@ class World {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.ctx.translate(this.camera_x, 0);
             this.addObjectsToMap(this.level.backgroundObjects);
+            this.addObjectsToMap(this.bottlesSplash);
             this.addToMap(this.character);
             this.addObjectsToMap(this.level.bottles);
             this.addObjectsToMap(this.level.clouds);

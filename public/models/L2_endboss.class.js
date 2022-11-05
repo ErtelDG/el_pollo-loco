@@ -3,6 +3,7 @@ class Endboss extends MovableObject {
     height = 300;
     width = 200;
     y = 80;
+    health = 3;
     IMAGES_ALERT = [
         "img/4_enemie_boss_chicken/2_alert/G5.png",
         "img/4_enemie_boss_chicken/2_alert/G6.png",
@@ -19,6 +20,7 @@ class Endboss extends MovableObject {
         this.loadImagesWalking(this.IMAGES_ALERT);
         this.x = 7000;
         this.animate();
+        this.health = 3;
     }
     animate() {
         this.moveLeft();

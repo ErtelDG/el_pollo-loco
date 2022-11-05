@@ -141,15 +141,19 @@ class World {
                   }
                   //Splash array bereinigen
                   this.removeSplashBottleArray();
-                  //Totes Chicken hinzufügen
-                  let deadEnemy = new DeadChicken(endboss.x, endboss.y);
-                  this.deadEnemies.push(deadEnemy);
-                  //lebendes huhn entfernen vom bild
-                  if (this.level.endboss.includes(endboss)) {
-                     this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
-                  }
+                  endboss.health -= 1;
+                  console.log("Bottle trifft Endboss", endboss.health);
+                  if ((endboss.health == 0)) {
+                     //Totes Chicken hinzufügen
+                     let deadEnemy = new DeadChicken(endboss.x, endboss.y);
+                     this.deadEnemies.push(deadEnemy);
+                     //lebendes huhn entfernen vom bild
+                     if (this.level.endboss.includes(endboss)) {
+                        this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
+                     }
 
-                  console.log("Bottle trifft Enemie");
+                     console.log("Endboss tot");
+                  }
                }
             });
          });

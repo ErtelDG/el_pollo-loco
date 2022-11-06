@@ -73,7 +73,7 @@ class Endboss extends MovableObject {
             }
             else if (this.endbossMoveLeft == true) {
                 this.animationObjects(this.IMAGES_WALK, this.imageCacheWalk);
-                this.x -= 1;
+                this.x -= 2;
                 console.log("Endboss MoveLeft");
             }
             else if (this.endbossAttack == true) {
@@ -82,7 +82,7 @@ class Endboss extends MovableObject {
             }
             else {
             }
-        }, 200);
+        }, 100);
     }
     intervall() {
         setInterval(() => {

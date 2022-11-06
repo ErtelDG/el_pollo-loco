@@ -63,6 +63,10 @@ class Character extends MovableObject {
         this.loadImagesHurt(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
+        this.offset.bottom = 110;
+        this.offset.left = 25;
+        this.offset.right = 60;
+        this.offset.top = 100;
     }
     animate() {
         setInterval(() => {

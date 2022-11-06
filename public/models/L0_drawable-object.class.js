@@ -8,6 +8,7 @@ class DrawableObject {
     y = 230;
     height = 150;
     width = 100;
+    offset = { top: 0, left: 0, right: 0, bottom: 0 };
     constructor() { }
     // loadImage ('img/test.png')
     loadImage(path) {

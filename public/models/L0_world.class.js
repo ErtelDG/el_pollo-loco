@@ -37,15 +37,7 @@ class World {
         }, 50);
         setInterval(() => {
             this.checkThrowObjects();
-            this.endbossFight();
         }, 200);
-    }
-    endbossFight() {
-        if (this.character.x >= 6000) {
-            this.character.stopLeft = 6000;
-            this.level.endboss.endbossMoveLeft = true;
-            console.log(this.level.endboss.endbossMoveLeft);
-        }
     }
     checkThrowObjects() {
         if (this.keyboard.D) {
@@ -158,9 +150,9 @@ class World {
                         }
                         //Splash array bereinigen
                         this.removeSplashBottleArray();
-                        endboss.health -= 1;
-                        console.log("Bottle trifft Endboss", endboss.health);
-                        if (endboss.health == 0) {
+                        endboss.energy -= 1;
+                        console.log("Bottle trifft Endboss", endboss.energy);
+                        if (endboss.energy == 0) {
                             //Totes Chicken hinzufügen
                             let deadEnemy = new DeadChicken(endboss.x, endboss.y);
                             this.deadEnemies.push(deadEnemy);

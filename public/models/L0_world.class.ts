@@ -40,16 +40,7 @@ class World {
 
       setInterval(() => {
          this.checkThrowObjects();
-         this.endbossFight();
       }, 200);
-   }
-
-   endbossFight() {
-      if (this.character.x >= 6000) {
-         this.character.stopLeft = 6000;
-         this.level.endboss.endbossMoveLeft = true;
-         console.log(this.level.endboss.endbossMoveLeft);
-      }
    }
 
    checkThrowObjects() {
@@ -169,9 +160,9 @@ class World {
                   }
                   //Splash array bereinigen
                   this.removeSplashBottleArray();
-                  endboss.health -= 1;
-                  console.log("Bottle trifft Endboss", endboss.health);
-                  if (endboss.health == 0) {
+                  endboss.energy -= 1;
+                  console.log("Bottle trifft Endboss", endboss.energy);
+                  if (endboss.energy == 0) {
                      //Totes Chicken hinzufügen
                      let deadEnemy = new DeadChicken(endboss.x, endboss.y);
                      this.deadEnemies.push(deadEnemy);
@@ -222,6 +213,7 @@ class World {
          this.addObjectsToMap(this.level.backgroundObjects);
          this.addObjectsToMap(this.bottlesSplash);
          this.addToMap(this.character);
+
          this.addObjectsToMap(this.level.bottles);
          this.addObjectsToMap(this.level.clouds);
          this.addObjectsToMap(this.level.enemies);
@@ -267,7 +259,7 @@ class World {
    }
 
    addObjectsToMap(obj: any) {
-      obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin | ThrowableObject) => {
+      obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin | ThrowableObject | Endboss) => {
          this.drawElements(obj_x);
          this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       });
@@ -288,7 +280,7 @@ class World {
       this.ctx.stroke();
    }
 
-   drawElements(objectToDraw: Chicken | Cloud | BackgroundObject | Coin | StatusBarHp | ThrowableObject) {
+   drawElements(objectToDraw: Chicken | Cloud | BackgroundObject | Coin | StatusBarHp | ThrowableObject | Endboss) {
       if (this.ctx != null) {
          this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
       }

@@ -98,7 +98,7 @@ class World {
                   throwableBottle.x + throwableBottle.width >= enemy.x &&
                   throwableBottle.x <= enemy.x + enemy.width &&
                   throwableBottle.y + throwableBottle.height >= enemy.y &&
-                  throwableBottle.y + throwableBottle.offsetY
+                  throwableBottle.y <= enemy.y + enemy.height
                   //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
                ) {
                   //platzende Flasche erstellen
@@ -130,7 +130,7 @@ class World {
                   throwableBottle.x + throwableBottle.width >= endboss.x &&
                   throwableBottle.x <= endboss.x + endboss.width &&
                   throwableBottle.y + throwableBottle.height >= endboss.y &&
-                  throwableBottle.y + throwableBottle.offsetY
+                  throwableBottle.y <= endboss.y + endboss.height
                   //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
                ) {
                   //platzende Flasche erstellen
@@ -143,7 +143,7 @@ class World {
                   this.removeSplashBottleArray();
                   endboss.health -= 1;
                   console.log("Bottle trifft Endboss", endboss.health);
-                  if ((endboss.health == 0)) {
+                  if (endboss.health == 0) {
                      //Totes Chicken hinzufügen
                      let deadEnemy = new DeadChicken(endboss.x, endboss.y);
                      this.deadEnemies.push(deadEnemy);

@@ -32,10 +32,19 @@ class World {
             this.checkCollectsCoins();
             this.checkPickBottle();
             this.checkSplashBottle();
-            this.checkThrowObjects();
             this.checkBottleCollisionEnemies();
             this.removeSplashBottleArray();
+            this.endbossFight();
         }, 50);
+        setInterval(() => {
+            this.checkThrowObjects();
+        }, 200);
+    }
+    endbossFight() {
+        if (this.character.x == 6400) {
+            console.log("6400");
+            this.character.stopLeft = 6400;
+        }
     }
     checkThrowObjects() {
         if (this.keyboard.D) {

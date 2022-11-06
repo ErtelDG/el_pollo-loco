@@ -34,10 +34,23 @@ class World {
          this.checkCollectsCoins();
          this.checkPickBottle();
          this.checkSplashBottle();
-         this.checkThrowObjects();
-         this.checkBottleCollisionEnemies();
+                 this.checkBottleCollisionEnemies();
          this.removeSplashBottleArray();
+         this.endbossFight();
       }, 50);
+
+setInterval(()=>{
+    this.checkThrowObjects();
+},200)
+
+
+   }
+
+   endbossFight() {
+      if (this.character.x == 6400) {
+         console.log("6400");
+         this.character.stopLeft = 6400;
+      }
    }
 
    checkThrowObjects() {
@@ -87,8 +100,8 @@ class World {
             this.statusBarHp.setPercentage(this.character.energy);
          } else if (
             // hit von oben
-            this.character.x + this.character.width - this.character.offset.right>= enemy.x + enemy.offset.left + 50&&
-            this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right&&
+            this.character.x + this.character.width - this.character.offset.right >= enemy.x + enemy.offset.left + 50 &&
+            this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
             this.character.y + this.character.height - this.character.offset.bottom >= enemy.y - 50 &&
             this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom
          ) {

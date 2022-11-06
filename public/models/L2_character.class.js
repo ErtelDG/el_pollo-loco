@@ -5,6 +5,7 @@ class Character extends MovableObject {
     y = 50;
     world;
     speed = 8;
+    stopLeft = 0;
     imageCacheIdle = [];
     imageCacheWalking = [];
     imageCacheJump = [];
@@ -82,7 +83,7 @@ class Character extends MovableObject {
                 }
                 this.walking_sound.volume = 0.1;
             }
-            if (world.character.world.keyboard.LEFT && this.x > 0) {
+            if (world.character.world.keyboard.LEFT && this.x > this.stopLeft) {
                 this.moveLeft();
                 this.otherDirection = true;
                 if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {

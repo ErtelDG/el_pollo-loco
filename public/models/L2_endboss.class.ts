@@ -61,22 +61,6 @@ class Endboss extends MovableObject {
    }
    animate() {
       setInterval(() => {
-        //this.animationObjects(this.IMAGES_ALERT, this.imageCacheAlert);
-
-         //  setInterval(() => {
-         //     if (this.isDead()) {
-         //        this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);
-         //     } else if (this.isWalking()) {
-
-         //     } else if (this.isAttack()) {
-
-         //     } else if (this.isHurt()) {
-         //        this.animationObjects(this.IMAGES_HURT, this.imageCacheHurt);
-         //     } else {
-
-         //     }
-         //  }, 50);
-
          if (this.endbossAlert == true) {
             this.animationObjects(this.IMAGES_ALERT, this.imageCacheAlert);
             console.log("Endboss Alert");

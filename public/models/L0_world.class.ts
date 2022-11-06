@@ -37,7 +37,7 @@ class World {
          this.checkThrowObjects();
          this.checkBottleCollisionEnemies();
          this.removeSplashBottleArray();
-      }, 200);
+      }, 50);
    }
 
    checkThrowObjects() {
@@ -85,7 +85,14 @@ class World {
          if (this.character.isColliding(enemy)) {
             this.character.hit();
             this.statusBarHp.setPercentage(this.character.energy);
-         }
+         } else if (
+            this.character.x + this.character.width - this.character.offset.right >= enemy.x + enemy.offset.left &&
+            this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
+            this.character.y + this.character.height - this.character.offset.bottom >= enemy.y - 50 &&
+            this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom
+         ) {
+            console.log("Hit top");
+         }else{}
       });
    }
 

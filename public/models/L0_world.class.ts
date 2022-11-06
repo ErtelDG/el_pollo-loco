@@ -34,22 +34,21 @@ class World {
          this.checkCollectsCoins();
          this.checkPickBottle();
          this.checkSplashBottle();
-                 this.checkBottleCollisionEnemies();
+         this.checkBottleCollisionEnemies();
          this.removeSplashBottleArray();
-         this.endbossFight();
       }, 50);
 
-setInterval(()=>{
-    this.checkThrowObjects();
-},200)
-
-
+      setInterval(() => {
+         this.checkThrowObjects();
+         this.endbossFight();
+      }, 200);
    }
 
    endbossFight() {
-      if (this.character.x == 6400) {
-         console.log("6400");
-         this.character.stopLeft = 6400;
+      if (this.character.x >= 6000) {
+         this.character.stopLeft = 6000;
+         this.level.endboss.endbossMoveLeft = true;
+         console.log(this.level.endboss.endbossMoveLeft);
       }
    }
 

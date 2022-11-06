@@ -80,13 +80,23 @@ class World {
                 this.character.hit();
                 this.statusBarHp.setPercentage(this.character.energy);
             }
-            else if (this.character.x + this.character.width - this.character.offset.right >= enemy.x + enemy.offset.left &&
+            else if (
+            // hit von oben
+            this.character.x + this.character.width - this.character.offset.right >= enemy.x + enemy.offset.left + 50 &&
                 this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
                 this.character.y + this.character.height - this.character.offset.bottom >= enemy.y - 50 &&
                 this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom) {
+                //lebendes huhn entfernen vom bild
+                if (this.level.enemies.includes(enemy)) {
+                    this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
+                }
+                //Totes Chicken hinzufügen
+                let deadEnemy = new DeadChicken(enemy.x, enemy.y);
+                this.deadEnemies.push(deadEnemy);
                 console.log("Hit top");
             }
-            else { }
+            else {
+            }
         });
     }
     checkBottleCollisionEnemies() {

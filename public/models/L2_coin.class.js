@@ -11,9 +11,9 @@ class Coin extends MovableObject {
         this.x = 500 + Math.random() * 6500; //Zahl zwischen 200 und 700
         this.y = 75 + Math.random() * 200;
         this.animate();
-        this.offset.bottom = 80;
+        this.offset.bottom = 90;
         this.offset.left = 40;
-        this.offset.right = 80;
+        this.offset.right = 40;
         this.offset.top = 40;
     }
     animate() {

@@ -160,7 +160,7 @@ class World {
                         console.log("Bottle trifft Endboss", endboss.energy);
                         if (endboss.energy == 0) {
                             //Totes Chicken hinzufügen
-                            let deadEnemy = new DeadChicken(endboss.x, endboss.y);
+                            let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
                             this.deadEnemies.push(deadEnemy);
                             //lebendes huhn entfernen vom bild
                             if (this.level.endboss.includes(endboss)) {

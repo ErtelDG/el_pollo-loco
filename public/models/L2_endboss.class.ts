@@ -43,16 +43,13 @@ class Endboss extends MovableObject {
    IMAGES_HURT = ["img/4_enemie_boss_chicken/4_hurt/G21.png", "img/4_enemie_boss_chicken/4_hurt/G22.png", "img/4_enemie_boss_chicken/4_hurt/G23.png"];
    imageCacheHurt: any = [];
 
-   IMAGES_DEAD = ["img/4_enemie_boss_chicken/5_dead/G24.png", "img/4_enemie_boss_chicken/5_dead/G25.png", "img/4_enemie_boss_chicken/5_dead/G26.png"];
-   imageCacheDead: any = [];
-
    constructor() {
       super();
       this.loadImage(this.IMAGES_ALERT[0]);
       this.loadImagesAlert(this.IMAGES_ALERT);
       this.loadImagesWalking(this.IMAGES_WALK);
       this.loadImagesAttack(this.IMAGES_ATTACK);
-      this.loadImagesDead(this.IMAGES_DEAD);
+
       this.loadImagesHurt(this.IMAGES_HURT);
       this.x = 7000;
       this.animate();
@@ -115,13 +112,7 @@ class Endboss extends MovableObject {
          this.imageCacheAttack.push(img);
       });
    }
-   loadImagesDead(arr: any[]) {
-      arr.forEach((path: string) => {
-         let img = new Image();
-         img.src = path;
-         this.imageCacheDead.push(img);
-      });
-   }
+
    loadImagesHurt(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();

@@ -229,7 +229,7 @@ class World {
             console.warn("Cold not load image,", obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
             debugger;
          }
-         this.drawRectangle(obj_x.x + obj_x.offset.left, obj_x.y + obj_x.offset.top, obj_x.width - obj_x.offset.right, obj_x.height - obj_x.offset.bottom);
+         this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       }
 
       if (obj_x.otherDirection) {
@@ -241,7 +241,7 @@ class World {
    addObjectsToMap(obj: any) {
       obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin | ThrowableObject) => {
          this.drawElements(obj_x);
-         this.drawRectangle(obj_x.x + obj_x.offset.left, obj_x.y + obj_x.offset.top, obj_x.width - obj_x.offset.right, obj_x.height - obj_x.offset.bottom);
+         this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       });
    }
 

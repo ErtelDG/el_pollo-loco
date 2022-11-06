@@ -106,6 +106,14 @@ class World {
          } else {
          }
       });
+   this.level.endboss.forEach((endboss: any) => {
+         if (this.character.isColliding(endboss)) {
+            this.character.hit();
+            this.statusBarHp.setPercentage(this.character.energy);
+         } });
+
+
+
    }
 
    checkBottleCollisionEnemies() {

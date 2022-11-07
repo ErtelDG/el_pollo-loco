@@ -100,9 +100,9 @@ class World {
             this.statusBarHp.setPercentage(this.character.energy);
          } else if (
             // hit von oben
-            this.character.x + this.character.width - this.character.offset.right >= enemy.x + enemy.offset.left + 50 &&
+            this.character.x + this.character.width - this.character.offset.right >= enemy.x + enemy.offset.left &&
             this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
-            this.character.y + this.character.height - this.character.offset.bottom >= enemy.y - 50 &&
+            this.character.y + this.character.height - this.character.offset.bottom + 20 >= enemy.y - 50 &&
             this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom
          ) {
             //lebendes huhn entfernen vom bild

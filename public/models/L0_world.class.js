@@ -93,7 +93,7 @@ class World {
             }
             else if (
             // hit von oben
-            this.character.x + this.character.width - this.character.offset.right >= enemy.x + enemy.offset.left &&
+            this.character.x + this.character.width - this.character.offset.right - 20 >= enemy.x + enemy.offset.left &&
                 this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
                 this.character.y + this.character.height - this.character.offset.bottom + 20 >= enemy.y - 50 &&
                 this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom) {
@@ -151,7 +151,7 @@ class World {
             //bottle endboss collision checken
             this.level.endboss.forEach((endboss) => {
                 this.throwableObject.forEach((throwableBottle) => {
-                    if (throwableBottle.x + throwableBottle.width >= endboss.x &&
+                    if (throwableBottle.x + throwableBottle.width - 50 >= endboss.x &&
                         throwableBottle.x <= endboss.x + endboss.width &&
                         throwableBottle.y + throwableBottle.height >= endboss.y &&
                         throwableBottle.y <= endboss.y + endboss.height

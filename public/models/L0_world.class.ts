@@ -162,7 +162,7 @@ class World {
          this.level.endboss.forEach((endboss: any) => {
             this.throwableObject.forEach((throwableBottle: any) => {
                if (
-                  throwableBottle.x + throwableBottle.width >= endboss.x &&
+                  throwableBottle.x + throwableBottle.width -50 >= endboss.x &&
                   throwableBottle.x <= endboss.x + endboss.width &&
                   throwableBottle.y + throwableBottle.height >= endboss.y &&
                   throwableBottle.y <= endboss.y + endboss.height

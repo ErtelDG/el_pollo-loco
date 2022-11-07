@@ -146,7 +146,7 @@ class World {
                }
             });
          });
-      }, 10);
+      }, 5);
       setInterval(() => {
          //bottle endboss collision checken
          this.level.endboss.forEach((endboss: any) => {
@@ -164,13 +164,14 @@ class World {
                   if (this.throwableObject.includes(throwableBottle)) {
                      this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
                   }
+                 endboss.hitEndboss = true;
                   //Splash array bereinigen
                   this.removeSplashBottleArray();
                   endboss.energy -= 1;
                   console.log("Bottle trifft Endboss", endboss.energy);
                   if (endboss.energy == 0) {
                      //Totes Chicken hinzufügen
-                     let deadEnemy = new DeadEndboss(endboss.x, endboss.y+80);
+                     let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
                      this.deadEnemies.push(deadEnemy);
                      //lebendes huhn entfernen vom bild
                      if (this.level.endboss.includes(endboss)) {

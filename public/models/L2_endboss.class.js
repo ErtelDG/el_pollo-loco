@@ -3,11 +3,12 @@ class Endboss extends MovableObject {
     height = 300;
     width = 200;
     y = 80;
-    energy = 3;
+    energy = 5;
     endbossMoveLeft = false;
     endbossAlert = true;
     endbossAttack = false;
     hitEndboss = false;
+    characterNearbyEndboss = false;
     walking_enemie_sound = new Audio("audio/chicken.mp3");
     IMAGES_WALK = [
         "img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -54,27 +55,29 @@ class Endboss extends MovableObject {
     }
     animate() {
         setInterval(() => {
-            if (this.hitEndboss == true) {
-                this.animationObjects(this.IMAGES_HURT, this.imageCacheHurt);
-                setTimeout(() => {
-                    this.hitEndboss = false;
-                }, 1000);
-            }
-            else {
-                if (this.endbossAlert == true) {
-                    this.animationObjects(this.IMAGES_ALERT, this.imageCacheAlert);
-                    console.log("Endboss Alert");
-                }
-                else if (this.endbossMoveLeft == true) {
-                    this.animationObjects(this.IMAGES_WALK, this.imageCacheWalk);
-                    this.x -= 3;
-                    console.log("Endboss MoveLeft");
-                }
-                else if (this.endbossAttack == true) {
-                    this.animationObjects(this.IMAGES_ATTACK, this.imageCacheAttack);
-                    console.log("Endboss Attacke");
+            if (this.characterNearbyEndboss == true) {
+                if (this.hitEndboss == true) {
+                    this.animationObjects(this.IMAGES_HURT, this.imageCacheHurt);
+                    setTimeout(() => {
+                        this.hitEndboss = false;
+                    }, 1000);
                 }
                 else {
+                    if (this.endbossAlert == true) {
+                        this.animationObjects(this.IMAGES_ALERT, this.imageCacheAlert);
+                        console.log("Endboss Alert");
+                    }
+                    else if (this.endbossMoveLeft == true) {
+                        this.animationObjects(this.IMAGES_WALK, this.imageCacheWalk);
+                        this.x -= 3;
+                        console.log("Endboss MoveLeft");
+                    }
+                    else if (this.endbossAttack == true) {
+                        this.animationObjects(this.IMAGES_ATTACK, this.imageCacheAttack);
+                        console.log("Endboss Attacke");
+                    }
+                    else {
+                    }
                 }
             }
         }, 100);

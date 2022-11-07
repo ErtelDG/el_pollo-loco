@@ -34,10 +34,18 @@ class World {
             this.checkSplashBottle();
             this.checkBottleCollisionEnemies();
             this.removeSplashBottleArray();
+            this.characterComeNearbyEndboss();
         }, 50);
         setInterval(() => {
             this.checkThrowObjects();
         }, 200);
+    }
+    characterComeNearbyEndboss() {
+        if (this.character.x > 6000) {
+            this.level.endboss.forEach((endboss) => {
+                endboss.characterNearbyEndboss = true;
+            });
+        }
     }
     checkThrowObjects() {
         if (this.keyboard.D) {

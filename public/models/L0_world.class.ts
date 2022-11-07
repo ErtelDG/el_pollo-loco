@@ -36,11 +36,20 @@ class World {
          this.checkSplashBottle();
          this.checkBottleCollisionEnemies();
          this.removeSplashBottleArray();
+         this.characterComeNearbyEndboss();
       }, 50);
 
       setInterval(() => {
          this.checkThrowObjects();
       }, 200);
+   }
+
+   characterComeNearbyEndboss() {
+      if (this.character.x > 6000) {
+         this.level.endboss.forEach((endboss: any) => {
+            endboss.characterNearbyEndboss = true;
+         });
+      }
    }
 
    checkThrowObjects() {
@@ -164,7 +173,7 @@ class World {
                   if (this.throwableObject.includes(throwableBottle)) {
                      this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
                   }
-                 endboss.hitEndboss = true;
+                  endboss.hitEndboss = true;
                   //Splash array bereinigen
                   this.removeSplashBottleArray();
                   endboss.energy -= 1;

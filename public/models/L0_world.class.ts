@@ -100,7 +100,7 @@ class World {
             this.statusBarHp.setPercentage(this.character.energy);
          } else if (
             // hit von oben
-            this.character.x + this.character.width - this.character.offset.right >= enemy.x + enemy.offset.left &&
+            this.character.x + this.character.width - this.character.offset.right - 50 >= enemy.x + enemy.offset.left &&
             this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
             this.character.y + this.character.height - this.character.offset.bottom + 20 >= enemy.y - 50 &&
             this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom
@@ -162,7 +162,7 @@ class World {
          this.level.endboss.forEach((endboss: any) => {
             this.throwableObject.forEach((throwableBottle: any) => {
                if (
-                  throwableBottle.x + throwableBottle.width -50 >= endboss.x &&
+                  throwableBottle.x + throwableBottle.width - 50 >= endboss.x &&
                   throwableBottle.x <= endboss.x + endboss.width &&
                   throwableBottle.y + throwableBottle.height >= endboss.y &&
                   throwableBottle.y <= endboss.y + endboss.height

@@ -3,7 +3,7 @@ class Endboss extends MovableObject {
     height = 300;
     width = 200;
     y = 80;
-    energy = 5;
+    energy = 100;
     endbossMoveLeft = false;
     endbossAlert = true;
     endbossAttack = false;
@@ -50,7 +50,7 @@ class Endboss extends MovableObject {
         this.loadImagesHurt(this.IMAGES_HURT);
         this.x = 7000;
         this.animate();
-        this.energy = 3;
+        this.energy = 100;
         this.intervall();
     }
     animate() {

@@ -4,6 +4,7 @@ class World {
    statusBarHp = new StatusBarHp();
    statusBarBottle = new StatusBarBottle();
    statusBarCoin = new StatusBarCoin();
+   statusBarEndboss = new StatusBarHpEndboss();
    level = level1;
    coinsInWorld = this.level.coins.length;
    coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
@@ -174,9 +175,11 @@ class World {
                      this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
                   }
                   endboss.hitEndboss = true;
+
                   //Splash array bereinigen
                   this.removeSplashBottleArray();
-                  endboss.energy -= 1;
+                  endboss.energy -= 20;
+                  this.statusBarEndboss.setPercentage(endboss.energy);
                   console.log("Bottle trifft Endboss", endboss.energy);
                   if (endboss.energy == 0) {
                      //Totes Chicken hinzufügen
@@ -241,6 +244,9 @@ class World {
          this.addToMap(this.statusBarHp);
          this.addToMap(this.statusBarBottle);
          this.addToMap(this.statusBarCoin);
+         if (this.character.x > 6200) {
+            this.addToMap(this.statusBarEndboss);
+         }
          this.ctx.translate(this.camera_x, 0);
 
          this.ctx.translate(-this.camera_x, 0);

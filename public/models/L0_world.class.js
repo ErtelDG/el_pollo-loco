@@ -88,6 +88,7 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach(async (enemy) => {
             if (this.character.isColliding(enemy)) {
+                this.character.damage_character.play();
                 this.character.hit();
                 this.statusBarHp.setPercentage(this.character.energy);
             }
@@ -97,6 +98,7 @@ class World {
                 this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
                 this.character.y + this.character.height - this.character.offset.bottom >= enemy.y &&
                 this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom) {
+                enemy.damage_enemie.play();
                 //lebendes huhn entfernen vom bild
                 if (this.level.enemies.includes(enemy)) {
                     this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
@@ -192,6 +194,7 @@ class World {
     checkCollectsCoins() {
         this.level.coins.forEach(async (coin) => {
             if (this.character.isColliding(coin)) {
+                coin.pick_coin.play();
                 if (this.level.coins.includes(coin)) {
                     await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1);
                 }

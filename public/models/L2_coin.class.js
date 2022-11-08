@@ -3,7 +3,8 @@ class Coin extends MovableObject {
     height = 125;
     width = 125;
     IMAGES = ["img/8_coin/coin_1.png", "img/8_coin/coin_2.png"];
-    walking_enemie_sound = new Audio("audio/chicken.mp3");
+    //walking_enemie_sound = new Audio("audio/chicken.mp3");
+    pick_coin = new Audio("audio/pick_coin.mp3");
     constructor() {
         super();
         this.loadImage(this.IMAGES[0]);

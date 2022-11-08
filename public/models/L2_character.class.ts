@@ -11,6 +11,7 @@ class Character extends MovableObject {
    imageCacheDead: any = [];
    imageCacheHeart: any = [];
    hightJumpPoint = false;
+   damage_character = new Audio("audio/character_damage.mp3")
 
    IMAGES_IDLE = [
       "img/2_character_pepe/1_idle/idle/I-1.png",

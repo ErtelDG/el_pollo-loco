@@ -40,7 +40,7 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
     jump() {
-        this.speedY = 30;
+        this.speedY = 32;
     }
     // Bessere Formel zur Kollisionsberechnung (Genauer)
     // isColliding(mo: any) {

@@ -45,7 +45,7 @@ class MovableObject extends DrawableObject {
    }
 
    jump() {
-      this.speedY = 30;
+      this.speedY = 32;
    }
 
    // Bessere Formel zur Kollisionsberechnung (Genauer)
@@ -55,9 +55,9 @@ class MovableObject extends DrawableObject {
 
    isColliding(obj: any) {
       return (
-         this.x + this.width - this.offset.right>= obj.x + obj.offset.left &&
+         this.x + this.width - this.offset.right >= obj.x + obj.offset.left &&
          this.x + this.offset.left <= obj.x + obj.width - obj.offset.right &&
-         this.y + this.height>= obj.y + 50&&
+         this.y + this.height >= obj.y + 50 &&
          this.y + this.offset.top <= obj.y + obj.height - obj.offset.bottom
          //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
       ); // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.

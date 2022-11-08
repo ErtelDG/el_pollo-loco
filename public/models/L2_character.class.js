@@ -4,13 +4,14 @@ class Character extends MovableObject {
     width = 120;
     y = 50;
     world;
-    speed = 9;
+    speed = 7;
     stopLeft = 0;
     imageCacheIdle = [];
     imageCacheWalking = [];
     imageCacheJump = [];
     imageCacheDead = [];
     imageCacheHeart = [];
+    hightJumpPoint = false;
     IMAGES_IDLE = [
         "img/2_character_pepe/1_idle/idle/I-1.png",
         "img/2_character_pepe/1_idle/idle/I-2.png",
@@ -110,7 +111,40 @@ class Character extends MovableObject {
                 this.animationObjects(this.IMAGES_HURT, this.imageCacheHeart);
             }
             else if (this.isAboveGround()) {
-                this.animationObjects(this.IMAGES_JUMPING, this.imageCacheJump);
+                setInterval(() => {
+                    if (this.hightJumpPoint == true) {
+                        if (this.y >= 130) {
+                            this.img = this.imageCacheJump[8];
+                            this.hightJumpPoint = false;
+                        }
+                        else if (this.y >= 70) {
+                            this.img = this.imageCacheJump[7];
+                        }
+                        else if (this.y >= 15) {
+                            this.img = this.imageCacheJump[6];
+                        }
+                        else if (this.y >= 0) {
+                            this.img = this.imageCacheJump[5];
+                        }
+                        else if (this.y >= -15) {
+                            this.img = this.imageCacheJump[4];
+                        }
+                    }
+                    else {
+                        if (this.y <= 0) {
+                            this.hightJumpPoint = true;
+                        }
+                        else if (this.y <= 100) {
+                            this.img = this.imageCacheJump[3];
+                        }
+                        else if (this.y <= 120) {
+                            this.img = this.imageCacheJump[2];
+                        }
+                        else if (this.y <= 140) {
+                            this.img = this.imageCacheJump[1];
+                        }
+                    }
+                }, 25);
             }
             else if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {
                 this.animationObjects(this.IMAGES_WALKING, this.imageCache);

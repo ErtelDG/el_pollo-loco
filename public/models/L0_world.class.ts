@@ -219,6 +219,7 @@ class World {
    checkPickBottle() {
       this.level.bottles.forEach(async (bottle: any) => {
          if (this.character.isColliding(bottle)) {
+            bottle.blob_sound.play();
             if (this.level.bottles.includes(bottle)) {
                await this.level.bottles.splice(this.level.bottles.indexOf(bottle, 0), 1);
             }

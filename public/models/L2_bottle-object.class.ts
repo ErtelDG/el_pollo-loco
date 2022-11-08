@@ -1,7 +1,7 @@
 class Bottle extends MovableObject {
    IMAGES = ["img/6_salsa_bottle/1_salsa_bottle_on_ground.png", "img/6_salsa_bottle/2_salsa_bottle_on_ground.png"];
-
-   randomNumber:any = 0;
+   blob_sound = new Audio("audio/blob.mp3");
+   randomNumber: any = 0;
    constructor() {
       super();
       this.x = 250 + Math.random() * 5000;

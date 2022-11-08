@@ -38,7 +38,7 @@ class World {
          this.checkBottleCollisionEnemies();
          this.removeSplashBottleArray();
          this.characterComeNearbyEndboss();
-      }, 50);
+      }, 20);
 
       setInterval(() => {
          this.checkThrowObjects();
@@ -102,7 +102,7 @@ class World {
             // hit von oben
             this.character.x + this.character.width - this.character.offset.right - 50 >= enemy.x + enemy.offset.left &&
             this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
-            this.character.y + this.character.height - this.character.offset.bottom + 20 >= enemy.y - 50 &&
+            this.character.y + this.character.height - this.character.offset.bottom >= enemy.y &&
             this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom
          ) {
             //lebendes huhn entfernen vom bild
@@ -231,8 +231,6 @@ class World {
          this.ctx.translate(this.camera_x, 0);
          this.addObjectsToMap(this.level.backgroundObjects);
          this.addObjectsToMap(this.bottlesSplash);
-         this.addToMap(this.character);
-
          this.addObjectsToMap(this.level.bottles);
          this.addObjectsToMap(this.level.clouds);
          this.addObjectsToMap(this.level.enemies);
@@ -240,11 +238,13 @@ class World {
          this.addObjectsToMap(this.deadEnemies);
          this.addObjectsToMap(this.level.coins);
          this.addObjectsToMap(this.throwableObject);
+         this.addToMap(this.character);
+
          this.ctx.translate(-this.camera_x, 0);
          this.addToMap(this.statusBarHp);
          this.addToMap(this.statusBarBottle);
          this.addToMap(this.statusBarCoin);
-         if (this.character.x > 6200) {
+         if (this.character.x > 5800) {
             this.addToMap(this.statusBarEndboss);
          }
          this.ctx.translate(this.camera_x, 0);
@@ -271,7 +271,7 @@ class World {
             console.warn("Cold not load image,", obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
             debugger;
          }
-         this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+         // this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       }
 
       if (obj_x.otherDirection) {
@@ -283,7 +283,7 @@ class World {
    addObjectsToMap(obj: any) {
       obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin | ThrowableObject | Endboss) => {
          this.drawElements(obj_x);
-         this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
+         //  this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       });
    }
 
@@ -294,13 +294,13 @@ class World {
       character.x = character.x * -1;
    }
 
-   drawRectangle(x: any, y: any, width: any, height: any) {
-      this.ctx.beginPath();
-      this.ctx.lineWidth = "5";
-      this.ctx.strokeStyle = "blue";
-      this.ctx.rect(x, y, width, height);
-      this.ctx.stroke();
-   }
+   // drawRectangle(x: any, y: any, width: any, height: any) {
+   //    this.ctx.beginPath();
+   //    this.ctx.lineWidth = "5";
+   //    this.ctx.strokeStyle = "blue";
+   //    this.ctx.rect(x, y, width, height);
+   //    this.ctx.stroke();
+   // }
 
    drawElements(objectToDraw: Chicken | Cloud | BackgroundObject | Coin | StatusBarHp | ThrowableObject | Endboss) {
       if (this.ctx != null) {

@@ -48,6 +48,7 @@ class Endboss extends MovableObject {
 
    constructor() {
       super();
+      
       this.loadImage(this.IMAGES_ALERT[0]);
       this.loadImagesAlert(this.IMAGES_ALERT);
       this.loadImagesWalking(this.IMAGES_WALK);
@@ -74,7 +75,7 @@ class Endboss extends MovableObject {
                   console.log("Endboss Alert");
                } else if (this.endbossMoveLeft == true) {
                   this.animationObjects(this.IMAGES_WALK, this.imageCacheWalk);
-                  this.x -= 3;
+                  this.x -= 5;
                   console.log("Endboss MoveLeft");
                } else if (this.endbossAttack == true) {
                   this.animationObjects(this.IMAGES_ATTACK, this.imageCacheAttack);

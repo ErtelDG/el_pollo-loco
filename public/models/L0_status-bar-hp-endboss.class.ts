@@ -22,6 +22,7 @@ class StatusBarHpEndboss extends DrawableObject {
       this.width = 120;
       this.setPercentage(100);
    }
+   
 
    setPercentage(percentage: number) {
       this.percentage = percentage;

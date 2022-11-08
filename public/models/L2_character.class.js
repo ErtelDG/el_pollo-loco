@@ -4,7 +4,7 @@ class Character extends MovableObject {
     width = 120;
     y = 50;
     world;
-    speed = 8;
+    speed = 10;
     stopLeft = 0;
     imageCacheIdle = [];
     imageCacheWalking = [];

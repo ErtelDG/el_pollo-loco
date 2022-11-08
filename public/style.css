@@ -6,7 +6,32 @@ body {
    display: flex;
    flex-direction: column;
    align-items: center;
+   background-image: url("img/10_design/wuste-sonnenuntergang.jpg");
+   background-position: center;
+   background-size: cover;
+   overflow: hidden;
 }
-h1{
-text-align: center;
+
+h1 {
+   text-align: center;
+   font-size: 3rem;
+}
+
+#startSide {
+   display: flex;
+   justify-content: center;
+   align-items: start;
+   width: 120vw;
+   height: 100vh;
+}
+
+#fullscreen {
+   margin-top: 2rem;
+}
+
+#canvas {
+   border: solid 0.25rem;
+   border-color: rgb(218, 66, 1);
+   border-radius: 1rem;
+   box-shadow: 5px 10px 8px rgba(218, 66, 1, 0.5);
 }

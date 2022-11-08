@@ -1,37 +1,99 @@
+@font-face {
+   font-family: 'bleeding_cowboys';
+   src: url('fonts/bleeding_cowboys.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+}
+
+
 canvas {
    background-color: black;
 }
 
 body {
+   font-family: 'bleeding_cowboys', Arial, Helvetica, sans-serif;
    display: flex;
    flex-direction: column;
    align-items: center;
-   background-image: url("img/10_design/wuste-sonnenuntergang.jpg");
-   background-position: center;
-   background-size: cover;
    overflow: hidden;
+   margin: 0;
 }
 
 h1 {
    text-align: center;
-   font-size: 3rem;
+   font-size: clamp(1rem, 0.6000rem + 2.0000vw, 3rem);
+   color: #FDF359;
+   text-shadow: 1px 1px 5px #FDF359;
 }
 
 #startSide {
    display: flex;
    justify-content: center;
    align-items: start;
-   width: 120vw;
+   width: 100vw;
    height: 100vh;
+   background-image: url("img/10_design/wuste-sonnenuntergang.jpg");
+   background-position: center;
+   background-size: cover;
+
 }
 
 #fullscreen {
-   margin-top: 2rem;
+   margin-top: 1rem;
+
 }
 
-#canvas {
+#menu {
+   border: solid 2px;
+}
+
+canvas {
+   display: block;
    border: solid 0.25rem;
    border-color: rgb(218, 66, 1);
    border-radius: 1rem;
    box-shadow: 5px 10px 8px rgba(218, 66, 1, 0.5);
+}
+
+@media only screen and (max-width: 720px) {
+
+   canvas {
+      width: 100%;
+      border: none;
+      border-radius: 0rem;
+   }
+
+   .hidden {
+      display: none;
+   }
+
+   #fullscreen {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+   }
+}
+
+
+@media only screen and (max-height: 580px) {
+
+   canvas {
+      height: 100%;
+      width: 100%;
+      border: none;
+      border-radius: 0rem;
+   }
+
+
+
+   .hidden {
+      display: none;
+   }
+
+   #fullscreen {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+   }
 }

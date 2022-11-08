@@ -94,7 +94,7 @@ class World {
    }
 
    checkCollisions() {
-      this.level.enemies.forEach((enemy: any) => {
+      this.level.enemies.forEach(async (enemy: any) => {
          if (this.character.isColliding(enemy)) {
             this.character.hit();
             this.statusBarHp.setPercentage(this.character.energy);
@@ -111,7 +111,12 @@ class World {
             }
             //Totes Chicken hinzufügen
             let deadEnemy = new DeadChicken(enemy.x, enemy.y);
-            this.deadEnemies.push(deadEnemy);
+            await this.deadEnemies.push(deadEnemy);
+            setTimeout(() => {
+               if (this.deadEnemies.includes(deadEnemy)) {
+                  this.deadEnemies.splice(this.deadEnemies.indexOf(deadEnemy, 0), 1);
+               }
+            }, 2500);
             console.log("Hit top");
          } else {
          }

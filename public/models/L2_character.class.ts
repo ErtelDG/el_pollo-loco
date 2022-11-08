@@ -3,7 +3,7 @@ class Character extends MovableObject {
    width: number = 120;
    y: number = 50;
    world: any;
-   speed = 10;
+   speed = 9;
    stopLeft = 0;
    imageCacheIdle: any = [];
    imageCacheWalking: any = [];
@@ -109,7 +109,7 @@ class Character extends MovableObject {
          }
 
          world.camera_x = -this.x + 100;
-      }, 1000 / 60);
+      }, 1000 / 90);
 
       setInterval(() => {
          if (this.isDead()) {

@@ -4,7 +4,7 @@ class Character extends MovableObject {
     width = 120;
     y = 50;
     world;
-    speed = 10;
+    speed = 9;
     stopLeft = 0;
     imageCacheIdle = [];
     imageCacheWalking = [];
@@ -101,7 +101,7 @@ class Character extends MovableObject {
                 this.walking_sound.pause();
             }
             world.camera_x = -this.x + 100;
-        }, 1000 / 60);
+        }, 1000 / 90);
         setInterval(() => {
             if (this.isDead()) {
                 this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);

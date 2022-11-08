@@ -4,7 +4,7 @@ class Character extends MovableObject {
     width = 120;
     y = 50;
     world;
-    speed = 7;
+    speed = 8;
     stopLeft = 0;
     imageCacheIdle = [];
     imageCacheWalking = [];
@@ -142,6 +142,9 @@ class Character extends MovableObject {
                         }
                         else if (this.y <= 140) {
                             this.img = this.imageCacheJump[1];
+                        }
+                        else {
+                            this.y = 158;
                         }
                     }
                 }, 25);

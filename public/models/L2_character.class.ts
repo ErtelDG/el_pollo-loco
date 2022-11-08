@@ -3,7 +3,7 @@ class Character extends MovableObject {
    width: number = 120;
    y: number = 50;
    world: any;
-   speed = 7;
+   speed = 8;
    stopLeft = 0;
    imageCacheIdle: any = [];
    imageCacheWalking: any = [];
@@ -141,7 +141,7 @@ class Character extends MovableObject {
                      this.img = this.imageCacheJump[2];
                   } else if (this.y <= 140) {
                      this.img = this.imageCacheJump[1];
-                  }
+                  } else {this.y = 158}
                }
             }, 25);
          } else if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {

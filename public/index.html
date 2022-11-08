@@ -35,10 +35,20 @@
 
 <body onload="init()">
    <div id="startSide" class="hidden">
-      <div id="fullscreen" onclick="enterFullscreen()" >
-         <h1 class="hidden">El Pollo Loco</h1>
+      <h1 class="hidden">El Pollo Loco</h1>
+      <div id="fullscreen" onclick="enterFullscreen()">
          <canvas id="canvas"></canvas>
-         <div id="menu" class="hidden">asdsad</div>
+         <div id="control-btn">
+            <div class="panel-contain">
+               <div id="arrow-left" class="panel"><img src="img/10_design/arrow.png" class="arrow-img" alt=""></div>
+               <div id="arrow-right" class="panel"><img src="img/10_design/arrow.png" class="arrow-img" alt=""></div>
+            </div>
+            <div class="panel-contain">
+               <div id="arrow-up" class="panel"><img src="img/10_design/arrow.png" class="arrow-img" alt=""></div>
+               <div id="arrow-jump" class="panel"><img src="img/10_design/arrow-jump.png" class="arrow-img" alt="">
+               </div>
+            </div>
+         </div>
       </div>
    </div>
 

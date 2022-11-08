@@ -1,4 +1,5 @@
 @font-face {
+   font-size: clamp(1rem, 0.9077rem + 0.4103vw, 1.2rem);
    font-family: 'bleeding_cowboys';
    src: url('fonts/bleeding_cowboys.ttf') format('truetype');
    font-weight: normal;
@@ -17,6 +18,7 @@ body {
    align-items: center;
    overflow: hidden;
    margin: 0;
+
 }
 
 h1 {
@@ -28,8 +30,9 @@ h1 {
 
 #startSide {
    display: flex;
-   justify-content: center;
-   align-items: start;
+   justify-content: start;
+   align-items: center;
+   flex-direction: column;
    width: 100vw;
    height: 100vh;
    background-image: url("img/10_design/wuste-sonnenuntergang.jpg");
@@ -38,21 +41,77 @@ h1 {
 
 }
 
+#control-btn {
+   height: 2.5rem;
+   padding: 0.5rem 1rem 0.5rem 1rem;
+   background-color: #994409;
+   display: block;
+   border-left: solid 0.25rem;
+   border-right: solid 0.25rem;
+   border-bottom: solid 0.25rem;
+   border-color: rgb(218, 66, 1);
+   box-shadow: 5px 1px 8px rgba(218, 66, 1, 0.5);
+   border-bottom-left-radius: 1rem;
+   border-bottom-right-radius: 1rem;
+   color: #FDF359;
+   display: flex;
+   justify-content: space-between;
+}
+
+.panel {
+   margin-left: 0.5rem;
+   margin-right: 0.5rem;
+   border: solid;
+   border-color: black;
+   padding: 0.5rem;
+   background-color: #FE9C34;
+   border-radius: 90%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.panel-contain {
+   display: flex;
+   justify-content: space-between;
+}
+
+#arrow-left {
+   transform: scaleX(-1);
+}
+
+#arrow-up {
+   transform: rotate(-90deg);
+}
+
+#arrow-jump {
+   transform: scaleX(-1);
+}
+
+
+.arrow-img {
+   width: 100%;
+   height: 100%;
+}
+
 #fullscreen {
    margin-top: 1rem;
 
-}
+   border-radius: 1rem;
+   box-shadow: 5px 10px 8px rgba(218, 66, 1, 0.5);
 
-#menu {
-   border: solid 2px;
 }
 
 canvas {
    display: block;
-   border: solid 0.25rem;
+   border-left: solid 0.25rem;
+   border-right: solid 0.25rem;
+   border-top: solid 0.25rem;
    border-color: rgb(218, 66, 1);
-   border-radius: 1rem;
    box-shadow: 5px 10px 8px rgba(218, 66, 1, 0.5);
+   border-top-left-radius: 1rem;
+   border-top-right-radius: 1rem;
+
 }
 
 @media only screen and (max-width: 720px) {
@@ -68,6 +127,7 @@ canvas {
    }
 
    #fullscreen {
+      height: 100%;
       width: 100%;
       margin: 0;
       padding: 0;
@@ -78,8 +138,8 @@ canvas {
 @media only screen and (max-height: 580px) {
 
    canvas {
-      height: 100%;
       width: 100%;
+      height: 100%;
       border: none;
       border-radius: 0rem;
    }
@@ -91,7 +151,7 @@ canvas {
    }
 
    #fullscreen {
-      height: 100%;
+      height: calc(100% - 2.5rem);
       width: 100%;
       margin: 0;
       padding: 0;

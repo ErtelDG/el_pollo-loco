@@ -6,6 +6,22 @@
    font-style: normal;
 }
 
+.end-screen {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-image: url("img/10_design/wuste-sonnenuntergang.jpg");
+   width: 100vw;
+   height: 100vh;
+   background-position: center;
+   background-size: cover;
+}
+
+.game-over-container, .win-container{
+   font-size: 4rem;
+   text-shadow: 5px 5px #ff0000;
+}
 
 
 canvas {

@@ -11,7 +11,8 @@ class Character extends MovableObject {
    imageCacheDead: any = [];
    imageCacheHeart: any = [];
    hightJumpPoint = false;
-   damage_character = new Audio("audio/character_damage.mp3")
+   damage_character = new Audio("audio/character_damage.mp3");
+   death_character = new Audio("audio/character_death.mp3");
 
    IMAGES_IDLE = [
       "img/2_character_pepe/1_idle/idle/I-1.png",
@@ -116,6 +117,8 @@ class Character extends MovableObject {
       setInterval(() => {
          if (this.isDead()) {
             this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);
+            this.death_character.volume = 0.5;
+            this.death_character.play();
          } else if (this.isHurt()) {
             this.animationObjects(this.IMAGES_HURT, this.imageCacheHeart);
          } else if (this.isAboveGround()) {
@@ -142,7 +145,9 @@ class Character extends MovableObject {
                      this.img = this.imageCacheJump[2];
                   } else if (this.y <= 140) {
                      this.img = this.imageCacheJump[1];
-                  } else {this.y = 158}
+                  } else {
+                     this.y = 158;
+                  }
                }
             }, 25);
          } else if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {

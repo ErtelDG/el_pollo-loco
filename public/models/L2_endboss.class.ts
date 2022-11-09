@@ -10,6 +10,7 @@ class Endboss extends MovableObject {
    characterNearbyEndboss = false;
 
    walking_enemie_sound = new Audio("audio/chicken.mp3");
+   damage_enemie = new Audio("audio/chicken_damage.mp3");
 
    IMAGES_WALK = [
       "img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -48,7 +49,7 @@ class Endboss extends MovableObject {
 
    constructor() {
       super();
-      
+
       this.loadImage(this.IMAGES_ALERT[0]);
       this.loadImagesAlert(this.IMAGES_ALERT);
       this.loadImagesWalking(this.IMAGES_WALK);

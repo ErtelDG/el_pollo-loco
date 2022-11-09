@@ -88,6 +88,7 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach(async (enemy) => {
             if (this.character.isColliding(enemy)) {
+                this.character.damage_character.volume = 0.1;
                 this.character.damage_character.play();
                 this.character.hit();
                 this.statusBarHp.setPercentage(this.character.energy);
@@ -98,6 +99,7 @@ class World {
                 this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
                 this.character.y + this.character.height - this.character.offset.bottom >= enemy.y &&
                 this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom) {
+                enemy.damage_enemie.volume = 0.1;
                 enemy.damage_enemie.play();
                 //lebendes huhn entfernen vom bild
                 if (this.level.enemies.includes(enemy)) {
@@ -134,6 +136,8 @@ class World {
                         throwableBottle.y <= enemy.y + enemy.height
                     //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
                     ) {
+                        enemy.damage_enemie.volume = 0.1;
+                        enemy.damage_enemie.play();
                         //platzende Flasche erstellen
                         let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
                         this.bottlesSplash.push(splashBottle);
@@ -164,6 +168,8 @@ class World {
                         throwableBottle.y <= endboss.y + endboss.height
                     //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
                     ) {
+                        endboss.damage_enemie.volume = 0.1;
+                        endboss.damage_enemie.play();
                         //platzende Flasche erstellen
                         let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
                         this.bottlesSplash.push(splashBottle);
@@ -194,6 +200,7 @@ class World {
     checkCollectsCoins() {
         this.level.coins.forEach(async (coin) => {
             if (this.character.isColliding(coin)) {
+                coin.pick_coin.volume = 0.1;
                 coin.pick_coin.play();
                 if (this.level.coins.includes(coin)) {
                     await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1);

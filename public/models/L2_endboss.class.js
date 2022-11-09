@@ -10,6 +10,7 @@ class Endboss extends MovableObject {
     hitEndboss = false;
     characterNearbyEndboss = false;
     walking_enemie_sound = new Audio("audio/chicken.mp3");
+    damage_enemie = new Audio("audio/chicken_damage.mp3");
     IMAGES_WALK = [
         "img/4_enemie_boss_chicken/1_walk/G1.png",
         "img/4_enemie_boss_chicken/1_walk/G2.png",

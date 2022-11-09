@@ -13,6 +13,7 @@ class Character extends MovableObject {
     imageCacheHeart = [];
     hightJumpPoint = false;
     damage_character = new Audio("audio/character_damage.mp3");
+    death_character = new Audio("audio/character_death.mp3");
     IMAGES_IDLE = [
         "img/2_character_pepe/1_idle/idle/I-1.png",
         "img/2_character_pepe/1_idle/idle/I-2.png",
@@ -107,6 +108,8 @@ class Character extends MovableObject {
         setInterval(() => {
             if (this.isDead()) {
                 this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);
+                this.death_character.volume = 0.5;
+                this.death_character.play();
             }
             else if (this.isHurt()) {
                 this.animationObjects(this.IMAGES_HURT, this.imageCacheHeart);

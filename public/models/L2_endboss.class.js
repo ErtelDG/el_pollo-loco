@@ -66,16 +66,13 @@ class Endboss extends MovableObject {
                 else {
                     if (this.endbossAlert == true) {
                         this.animationObjects(this.IMAGES_ALERT, this.imageCacheAlert);
-                        console.log("Endboss Alert");
                     }
                     else if (this.endbossMoveLeft == true) {
                         this.animationObjects(this.IMAGES_WALK, this.imageCacheWalk);
                         this.x -= 5;
-                        console.log("Endboss MoveLeft");
                     }
                     else if (this.endbossAttack == true) {
                         this.animationObjects(this.IMAGES_ATTACK, this.imageCacheAttack);
-                        console.log("Endboss Attacke");
                     }
                     else {
                     }

@@ -4,7 +4,6 @@
    src: url('fonts/bleeding_cowboys.ttf') format('truetype');
    font-weight: normal;
    font-style: normal;
-
 }
 
 
@@ -29,13 +28,14 @@ h1 {
    color: #FDF359;
    text-shadow: 1px 1px 5px #FDF359;
    margin: 0;
-   font-size: 3rem;
+
 }
 
 #start_img_game_design {
    border-radius: 1rem;
    box-shadow: 5px 10px 8px rgba(218, 66, 1, 0.5);
    border: solid rgb(218, 66, 1) 0.25rem;
+
 }
 
 
@@ -60,7 +60,7 @@ h1 {
    height: 100vh;
    background-color: aliceblue;
    background-image: url("img/10_design/wuste-sonnenuntergang.jpg");
-
+   row-gap: 3rem;
    background-position: center;
    background-size: cover;
 
@@ -76,12 +76,11 @@ h1 {
    margin-top: 1rem;
    display: flex;
    justify-content: center;
-
-   width: 100%;
+   max-width: 45rem;
 }
 
 .contains-explanation {
-   width: 25vw;
+   width: 11.25rem;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -92,7 +91,7 @@ h1 {
 }
 
 .explanation-text {
-   font-size: 1.5rem;
+   font-size: 1rem;
 }
 
 .explanation-service {
@@ -105,14 +104,13 @@ h1 {
 .button {
    position: relative;
    display: inline-flex;
-   height: 4rem;
-   width: 12rem;
+   padding: 0.5rem 1rem 0.5rem 1rem;
    border: 2px solid #BFC0C0;
    margin: 1rem 1.25rem 1rem 1.25rem;
    color: #FCFFBF;
    text-transform: uppercase;
    text-decoration: none;
-   font-size: .8em;
+   font-size: 0.8em;
    letter-spacing: 1.5px;
    align-items: center;
    justify-content: center;
@@ -125,7 +123,7 @@ h1 {
 }
 
 a {
-   font-size: 1.5rem;
+   font-size: 1rem;
    color: #FDF359;
    ;
    text-decoration: none;
@@ -242,7 +240,32 @@ canvas {
 
 }
 
+
+@media only screen and (max-width: 575px) {
+   .explanation-text {
+      text-align: start;
+      width: 6rem !important;
+   }
+
+}
+
+
 @media only screen and (max-width: 720px) {
+
+   .contains-explanation {
+      width: 18rem;
+      margin: 0.75rem 0rem 0.75rem 0rem;
+   }
+
+   .explanation-text {
+      width: 10rem;
+
+   }
+
+   .control-btn {
+      border: none;
+      border-radius: 0;
+   }
 
    canvas {
       width: 100%;
@@ -260,7 +283,39 @@ canvas {
       margin: 0;
       padding: 0;
    }
+
+   .startScreen {
+      width: 100%;
+   }
+
+   #start_img_game_design {
+      width: 100%;
+   }
+
+   .control-btn-explanation-service {
+      width: 100%;
+      flex-wrap: wrap;
+   }
+
+   .size2rem2rem {
+      width: 1rem;
+      height: 1rem;
+   }
 }
+
+@media only screen and (max-height: 920px) {
+   .startScreen {
+      row-gap: 0 !important;
+
+   }
+
+
+   .size2rem2rem {
+      width: 1rem;
+      height: 1rem;
+   }
+}
+
 
 
 @media only screen and (max-height: 580px) {
@@ -272,6 +327,10 @@ canvas {
       border-radius: 0rem;
    }
 
+   .size2rem2rem {
+      width: 1rem;
+      height: 1rem;
+   }
 
 
    .hidden {
@@ -283,5 +342,17 @@ canvas {
       width: 100%;
       margin: 0;
       padding: 0;
+   }
+}
+
+@media only screen and (max-height: 580px) {
+   .size2rem2rem {
+      width: 0.5rem;
+      height: 0.5rem;
+   }
+
+   .contains-explanation {
+      width: auto;
+      margin: auto;
    }
 }

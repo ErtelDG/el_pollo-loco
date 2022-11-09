@@ -20,7 +20,6 @@ class DeadEndboss extends MovableObject {
    animate() {
       let endossDeadSimulation = setInterval(() => {
          this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);
-         console.log("Endboss Alert");
       }, 100);
 
       setTimeout(() => {

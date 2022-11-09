@@ -121,7 +121,6 @@ class World {
                   this.deadEnemies.splice(this.deadEnemies.indexOf(deadEnemy, 0), 1);
                }
             }, 2500);
-            console.log("Hit top");
          } else {
          }
       });
@@ -145,8 +144,8 @@ class World {
                   throwableBottle.y <= enemy.y + enemy.height
                   //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
                ) {
-                   enemy.damage_enemie.volume = 0.1;
-                   enemy.damage_enemie.play();
+                  enemy.damage_enemie.volume = 0.1;
+                  enemy.damage_enemie.play();
                   //platzende Flasche erstellen
                   let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
                   this.bottlesSplash.push(splashBottle);
@@ -162,8 +161,6 @@ class World {
                   if (this.level.enemies.includes(enemy)) {
                      this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
                   }
-
-                  console.log("Bottle trifft Enemie");
                }
             });
          });
@@ -179,8 +176,8 @@ class World {
                   throwableBottle.y <= endboss.y + endboss.height
                   //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
                ) {
-                   endboss.damage_enemie.volume = 0.1;
-                   endboss.damage_enemie.play();
+                  endboss.damage_enemie.volume = 0.1;
+                  endboss.damage_enemie.play();
                   //platzende Flasche erstellen
                   let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
                   this.bottlesSplash.push(splashBottle);
@@ -193,7 +190,6 @@ class World {
                   this.removeSplashBottleArray();
                   endboss.energy -= 20;
                   this.statusBarEndboss.setPercentage(endboss.energy);
-                  console.log("Bottle trifft Endboss", endboss.energy);
                   if (endboss.energy == 0) {
                      //Totes Chicken hinzufügen
                      let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
@@ -202,8 +198,6 @@ class World {
                      if (this.level.endboss.includes(endboss)) {
                         this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
                      }
-
-                     console.log("Endboss tot");
                   }
                }
             });

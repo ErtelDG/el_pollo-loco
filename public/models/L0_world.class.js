@@ -113,7 +113,6 @@ class World {
                         this.deadEnemies.splice(this.deadEnemies.indexOf(deadEnemy, 0), 1);
                     }
                 }, 2500);
-                console.log("Hit top");
             }
             else {
             }
@@ -153,7 +152,6 @@ class World {
                         if (this.level.enemies.includes(enemy)) {
                             this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
                         }
-                        console.log("Bottle trifft Enemie");
                     }
                 });
             });
@@ -181,7 +179,6 @@ class World {
                         this.removeSplashBottleArray();
                         endboss.energy -= 20;
                         this.statusBarEndboss.setPercentage(endboss.energy);
-                        console.log("Bottle trifft Endboss", endboss.energy);
                         if (endboss.energy == 0) {
                             //Totes Chicken hinzufügen
                             let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
@@ -190,7 +187,6 @@ class World {
                             if (this.level.endboss.includes(endboss)) {
                                 this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
                             }
-                            console.log("Endboss tot");
                         }
                     }
                 });

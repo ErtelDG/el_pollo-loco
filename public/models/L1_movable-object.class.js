@@ -58,7 +58,15 @@ class MovableObject extends DrawableObject {
         this.energy -= 1;
         if (this.energy < 0) {
             this.energy = 0;
-            stopAllIntervals();
+            setInterval(() => {
+                stopAllIntervals();
+                document.getElementById("end-screen")?.classList.remove("endscreen-hidden");
+                document.getElementById("game-over-container")?.classList.remove("endscreen-hidden");
+                let startSide = document.getElementById("startSide");
+                if (startSide != null) {
+                    startSide.style.display = "none";
+                }
+            }, 1000);
         }
         else {
             this.lastHit = new Date().getTime();

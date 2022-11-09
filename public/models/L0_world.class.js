@@ -190,7 +190,13 @@ class World {
                             }
                             setInterval(() => {
                                 stopAllIntervals();
-                            }, 500);
+                                document.getElementById("end-screen")?.classList.remove("endscreen-hidden");
+                                document.getElementById("win-container")?.classList.remove("endscreen-hidden");
+                                let startSide = document.getElementById("startSide");
+                                if (startSide != null) {
+                                    startSide.style.display = "none";
+                                }
+                            }, 1000);
                         }
                     }
                 });

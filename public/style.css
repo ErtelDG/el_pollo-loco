@@ -18,11 +18,22 @@
    background-size: cover;
 }
 
-.game-over-container, .win-container{
-   font-size: 4rem;
+.game-over-container,
+.win-container {
+   font-size: 6rem;
+   text-align: center;
    text-shadow: 5px 5px #ff0000;
 }
 
+.endscreen-hidden {
+   display: none;
+   z-index: 10;
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+}
 
 canvas {
    background-color: black;

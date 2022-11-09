@@ -4,6 +4,16 @@ let canvasHeight: number = 400;
 let canvasWidth: number = 720;
 let keyboard = new KeyboardKeys();
 
+// Set a fake timeout to get the highest timeout id
+function stopAllIntervals() {
+   var highestTimeoutId = setTimeout(";");
+   for (var i = 0; i < highestTimeoutId; i++) {
+      clearTimeout(i);
+   }
+   
+}
+
+
 function init() {
    let startScreen = document.getElementById("startScreen");
    if (startScreen != null) {

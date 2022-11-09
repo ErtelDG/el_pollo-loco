@@ -16,6 +16,7 @@ class World {
    throwableObject: any = [];
    keyboard;
    camera_x = 0;
+   background_sound = new Audio("audio/background_sound.mp3");
 
    constructor(canvas: any, keyboard: any) {
       (this.ctx = canvas.getContext("2d")), (this.canvas = canvas);
@@ -23,6 +24,8 @@ class World {
       this.draw();
       this.setWorld();
       this.run();
+      this.background_sound.volume = 0.1;
+      this.background_sound.play();
    }
 
    setWorld() {
@@ -204,7 +207,9 @@ class World {
                         document.getElementById("end-screen")?.classList.remove("endscreen-hidden");
                         document.getElementById("win-container")?.classList.remove("endscreen-hidden");
                         let startSide = document.getElementById("startSide");
-                        if (startSide!=null){ startSide.style.display = "none";}
+                        if (startSide != null) {
+                           startSide.style.display = "none";
+                        }
                      }, 1000);
                   }
                }

@@ -17,12 +17,15 @@ class World {
     throwableObject = [];
     keyboard;
     camera_x = 0;
+    background_sound = new Audio("audio/background_sound.mp3");
     constructor(canvas, keyboard) {
         (this.ctx = canvas.getContext("2d")), (this.canvas = canvas);
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
         this.run();
+        this.background_sound.volume = 0.1;
+        this.background_sound.play();
     }
     setWorld() {
         this.character.world = this;

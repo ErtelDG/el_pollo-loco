@@ -5,6 +5,10 @@ let canvasHeight = 400;
 let canvasWidth = 720;
 let keyboard = new KeyboardKeys();
 function init() {
+    let startScreen = document.getElementById("startScreen");
+    if (startScreen != null) {
+        startScreen.style.display = "none";
+    }
     createdLevel();
     canvas = document.getElementById("canvas");
     canvas.width = canvasWidth;

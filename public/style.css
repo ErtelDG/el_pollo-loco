@@ -4,6 +4,7 @@
    src: url('fonts/bleeding_cowboys.ttf') format('truetype');
    font-weight: normal;
    font-style: normal;
+   
 }
 
 
@@ -18,7 +19,7 @@ body {
    align-items: center;
    overflow: hidden;
    margin: 0;
-
+color: #FDF359;
 }
 
 h1 {
@@ -26,9 +27,19 @@ h1 {
    font-size: clamp(1rem, 0.6000rem + 2.0000vw, 3rem);
    color: #FDF359;
    text-shadow: 1px 1px 5px #FDF359;
+   margin: 0;
+   font-size: 3rem;
 }
 
+#start_img_game_design {
+   border-radius: 1rem;
+   box-shadow: 5px 10px 8px rgba(218, 66, 1, 0.5);
+   border: solid rgb(218, 66, 1) 0.25rem;
+}
+
+
 #startSide {
+   position: relative;
    display: flex;
    justify-content: start;
    align-items: center;
@@ -38,10 +49,123 @@ h1 {
    background-image: url("img/10_design/wuste-sonnenuntergang.jpg");
    background-position: center;
    background-size: cover;
+}
+
+#startScreen {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 100vw;
+   height: 100vh;
+   background-color: aliceblue;
+   background-image: url("img/10_design/wuste-sonnenuntergang.jpg");
+
+   background-position: center;
+   background-size: cover;
 
 }
 
-#control-btn {
+ .size2rem2rem{
+   height: 2rem;
+   width: 2rem;
+ }
+
+.control-btn-explanation-service{
+   margin-top: 1rem;
+   display: flex;
+   justify-content: center;
+   
+   width: 100%;
+}
+
+.contains-explanation{
+   width: 25vw;
+   display: flex;
+   align-items: center;   
+   justify-content: center;
+}
+.flex{
+   display: flex;
+}
+
+.explanation-text{
+      font-size: 1.5rem;
+}
+
+.explanation-service{
+   display: flex;
+   flex-direction: column;
+   width: 25vw;
+    
+}
+
+.button {
+   position: relative;
+   display: inline-flex;
+   height: 4rem;
+   width: 10rem;
+   border: 2px solid #BFC0C0;
+   margin: 1rem 1.25rem 1rem 1.25rem;
+   color: #FCFFBF;
+   text-transform: uppercase;
+   text-decoration: none;
+   font-size: .8em;
+   letter-spacing: 1.5px;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+   cursor: pointer;
+   border-radius: 1rem;
+   box-shadow: 5px 1px 8px #994409;
+   border: solid;
+      border-color: black;
+}
+
+a {
+   font-size: 1.5rem;
+   color: #FDF359;;
+   text-decoration: none;
+   letter-spacing: 1px;
+}
+
+
+#button-7 a {
+   position: relative;
+   left: 0;
+   transition: all .35s ease-Out;
+}
+
+#dub-arrow {
+   width: 100%;
+   height: 100%;
+   background: #FCFFBF;
+   left: -200px;
+   position: absolute;
+   padding: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: all .35s ease-Out;
+   bottom: 0;
+}
+
+#button-7 img {
+   width: 20px;
+   height: auto;
+}
+
+#button-7:hover #dub-arrow {
+   left: 0;
+   cursor: pointer;
+}
+
+#button-7:hover a {
+   left: 150px;
+}
+
+
+
+.control-btn {
    height: 2.5rem;
    padding: 0.5rem 1rem 0.5rem 1rem;
    background-color: #994409;
@@ -76,15 +200,15 @@ h1 {
    justify-content: space-between;
 }
 
-#arrow-left {
+.arrow-left {
    transform: scaleX(-1);
 }
 
-#arrow-up {
+.arrow-up {
    transform: rotate(-90deg);
 }
 
-#arrow-jump {
+.arrow-jump {
    transform: scaleX(-1);
 }
 

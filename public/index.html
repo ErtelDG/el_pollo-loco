@@ -33,23 +33,63 @@
 
 </head>
 
-<body onload="init()">
+<body onload="inist()">
+   <!-- starts screen -->
+   <!-- style="display: none;" -->
+   <div id="startScreen">
+      <h1 class="hidden">El Pollo Loco</h1>
+      <img id="start_img_game_design" src="img/10_design/start_img_game_design.PNG" alt="">
+      <div class="button" id="button-7">
+         <div id="dub-arrow"><img src="img/10_design/iconmonstr-arrow-48-240.png" alt="" /></div>
+         <a href="#">Let's Go!</a>
+      </div>
+      <div class="control-btn-explanation-service">
+
+         <div class="contains-explanation">
+            <div class="panel size2rem2rem">
+               <img src="img/10_design/arrow.png" class="arrow-img arrow-left" alt="">
+            </div>
+            <div class="explanation-text">Turn left</div>
+         </div>
+         <div class="contains-explanation">
+            <div class="panel size2rem2rem"><img src="img/10_design/arrow.png" class="arrow-img" alt=""></div>
+            <div class="explanation-text">Turn right</div>
+         </div>
+         <div class="contains-explanation">
+            <div class="panel size2rem2rem"><img src="img/10_design/arrow.png" class="arrow-img arrow-up" alt=""></div>
+            <div class="explanation-text">Jump</div>
+         </div>
+         <div class="contains-explanation">
+            <div class="panel size2rem2rem"><img src="img/10_design/arrow-jump.png" class="arrow-img arrow-jump" alt=""></div>
+            <div class="explanation-text">Throw</div>
+         </div>
+
+      </div>
+
+   </div>
+
    <div id="startSide" class="hidden">
+      <!-- game -->
       <h1 class="hidden">El Pollo Loco</h1>
       <div id="fullscreen" onclick="enterFullscreen()">
          <canvas id="canvas"></canvas>
-         <div id="control-btn">
+         <div id="control-btn" class="control-btn">
             <div class="panel-contain">
-               <div id="arrow-left" class="panel"><img src="img/10_design/arrow.png" class="arrow-img" alt=""></div>
-               <div id="arrow-right" class="panel"><img src="img/10_design/arrow.png" class="arrow-img" alt=""></div>
+               <div id="arrow-left" class="panel arrow-left"><img src="img/10_design/arrow.png" class="arrow-img"
+                     alt=""></div>
+               <div id="arrow-right" class="panel arrow-right"><img src="img/10_design/arrow.png" class="arrow-img"
+                     alt=""></div>
             </div>
             <div class="panel-contain">
-               <div id="arrow-up" class="panel"><img src="img/10_design/arrow.png" class="arrow-img" alt=""></div>
-               <div id="arrow-jump" class="panel"><img src="img/10_design/arrow-jump.png" class="arrow-img" alt="">
+               <div id="arrow-up" class="panel arrow-up"><img src="img/10_design/arrow.png" class="arrow-img" alt="">
+               </div>
+               <div id="arrow-jump" class="panel arrow-jump"><img src="img/10_design/arrow-jump.png" class="arrow-img"
+                     alt="">
                </div>
             </div>
          </div>
       </div>
+
    </div>
 
 </body>

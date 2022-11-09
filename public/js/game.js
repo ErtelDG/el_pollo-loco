@@ -11,9 +11,6 @@ function stopAllIntervals() {
         clearTimeout(i);
     }
 }
-function stopAllAudio() {
-    document.querySelectorAll("audio").forEach((el) => el.pause());
-}
 function init() {
     let startScreen = document.getElementById("startScreen");
     if (startScreen != null) {

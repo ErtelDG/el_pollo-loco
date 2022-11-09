@@ -7,6 +7,7 @@ class ThrowableObject extends MovableObject {
         "img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png",
     ];
     imagesRotationBottle = [];
+    splash_sound = new Audio("audio/splash.mp3");
     constructor(characterX, characterY) {
         super();
         this.x = characterX;

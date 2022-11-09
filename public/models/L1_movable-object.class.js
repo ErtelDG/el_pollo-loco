@@ -58,6 +58,7 @@ class MovableObject extends DrawableObject {
         this.energy -= 1;
         if (this.energy < 0) {
             this.energy = 0;
+            stopAllIntervals();
         }
         else {
             this.lastHit = new Date().getTime();

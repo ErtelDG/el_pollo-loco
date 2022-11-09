@@ -75,6 +75,7 @@ class World {
             if (this.throwableObject != null) {
                 this.throwableObject.forEach((bottle) => {
                     if (bottle.y > 300) {
+                        bottle.splash_sound.play();
                         let splashBottle = new SplashBottleObject(bottle.x, bottle.y);
                         this.bottlesSplash.push(splashBottle);
                         if (this.throwableObject.includes(bottle)) {
@@ -187,6 +188,9 @@ class World {
                             if (this.level.endboss.includes(endboss)) {
                                 this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
                             }
+                            setInterval(() => {
+                                stopAllIntervals();
+                            }, 500);
                         }
                     }
                 });

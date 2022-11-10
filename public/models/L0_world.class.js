@@ -197,6 +197,7 @@ class World {
                             }
                             setInterval(() => {
                                 stopAllIntervals();
+                                closeFullscreen();
                                 this.background_sound.pause();
                                 this.win_sound.volume = 0.1;
                                 this.win_sound.play();

@@ -62,6 +62,7 @@ class MovableObject extends DrawableObject {
             world.background_sound.pause();
             setInterval(() => {
                 stopAllIntervals();
+                closeFullscreen();
                 endScreen.classList.remove("endscreen-hidden");
                 gameOverContain.classList.remove("endscreen-hidden");
                 startSide.style.display = "none";

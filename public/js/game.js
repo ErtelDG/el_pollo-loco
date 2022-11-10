@@ -93,12 +93,14 @@ function enterFullscreen(element) {
     }
 }
 function closeFullscreen() {
-    // let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
-    canvasElement.classList.remove("canvas-width-fullscreen");
-    //let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
-    smallScreenIcon.classList.add("exitFullscreenHidden");
-    fullscreenOnOff = false;
-    exitFullscreen();
+    if (fullscreenOnOff) {
+        // let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
+        canvasElement.classList.remove("canvas-width-fullscreen");
+        //let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
+        smallScreenIcon.classList.add("exitFullscreenHidden");
+        fullscreenOnOff = false;
+        exitFullscreen();
+    }
 }
 function exitFullscreen() {
     if (document.exitFullscreen) {

@@ -72,11 +72,11 @@ class MovableObject extends DrawableObject {
 
          setInterval(() => {
             stopAllIntervals();
+            closeFullscreen();
             endScreen.classList.remove("endscreen-hidden");
             gameOverContain.classList.remove("endscreen-hidden");
             startSide.style.display = "none";
          }, 1500);
-      
       } else {
          this.lastHit = new Date().getTime();
       }

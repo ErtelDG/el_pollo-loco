@@ -66,3 +66,31 @@ function setCancvasProperties() {
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
 }
+// Get the canvas element form the page
+let fullscreenOnOff = false;
+let fullscreen = document.getElementById("fullscreen");
+function enterFullscreen(element) {
+    let canvasElement = document.getElementById("canvas");
+    canvasElement.classList.add("canvas-width-fullscreen");
+    fullscreenOnOff = true;
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    }
+    else if (element.msRequestFullscreen) {
+        // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    }
+    else if (element.webkitRequestFullscreen) {
+        // iOS Safari
+        element.webkitRequestFullscreen();
+    }
+}
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+    else if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+    fullscreenOnOff = false;
+}

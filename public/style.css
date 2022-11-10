@@ -48,6 +48,7 @@
 
 canvas {
    background-color: black;
+
 }
 
 body {
@@ -68,6 +69,13 @@ h1 {
    margin: 0;
 
 }
+
+.canvas-width-fullscreen {
+   width: calc(100% - 0.5rem);
+   height: calc(100% - 4.5rem);
+}
+
+
 
 #start_img_game_design {
    border-radius: 1rem;
@@ -363,16 +371,20 @@ canvas {
 }
 
 @media only screen and (max-height: 680px) {
-   #contain6-explanation, #contain3-explanation {
+
+   #contain6-explanation,
+   #contain3-explanation {
       display: none
    }
 }
 
 @media only screen and (max-height: 620px) {
-#contain5-explanation,   #contain2-explanation {
+
+   #contain5-explanation,
+   #contain2-explanation {
       display: none
    }
-        
+
 }
 
 
@@ -405,7 +417,9 @@ canvas {
 }
 
 @media only screen and (max-height: 560px) {
-   #contain4-explanation, #contain1-explanation {
+
+   #contain4-explanation,
+   #contain1-explanation {
       display: none
    }
 }
@@ -430,11 +444,11 @@ canvas {
       margin: 0.5rem 1.25rem 0.5rem 1.25rem;
    }
 
-   #start_img_game_design{
+   #start_img_game_design {
       height: 80vh;
    }
 
-   .button{
+   .button {
       height: 20vh;
    }
 

@@ -3,7 +3,6 @@ let world: World;
 let canvasHeight: number = 400;
 let canvasWidth: number = 720;
 let keyboard = new KeyboardKeys();
-
 let startScreen: HTMLElement;
 let endScreen: HTMLElement;
 let gameOverContain: HTMLElement;
@@ -76,4 +75,34 @@ function setCancvasProperties() {
    canvas = document.getElementById("canvas") as HTMLCanvasElement;
    canvas.width = canvasWidth;
    canvas.height = canvasHeight;
+}
+
+// Get the canvas element form the page
+
+let fullscreenOnOff = false;
+
+let fullscreen = document.getElementById("fullscreen") as HTMLElement;
+
+function enterFullscreen(element: any) {
+   let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
+   canvasElement.classList.add("canvas-width-fullscreen");
+   fullscreenOnOff = true;
+   if (element.requestFullscreen) {
+      element.requestFullscreen();
+   } else if (element.msRequestFullscreen) {
+      // for IE11 (remove June 15, 2022)
+      element.msRequestFullscreen();
+   } else if (element.webkitRequestFullscreen) {
+      // iOS Safari
+      element.webkitRequestFullscreen();
+   }
+}
+
+function exitFullscreen() {
+   if (document.exitFullscreen) {
+      document.exitFullscreen();
+   } else if (document.exitFullscreen) {
+      document.exitFullscreen();
+   }
+   fullscreenOnOff = false;
 }

@@ -9,8 +9,11 @@ let gameOverContain: HTMLElement;
 let winContain: HTMLElement;
 let startSide: HTMLElement;
 let background_sound_On_Off = true;
-
+let fullscreenOnOff = false;
+let fullscreen = document.getElementById("fullscreen") as HTMLElement;
 let soundIconImg: HTMLImageElement;
+let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
+let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
 
 function stopAllIntervals() {
    getAllIntervalsAndStop();
@@ -18,19 +21,15 @@ function stopAllIntervals() {
 
 function init() {
    getIdHtmlELements();
-
-   startScreen.style.display = "none";
-
+   hiddenStartScreen();
    createdLevel();
    setCancvasProperties();
-   world = new World(canvas, keyboard);
+   createNewWorld();
 }
 
 function restart() {
-   endScreen.classList.add("endscreen-hidden");
-   gameOverContain.classList.add("endscreen-hidden");
-   startSide.style.display = "";
-   world.background_sound.pause();
+   closeEndOpenStartScreen();
+   stopBackgroundMusic();
    stopAllIntervals();
    init();
 }
@@ -77,21 +76,14 @@ function setCancvasProperties() {
    canvas.height = canvasHeight;
 }
 
-// Get the canvas element form the page
 
-let fullscreenOnOff = false;
 
-let fullscreen = document.getElementById("fullscreen") as HTMLElement;
 function setFullscreen() {
    enterFullscreen(fullscreen);
 }
-let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
-let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
 
 function enterFullscreen(element: any) {
-   //  let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
    canvasElement.classList.add("canvas-width-fullscreen");
-   //let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
    smallScreenIcon.classList.remove("exitFullscreenHidden");
    fullscreenOnOff = true;
    if (element.requestFullscreen) {
@@ -107,9 +99,7 @@ function enterFullscreen(element: any) {
 
 function closeFullscreen() {
    if (fullscreenOnOff) {
-      // let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
       canvasElement.classList.remove("canvas-width-fullscreen");
-      //let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
       smallScreenIcon.classList.add("exitFullscreenHidden");
       fullscreenOnOff = false;
       exitFullscreen();
@@ -122,4 +112,22 @@ function exitFullscreen() {
    } else if (document.exitFullscreen) {
       document.exitFullscreen();
    }
+}
+
+function hiddenStartScreen() {
+   startScreen.style.display = "none";
+}
+
+function createNewWorld() {
+   world = new World(canvas, keyboard);
+}
+
+function closeEndOpenStartScreen() {
+   endScreen.classList.add("endscreen-hidden");
+   gameOverContain.classList.add("endscreen-hidden");
+   startSide.style.display = "";
+}
+
+function stopBackgroundMusic() {
+   world.background_sound.pause();
 }

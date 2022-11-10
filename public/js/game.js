@@ -10,6 +10,7 @@ let gameOverContain;
 let winContain;
 let startSide;
 let background_sound_On_Off = true;
+let soundIconImg;
 // Set a fake timeout to get the highest timeout id
 function stopAllIntervals() {
     var highestTimeoutId = setTimeout(";");
@@ -23,6 +24,7 @@ function init() {
     gameOverContain = document.getElementById("game-over-container");
     winContain = document.getElementById("win-container");
     startSide = document.getElementById("startSide");
+    soundIconImg = document.getElementById("sound-icon-img");
     startScreen.style.display = "none";
     createdLevel();
     canvas = document.getElementById("canvas");
@@ -74,5 +76,19 @@ function restart() {
     endScreen.classList.add("endscreen-hidden");
     gameOverContain.classList.add("endscreen-hidden");
     startSide.style.display = "";
+    world.background_sound.pause();
+    stopAllIntervals();
     init();
+}
+function soundOnOff() {
+    if (background_sound_On_Off) {
+        background_sound_On_Off = false;
+        world.background_sound.pause();
+        soundIconImg.src = "img/10_design/sound-off-icon.png";
+    }
+    else {
+        background_sound_On_Off = true;
+        world.background_sound.play();
+        soundIconImg.src = "img/10_design/sound-on-icon.png";
+    }
 }

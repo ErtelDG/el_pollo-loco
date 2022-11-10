@@ -9,8 +9,9 @@ let endScreen: HTMLElement;
 let gameOverContain: HTMLElement;
 let winContain: HTMLElement;
 let startSide: HTMLElement;
-
 let background_sound_On_Off = true;
+
+let soundIconImg: HTMLImageElement;
 
 // Set a fake timeout to get the highest timeout id
 function stopAllIntervals() {
@@ -26,6 +27,7 @@ function init() {
    gameOverContain = document.getElementById("game-over-container") as HTMLElement;
    winContain = document.getElementById("win-container") as HTMLElement;
    startSide = document.getElementById("startSide") as HTMLElement;
+   soundIconImg = document.getElementById("sound-icon-img") as HTMLImageElement;
 
    startScreen.style.display = "none";
 
@@ -82,5 +84,19 @@ function restart() {
    endScreen.classList.add("endscreen-hidden");
    gameOverContain.classList.add("endscreen-hidden");
    startSide.style.display = "";
+   world.background_sound.pause();
+   stopAllIntervals();
    init();
+}
+
+function soundOnOff() {
+   if (background_sound_On_Off) {
+      background_sound_On_Off = false;
+      world.background_sound.pause();
+      soundIconImg.src = "img/10_design/sound-off-icon.png";
+   } else {
+      background_sound_On_Off = true;
+      world.background_sound.play();
+      soundIconImg.src = "img/10_design/sound-on-icon.png";
+   }
 }

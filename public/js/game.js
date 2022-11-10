@@ -72,10 +72,12 @@ let fullscreen = document.getElementById("fullscreen");
 function setFullscreen() {
     enterFullscreen(fullscreen);
 }
+let canvasElement = document.getElementById("canvas");
+let smallScreenIcon = document.getElementById("small-screen-icon");
 function enterFullscreen(element) {
-    let canvasElement = document.getElementById("canvas");
+    //  let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
     canvasElement.classList.add("canvas-width-fullscreen");
-    let smallScreenIcon = document.getElementById("small-screen-icon");
+    //let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
     smallScreenIcon.classList.remove("exitFullscreenHidden");
     fullscreenOnOff = true;
     if (element.requestFullscreen) {
@@ -90,12 +92,15 @@ function enterFullscreen(element) {
         element.webkitRequestFullscreen();
     }
 }
-function exitFullscreen() {
-    let canvasElement = document.getElementById("canvas");
+function closeFullscreen() {
+    // let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
     canvasElement.classList.remove("canvas-width-fullscreen");
-    let smallScreenIcon = document.getElementById("small-screen-icon");
+    //let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
     smallScreenIcon.classList.add("exitFullscreenHidden");
     fullscreenOnOff = false;
+    exitFullscreen();
+}
+function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
     }

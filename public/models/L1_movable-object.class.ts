@@ -69,16 +69,14 @@ class MovableObject extends DrawableObject {
          this.energy = 0;
          world.character.damage_character.pause();
          world.background_sound.pause();
+
          setInterval(() => {
             stopAllIntervals();
-
-            document.getElementById("end-screen")?.classList.remove("endscreen-hidden");
-            document.getElementById("game-over-container")?.classList.remove("endscreen-hidden");
-            let startSide = document.getElementById("startSide");
-            if (startSide != null) {
-               startSide.style.display = "none";
-            }
+            endScreen.classList.remove("endscreen-hidden");
+            gameOverContain.classList.remove("endscreen-hidden");
+            startSide.style.display = "none";
          }, 1500);
+      
       } else {
          this.lastHit = new Date().getTime();
       }

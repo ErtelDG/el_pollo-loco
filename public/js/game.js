@@ -4,6 +4,11 @@ let world;
 let canvasHeight = 400;
 let canvasWidth = 720;
 let keyboard = new KeyboardKeys();
+let startScreen;
+let endScreen;
+let gameOverContain;
+let winContain;
+let startSide;
 // Set a fake timeout to get the highest timeout id
 function stopAllIntervals() {
     var highestTimeoutId = setTimeout(";");
@@ -12,10 +17,12 @@ function stopAllIntervals() {
     }
 }
 function init() {
-    let startScreen = document.getElementById("startScreen");
-    if (startScreen != null) {
-        startScreen.style.display = "none";
-    }
+    startScreen = document.getElementById("startScreen");
+    endScreen = document.getElementById("end-screen");
+    gameOverContain = document.getElementById("game-over-container");
+    winContain = document.getElementById("win-container");
+    startSide = document.getElementById("startSide");
+    startScreen.style.display = "none";
     createdLevel();
     canvas = document.getElementById("canvas");
     canvas.width = canvasWidth;
@@ -62,3 +69,9 @@ window.addEventListener("keyup", (e) => {
         keyboard.D = false;
     }
 });
+function restart() {
+    endScreen.classList.add("endscreen-hidden");
+    gameOverContain.classList.add("endscreen-hidden");
+    startSide.style.display = "";
+    init();
+}

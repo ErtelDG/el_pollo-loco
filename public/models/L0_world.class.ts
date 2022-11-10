@@ -208,12 +208,9 @@ class World {
                         this.background_sound.pause();
                         this.win_sound.volume = 0.1;
                         this.win_sound.play();
-                        document.getElementById("end-screen")?.classList.remove("endscreen-hidden");
-                        document.getElementById("win-container")?.classList.remove("endscreen-hidden");
-                        let startSide = document.getElementById("startSide");
-                        if (startSide != null) {
-                           startSide.style.display = "none";
-                        }
+                        endScreen.classList.remove("endscreen-hidden");
+                        winContain.classList.remove("endscreen-hidden");
+                        startSide.style.display = "none";
                      }, 1000);
                   }
                }

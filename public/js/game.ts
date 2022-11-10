@@ -4,21 +4,29 @@ let canvasHeight: number = 400;
 let canvasWidth: number = 720;
 let keyboard = new KeyboardKeys();
 
+let startScreen: HTMLElement;
+let endScreen: HTMLElement;
+let gameOverContain: HTMLElement;
+let winContain: HTMLElement;
+let startSide: HTMLElement;
+
 // Set a fake timeout to get the highest timeout id
 function stopAllIntervals() {
    var highestTimeoutId = setTimeout(";");
    for (var i = 0; i < highestTimeoutId; i++) {
       clearTimeout(i);
    }
-   
 }
 
-
 function init() {
-   let startScreen = document.getElementById("startScreen");
-   if (startScreen != null) {
-      startScreen.style.display = "none";
-   }
+   startScreen = document.getElementById("startScreen") as HTMLElement;
+   endScreen = document.getElementById("end-screen") as HTMLElement;
+   gameOverContain = document.getElementById("game-over-container") as HTMLElement;
+   winContain = document.getElementById("win-container") as HTMLElement;
+   startSide = document.getElementById("startSide") as HTMLElement;
+
+   startScreen.style.display = "none";
+
    createdLevel();
    canvas = document.getElementById("canvas") as HTMLCanvasElement;
    canvas.width = canvasWidth;
@@ -67,3 +75,10 @@ window.addEventListener("keyup", (e) => {
       keyboard.D = false;
    }
 });
+
+function restart() {
+   endScreen.classList.add("endscreen-hidden");
+   gameOverContain.classList.add("endscreen-hidden");
+   startSide.style.display = "";
+   init();
+}

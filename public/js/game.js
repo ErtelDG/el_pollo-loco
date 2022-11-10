@@ -9,6 +9,7 @@ let endScreen;
 let gameOverContain;
 let winContain;
 let startSide;
+let background_sound_On_Off = true;
 // Set a fake timeout to get the highest timeout id
 function stopAllIntervals() {
     var highestTimeoutId = setTimeout(";");

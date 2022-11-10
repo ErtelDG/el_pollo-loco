@@ -25,8 +25,10 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.background_sound.volume = 0.1;
-        this.background_sound.play();
+        if (background_sound_On_Off) {
+            this.background_sound.volume = 0.1;
+            this.background_sound.play();
+        }
     }
     setWorld() {
         this.character.world = this;

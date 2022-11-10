@@ -29,6 +29,7 @@ class World {
             this.background_sound.volume = 0.1;
             this.background_sound.play();
         }
+        keyboard.btnPressEvents();
     }
     setWorld() {
         this.character.world = this;

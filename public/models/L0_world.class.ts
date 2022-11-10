@@ -17,7 +17,7 @@ class World {
    keyboard;
    camera_x = 0;
    background_sound = new Audio("audio/background_sound.mp3");
-   
+
    win_sound = new Audio("audio/win.mp3");
 
    constructor(canvas: any, keyboard: any) {
@@ -30,6 +30,8 @@ class World {
          this.background_sound.volume = 0.1;
          this.background_sound.play();
       }
+
+      keyboard.btnPressEvents();
    }
 
    setWorld() {

@@ -82,10 +82,15 @@ function setCancvasProperties() {
 let fullscreenOnOff = false;
 
 let fullscreen = document.getElementById("fullscreen") as HTMLElement;
+function setFullscreen() {
+   enterFullscreen(fullscreen);
+}
 
 function enterFullscreen(element: any) {
    let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
    canvasElement.classList.add("canvas-width-fullscreen");
+   let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
+   smallScreenIcon.classList.remove("exitFullscreenHidden");
    fullscreenOnOff = true;
    if (element.requestFullscreen) {
       element.requestFullscreen();
@@ -99,10 +104,14 @@ function enterFullscreen(element: any) {
 }
 
 function exitFullscreen() {
+   let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
+   canvasElement.classList.remove("canvas-width-fullscreen");
+   let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
+   smallScreenIcon.classList.add("exitFullscreenHidden");
+   fullscreenOnOff = false;
    if (document.exitFullscreen) {
       document.exitFullscreen();
    } else if (document.exitFullscreen) {
       document.exitFullscreen();
    }
-   fullscreenOnOff = false;
 }

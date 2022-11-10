@@ -62,12 +62,13 @@ body {
 }
 
 h1 {
+   position: relative;
    text-align: center;
    font-size: clamp(1rem, 0.6000rem + 2.0000vw, 3rem);
    color: #FDF359;
    text-shadow: 1px 1px 5px #FDF359;
    margin: 0;
-
+   width: 100%;
 }
 
 .canvas-width-fullscreen {
@@ -75,7 +76,25 @@ h1 {
    height: calc(100% - 4.5rem);
 }
 
+.fullscreen-icon {
+   z-index: 10;
+   padding: 0.25rem;
+   cursor: pointer;
+   position: absolute;
+   height: 2rem;
+   width: 2rem;
+   right: calc(4rem / 2 - 2rem / 2);
+   top: calc(4rem / 2 - 2rem / 2)
+}
 
+.fullscreen-icon:hover {
+   background-color: #FCFFBF;
+  
+}
+
+.exitFullscreenHidden{
+   display: none !important;
+}
 
 #start_img_game_design {
    border-radius: 1rem;

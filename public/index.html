@@ -44,7 +44,6 @@
          <a href="">Let's Start!</a>
       </div>
       <div class="control-btn-explanation-service">
-
          <div class="flex-contain">
             <div id="contain1-explanation" class="contains-explanation">
                <div class="panel size2rem2rem">
@@ -87,7 +86,10 @@
 
    <div id="startSide" class="hidden">
       <!-- game -->
-      <h1 class="hidden">El Pollo Loco</h1>
+      <h1 class="hidden">El Pollo Loco <div class="fullscreen-icon panel"> <img class="icons-img"
+               onclick="setFullscreen()" src="img/10_design/full-screen.png"></div>
+
+      </h1>
       <div id="fullscreen">
          <canvas id="canvas"></canvas>
          <div id="control-btn" class="control-btn">
@@ -100,6 +102,9 @@
             <div class="panel-contain">
                <div id="start-icon" class="panel pointer" onclick="restart()"><img src="img/10_design/play.png"
                      class="icons-img" alt="">
+               </div>
+               <div id="small-screen-icon" class="panel pointer exitFullscreenHidden" onclick="exitFullscreen()"><img
+                     class="icons-img" onclick="exitFullscreen()" src="img/10_design/full-screen.png">
                </div>
                <div id="sound-icon" class="panel pointer" onclick="soundOnOff()"><img id="sound-icon-img"
                      src="img/10_design/sound-on-icon.png" class="icons-img" alt=""></div>

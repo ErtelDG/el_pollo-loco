@@ -18,6 +18,7 @@ class World {
     keyboard;
     camera_x = 0;
     background_sound = new Audio("audio/background_sound.mp3");
+    win_sound = new Audio("audio/win.mp3");
     constructor(canvas, keyboard) {
         (this.ctx = canvas.getContext("2d")), (this.canvas = canvas);
         this.keyboard = keyboard;
@@ -193,6 +194,9 @@ class World {
                             }
                             setInterval(() => {
                                 stopAllIntervals();
+                                this.background_sound.pause();
+                                this.win_sound.volume = 0.1;
+                                this.win_sound.play();
                                 document.getElementById("end-screen")?.classList.remove("endscreen-hidden");
                                 document.getElementById("win-container")?.classList.remove("endscreen-hidden");
                                 let startSide = document.getElementById("startSide");

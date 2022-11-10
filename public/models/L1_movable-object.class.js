@@ -58,6 +58,8 @@ class MovableObject extends DrawableObject {
         this.energy -= 1;
         if (this.energy < 0) {
             this.energy = 0;
+            world.character.damage_character.pause();
+            world.background_sound.pause();
             setInterval(() => {
                 stopAllIntervals();
                 document.getElementById("end-screen")?.classList.remove("endscreen-hidden");
@@ -66,7 +68,7 @@ class MovableObject extends DrawableObject {
                 if (startSide != null) {
                     startSide.style.display = "none";
                 }
-            }, 1000);
+            }, 1500);
         }
         else {
             this.lastHit = new Date().getTime();

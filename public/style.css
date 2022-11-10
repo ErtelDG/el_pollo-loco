@@ -35,6 +35,10 @@
    bottom: 0;
 }
 
+.pointer {
+   cursor: pointer;
+}
+
 canvas {
    background-color: black;
 }

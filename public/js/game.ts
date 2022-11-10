@@ -35,11 +35,7 @@ function restart() {
 }
 
 function soundOnOff() {
-   if (background_sound_On_Off) {
-      soundOff();
-   } else {
-      soundOn();
-   }
+   return background_sound_On_Off ? soundOff() : soundOn();
 }
 
 function soundOff() {
@@ -76,8 +72,6 @@ function setCancvasProperties() {
    canvas.height = canvasHeight;
 }
 
-
-
 function setFullscreen() {
    enterFullscreen(fullscreen);
 }
@@ -107,11 +101,7 @@ function closeFullscreen() {
 }
 
 function exitFullscreen() {
-   if (document.exitFullscreen) {
-      document.exitFullscreen();
-   } else if (document.exitFullscreen) {
-      document.exitFullscreen();
-   }
+   document.exitFullscreen();
 }
 
 function hiddenStartScreen() {

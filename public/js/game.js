@@ -32,12 +32,7 @@ function restart() {
     init();
 }
 function soundOnOff() {
-    if (background_sound_On_Off) {
-        soundOff();
-    }
-    else {
-        soundOn();
-    }
+    return background_sound_On_Off ? soundOff() : soundOn();
 }
 function soundOff() {
     background_sound_On_Off = false;
@@ -68,7 +63,6 @@ function setCancvasProperties() {
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
 }
-// Get the canvas element form the page
 function setFullscreen() {
     enterFullscreen(fullscreen);
 }
@@ -97,12 +91,7 @@ function closeFullscreen() {
     }
 }
 function exitFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen();
-    }
-    else if (document.exitFullscreen) {
-        document.exitFullscreen();
-    }
+    document.exitFullscreen();
 }
 function hiddenStartScreen() {
     startScreen.style.display = "none";

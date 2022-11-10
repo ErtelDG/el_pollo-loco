@@ -101,7 +101,7 @@ h1 {
    row-gap: 3rem;
    background-position: center;
    background-size: cover;
-
+   overflow: hidden;
 }
 
 .size2rem2rem {
@@ -165,7 +165,7 @@ h1 {
 a {
    font-size: 1rem;
    color: #FDF359;
-   ;
+   text-align: center;
    text-decoration: none;
    letter-spacing: 1px;
 }
@@ -299,14 +299,14 @@ canvas {
 @media only screen and (max-width: 720px) {
 
    .contains-explanation {
-      width: 18rem;
+
       margin: 0.75rem 0rem 0.75rem 0rem;
    }
 
-   .explanation-text {
-      width: 10rem;
-
+   #start_img_game_design {
+      border-radius: 0;
    }
+
 
    .control-btn {
       border: none;
@@ -362,6 +362,19 @@ canvas {
    }
 }
 
+@media only screen and (max-height: 680px) {
+   #contain6-explanation, #contain3-explanation {
+      display: none
+   }
+}
+
+@media only screen and (max-height: 620px) {
+#contain5-explanation,   #contain2-explanation {
+      display: none
+   }
+        
+}
+
 
 
 @media only screen and (max-height: 580px) {
@@ -391,14 +404,74 @@ canvas {
    }
 }
 
-@media only screen and (max-height: 580px) {
+@media only screen and (max-height: 560px) {
+   #contain4-explanation, #contain1-explanation {
+      display: none
+   }
+}
+
+
+@media only screen and (max-height: 500px) {
    .size2rem2rem {
-      width: 0.5rem;
-      height: 0.5rem;
+      width: 1rem;
+      height: 1rem;
    }
 
    .contains-explanation {
       width: auto;
-      margin: auto;
+
+   }
+
+   .control-btn-explanation-service {
+      margin: 0;
+   }
+
+   .button {
+      margin: 0.5rem 1.25rem 0.5rem 1.25rem;
+   }
+
+   #start_img_game_design{
+      height: 80vh;
+   }
+
+   .button{
+      height: 20vh;
+   }
+
+   .game-over-container,
+   .win-container {
+      font-size: 3rem;
+   }
+
+   h1 {
+      display: none;
+   }
+
+
+
+   #startSide {
+      height: 100%;
+   }
+
+}
+
+@media only screen and (max-height: 420px) {
+   #contain3-explanation {
+      display: none
+   }
+}
+
+@media only screen and (max-height: 350px) {
+   .size2rem2rem {
+      width: 0.5rem;
+      height: 0.5rem;
+   }
+}
+
+@media only screen and (max-height: 350px) {
+
+   #contain2-explanation,
+   #contain1-explanation {
+      display: none
    }
 }

@@ -90,11 +90,9 @@ class World {
      * check distance to final boss to trigger event
      */
     characterComeNearbyEndboss() {
-        if (this.character.x > 6000) {
-            this.level.endboss.forEach((endboss) => {
-                endboss.characterNearbyEndboss = true;
-            });
-        }
+        this.character.x > 6000
+            ? this.level.endboss.forEach((endboss) => (endboss.characterNearbyEndboss = true))
+            : this.level.endboss.forEach((endboss) => (endboss.characterNearbyEndboss = false));
     }
     /**
      * check user press the throw key => true => throw bottle
@@ -122,92 +120,14 @@ class World {
         this.level.endboss.forEach((endboss) => this.characterIsCollidingEndboss(endboss));
     }
     checkBottleCollisionEnemies() {
-        setInterval(() => {
-            //bottle enemie collision checken
-            this.level.enemies.forEach((enemy) => {
-                this.throwableObject.forEach((throwableBottle) => {
-                    if (throwableBottle.x + throwableBottle.width >= enemy.x &&
-                        throwableBottle.x <= enemy.x + enemy.width &&
-                        throwableBottle.y + throwableBottle.height >= enemy.y &&
-                        throwableBottle.y <= enemy.y + enemy.height
-                    //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
-                    ) {
-                        enemy.damage_enemie.volume = 0.1;
-                        enemy.damage_enemie.play();
-                        //platzende Flasche erstellen
-                        let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
-                        this.bottlesSplash.push(splashBottle);
-                        if (this.throwableObject.includes(throwableBottle)) {
-                            this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
-                        }
-                        //Splash array bereinigen
-                        this.removeSplashBottleArray();
-                        //Totes Chicken hinzufügen
-                        let deadEnemy = new DeadChicken(enemy.x, enemy.y);
-                        this.deadEnemies.push(deadEnemy);
-                        //lebendes huhn entfernen vom bild
-                        if (this.level.enemies.includes(enemy)) {
-                            this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
-                        }
-                    }
-                });
-            });
-        }, 5);
-        setInterval(() => {
-            //bottle endboss collision checken
-            this.level.endboss.forEach((endboss) => {
-                this.throwableObject.forEach((throwableBottle) => {
-                    if (throwableBottle.x + throwableBottle.width - 50 >= endboss.x &&
-                        throwableBottle.x <= endboss.x + endboss.width &&
-                        throwableBottle.y + throwableBottle.height >= endboss.y &&
-                        throwableBottle.y <= endboss.y + endboss.height
-                    //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
-                    ) {
-                        endboss.damage_enemie.volume = 0.1;
-                        endboss.damage_enemie.play();
-                        //platzende Flasche erstellen
-                        let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
-                        this.bottlesSplash.push(splashBottle);
-                        if (this.throwableObject.includes(throwableBottle)) {
-                            this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
-                        }
-                        endboss.hitEndboss = true;
-                        //Splash array bereinigen
-                        this.removeSplashBottleArray();
-                        endboss.energy -= 20;
-                        this.statusBarEndboss.setPercentage(endboss.energy);
-                        if (endboss.energy == 0) {
-                            //Totes Chicken hinzufügen
-                            let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
-                            this.deadEnemies.push(deadEnemy);
-                            //lebendes huhn entfernen vom bild
-                            if (this.level.endboss.includes(endboss)) {
-                                this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
-                            }
-                            setInterval(() => {
-                                stopAllIntervals();
-                                closeFullscreen();
-                                this.background_sound.pause();
-                                this.win_sound.volume = 0.1;
-                                this.win_sound.play();
-                                endScreen.classList.remove("endscreen-hidden");
-                                winContain.classList.remove("endscreen-hidden");
-                                startSide.style.display = "none";
-                            }, 1000);
-                        }
-                    }
-                });
-            });
-        }, 10);
+        setInterval(() => this.bottleColissionEnemy(), 5);
+        setInterval(() => this.bottleColissionEndboss(), 10);
     }
     checkCollectsCoins() {
         this.level.coins.forEach(async (coin) => {
             if (this.character.isColliding(coin)) {
-                coin.pick_coin.volume = 0.1;
-                coin.pick_coin.play();
-                if (this.level.coins.includes(coin)) {
-                    await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1);
-                }
+                this.playSoundPickCoin(coin);
+                this.level.coins.includes(coin) == true && (await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1));
                 this.character.collectsCoin();
                 this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
                 this.statusBarCoin.setPercentage(this.coinsPercentage);
@@ -312,16 +232,7 @@ class World {
             }
         }, 2500);
     }
-    characterIsCollidingEnemies(enemy) {
-        if (this.character.isColliding(enemy)) {
-            this.characterCollidingWithEnemy();
-        }
-        else if (this.characterHitsEnemieFromAbove(enemy)) {
-            this.showEnemieKill(enemy);
-        }
-        else {
-        }
-    }
+    characterIsCollidingEnemies = (enemy) => this.character.isColliding(enemy) ? this.characterCollidingWithEnemy() : this.characterHitsEnemieFromAbove(enemy) ? this.showEnemieKill(enemy) : {};
     characterIsCollidingEndboss(endboss) {
         if (this.character.isColliding(endboss)) {
             this.character.hit();
@@ -340,30 +251,104 @@ class World {
         }
     }
     removeSplashBottle() {
-        if (this.bottlesSplash != null) {
-            this.bottlesSplash.forEach((bottle) => {
-                setTimeout(() => {
-                    if (this.bottlesSplash.includes(bottle)) {
-                        this.bottlesSplash.splice(this.bottlesSplash.indexOf(bottle, 0), 1);
-                    }
-                }, 700);
-            });
-        }
+        this.bottlesSplash.forEach((bottle) => {
+            setTimeout(() => {
+                this.bottlesSplash.includes = (bottle) => this.bottlesSplash.splice(this.bottlesSplash.indexOf(bottle, 0), 1);
+            }, 700);
+        });
     }
     checkBottleIsOnGroundAndSplash() {
-        setInterval(() => {
-            if (this.throwableObject != null) {
-                this.throwableObject.forEach((bottle) => {
-                    if (bottle.y > 300) {
-                        bottle.splash_sound.play();
-                        let splashBottle = new SplashBottleObject(bottle.x, bottle.y);
-                        this.bottlesSplash.push(splashBottle);
-                        if (this.throwableObject.includes(bottle)) {
-                            this.throwableObject.splice(this.throwableObject.indexOf(bottle, 0), 1);
-                        }
+        setInterval(() => this.throwableObject.forEach((bottle) => this.bottleSplashTrue(bottle)), 10);
+    }
+    bottleColissionEnemy() {
+        //bottle enemie collision checken
+        this.level.enemies.forEach((enemy) => {
+            this.throwableObject.forEach((throwableBottle) => {
+                if (throwableBottle.x + throwableBottle.width >= enemy.x &&
+                    throwableBottle.x <= enemy.x + enemy.width &&
+                    throwableBottle.y + throwableBottle.height >= enemy.y &&
+                    throwableBottle.y <= enemy.y + enemy.height
+                //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
+                ) {
+                    enemy.damage_enemie.volume = 0.1;
+                    enemy.damage_enemie.play();
+                    //platzende Flasche erstellen
+                    let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
+                    this.bottlesSplash.push(splashBottle);
+                    if (this.throwableObject.includes(throwableBottle)) {
+                        this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
                     }
-                });
+                    //Splash array bereinigen
+                    this.removeSplashBottleArray();
+                    //Totes Chicken hinzufügen
+                    let deadEnemy = new DeadChicken(enemy.x, enemy.y);
+                    this.deadEnemies.push(deadEnemy);
+                    //lebendes huhn entfernen vom bild
+                    if (this.level.enemies.includes(enemy)) {
+                        this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
+                    }
+                }
+            });
+        });
+    }
+    bottleColissionEndboss() {
+        //bottle endboss collision checken
+        this.level.endboss.forEach((endboss) => {
+            this.throwableObject.forEach((throwableBottle) => {
+                if (throwableBottle.x + throwableBottle.width - 50 >= endboss.x &&
+                    throwableBottle.x <= endboss.x + endboss.width &&
+                    throwableBottle.y + throwableBottle.height >= endboss.y &&
+                    throwableBottle.y <= endboss.y + endboss.height
+                //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
+                ) {
+                    endboss.damage_enemie.volume = 0.1;
+                    endboss.damage_enemie.play();
+                    //platzende Flasche erstellen
+                    let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
+                    this.bottlesSplash.push(splashBottle);
+                    if (this.throwableObject.includes(throwableBottle)) {
+                        this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
+                    }
+                    endboss.hitEndboss = true;
+                    //Splash array bereinigen
+                    this.removeSplashBottleArray();
+                    endboss.energy -= 20;
+                    this.statusBarEndboss.setPercentage(endboss.energy);
+                    if (endboss.energy == 0) {
+                        //Totes Chicken hinzufügen
+                        let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
+                        this.deadEnemies.push(deadEnemy);
+                        //lebendes huhn entfernen vom bild
+                        if (this.level.endboss.includes(endboss)) {
+                            this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
+                        }
+                        setInterval(() => {
+                            stopAllIntervals();
+                            closeFullscreen();
+                            this.background_sound.pause();
+                            this.win_sound.volume = 0.1;
+                            this.win_sound.play();
+                            endScreen.classList.remove("endscreen-hidden");
+                            winContain.classList.remove("endscreen-hidden");
+                            startSide.style.display = "none";
+                        }, 1000);
+                    }
+                }
+            });
+        });
+    }
+    bottleSplashTrue(bottle) {
+        if (bottle.y > 300) {
+            bottle.splash_sound.play();
+            let splashBottle = new SplashBottleObject(bottle.x, bottle.y);
+            this.bottlesSplash.push(splashBottle);
+            if (this.throwableObject.includes(bottle)) {
+                this.throwableObject.splice(this.throwableObject.indexOf(bottle, 0), 1);
             }
-        }, 10);
+        }
+    }
+    playSoundPickCoin(coin) {
+        coin.pick_coin.volume = 0.1;
+        coin.pick_coin.play();
     }
 }

@@ -89,10 +89,10 @@ h1 {
 
 .fullscreen-icon:hover {
    background-color: #FCFFBF;
-  
+
 }
 
-.exitFullscreenHidden{
+.exitFullscreenHidden {
    display: none !important;
 }
 
@@ -139,6 +139,7 @@ h1 {
 
 .control-btn-explanation-service {
    margin-top: 1rem;
+   margin-bottom: 1rem;
    display: flex;
    justify-content: center;
    max-width: 44rem;

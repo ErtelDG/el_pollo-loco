@@ -257,6 +257,7 @@ class World {
             }
         }
     }
+<<<<<<< HEAD
     removeSplashBottle() { }
     checkBottleIsOnGroundAndSplash() {
         setInterval(() => this.throwableObject.forEach((bottle) => this.bottleSplashTrue(bottle)), 10);
@@ -348,6 +349,105 @@ class World {
             }
         }
     }
+=======
+    removeSplashBottle() {
+        this.bottlesSplash.forEach((bottle) => {
+            setTimeout(() => {
+                this.bottlesSplash.includes = (bottle) => this.bottlesSplash.splice(this.bottlesSplash.indexOf(bottle, 0), 1);
+            }, 700);
+        });
+    }
+    checkBottleIsOnGroundAndSplash() {
+        setInterval(() => this.throwableObject.forEach((bottle) => this.bottleSplashTrue(bottle)), 10);
+    }
+    bottleColissionEnemy() {
+        //bottle enemie collision checken
+        this.level.enemies.forEach((enemy) => {
+            this.throwableObject.forEach((throwableBottle) => {
+                if (throwableBottle.x + throwableBottle.width >= enemy.x &&
+                    throwableBottle.x <= enemy.x + enemy.width &&
+                    throwableBottle.y + throwableBottle.height >= enemy.y &&
+                    throwableBottle.y <= enemy.y + enemy.height
+                //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
+                ) {
+                    enemy.damage_enemie.volume = 0.1;
+                    enemy.damage_enemie.play();
+                    //platzende Flasche erstellen
+                    let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
+                    this.bottlesSplash.push(splashBottle);
+                    if (this.throwableObject.includes(throwableBottle)) {
+                        this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
+                    }
+                    //Splash array bereinigen
+                    this.removeSplashBottleArray();
+                    //Totes Chicken hinzufügen
+                    let deadEnemy = new DeadChicken(enemy.x, enemy.y);
+                    this.deadEnemies.push(deadEnemy);
+                    //lebendes huhn entfernen vom bild
+                    if (this.level.enemies.includes(enemy)) {
+                        this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
+                    }
+                }
+            });
+        });
+    }
+    bottleColissionEndboss() {
+        //bottle endboss collision checken
+        this.level.endboss.forEach((endboss) => {
+            this.throwableObject.forEach((throwableBottle) => {
+                if (throwableBottle.x + throwableBottle.width - 50 >= endboss.x &&
+                    throwableBottle.x <= endboss.x + endboss.width &&
+                    throwableBottle.y + throwableBottle.height >= endboss.y &&
+                    throwableBottle.y <= endboss.y + endboss.height
+                //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
+                ) {
+                    endboss.damage_enemie.volume = 0.1;
+                    endboss.damage_enemie.play();
+                    //platzende Flasche erstellen
+                    let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
+                    this.bottlesSplash.push(splashBottle);
+                    if (this.throwableObject.includes(throwableBottle)) {
+                        this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
+                    }
+                    endboss.hitEndboss = true;
+                    //Splash array bereinigen
+                    this.removeSplashBottleArray();
+                    endboss.energy -= 20;
+                    this.statusBarEndboss.setPercentage(endboss.energy);
+                    if (endboss.energy == 0) {
+                        //Totes Chicken hinzufügen
+                        let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
+                        this.deadEnemies.push(deadEnemy);
+                        //lebendes huhn entfernen vom bild
+                        if (this.level.endboss.includes(endboss)) {
+                            this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
+                        }
+                        setInterval(() => {
+                            stopAllIntervals();
+                            closeFullscreen();
+                            this.background_sound.pause();
+                            this.win_sound.volume = 0.1;
+                            this.win_sound.play();
+                            endScreen.classList.remove("endscreen-hidden");
+                            winContain.classList.remove("endscreen-hidden");
+                            startSide.style.display = "none";
+                        }, 1000);
+                    }
+                }
+            });
+        });
+    }
+    bottleSplashTrue(bottle) {
+        if (bottle.y > 300) {
+            bottle.splash_sound.play();
+            let splashBottle = new SplashBottleObject(bottle.x, bottle.y);
+            this.bottlesSplash.push(splashBottle);
+            if (this.throwableObject.includes(bottle)) {
+                this.throwableObject.splice(this.throwableObject.indexOf(bottle, 0), 1);
+            }
+        }
+    }
+>>>>>>> 8a0751428f0708dfff0aa6eb9ce385c9ee8104af
     playSoundPickCoin(coin) {
         coin.pick_coin.volume = 0.1;
         coin.pick_coin.play();

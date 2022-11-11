@@ -17,10 +17,10 @@ class DrawableObject {
    }
 
    /**
-    *     *
+    * function to load alking img  
+    * 
     * @param {Array} arr - ['img/image1.png','img/image2.png',....]
     */
-
    loadImagesWalking(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();
@@ -29,6 +29,11 @@ class DrawableObject {
       });
    }
 
+   /**
+    * function to load statusbar img
+    * 
+    * @param arr => array with img for the statusbar
+    */
    loadImagesImagesStatusbarHp(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();

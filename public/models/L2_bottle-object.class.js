@@ -13,6 +13,11 @@ class Bottle extends MovableObject {
         this.loadImagesBottles(this.IMAGES);
         this.loadImage(this.IMAGES[this.randomNumber]);
     }
+    /**
+     * function to load all bottle img in array for img path to load later
+     *
+     * @param arr => array with all bottle imgs
+     */
     loadImagesBottles(arr) {
         arr.forEach((path) => {
             let img = new Image();

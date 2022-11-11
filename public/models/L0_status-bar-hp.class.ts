@@ -23,12 +23,24 @@ class StatusBarHp extends DrawableObject {
       this.setPercentage(100);
    }
 
+   /**
+    * function to load the correct img to persentage coins
+    *
+    * @param percentage => persentage as number
+    */
    setPercentage(percentage: number) {
       this.percentage = percentage;
       let imagePath = this.imageStatusBarHp[this.resolveImageIndex(percentage)];
       this.img = imagePath;
    }
 
+   /**
+    *function to load the correct img to percentage
+    *
+    * @param percentage => persentage as number
+    *
+    * @returns matching picture to the percentage
+    */
    resolveImageIndex(percentage: any) {
       if (percentage == 100) {
          return 5;
@@ -45,6 +57,11 @@ class StatusBarHp extends DrawableObject {
       }
    }
 
+   /**
+    * function to load correct statusbar HP character img
+    *
+    * @param arr => array with all statusbar HP character img
+    */
    loadImages(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();

@@ -20,11 +20,23 @@ class StatusBarBottle extends DrawableObject {
         this.width = 120;
         this.setPercentage(0);
     }
+    /**
+     * function to load the correct img to persentage bottles
+     *
+     * @param percentage => persentage as number
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let imagePath = this.imageStatusBarBottle[this.resolveImageIndex(percentage)];
         this.img = imagePath;
     }
+    /**
+     *function to load the correct img to percentage
+     *
+     * @param percentage => persentage as number
+     *
+     * @returns matching picture to the percentage
+     */
     resolveImageIndex(percentage) {
         if (this.percentage == 100) {
             return 5;
@@ -45,6 +57,11 @@ class StatusBarBottle extends DrawableObject {
             return 0;
         }
     }
+    /**
+     * function to load correct bottle img
+     *
+     * @param arr => array with all bottle img
+     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();

@@ -10,6 +10,9 @@ class KeyboardKeys {
       this.btnPressEvents();
    }
 
+   /**
+    * function => interaction user when using touch screen
+    */
    btnPressEvents() {
       document.getElementById("arrow-left")?.addEventListener("touchstart", (e) => {
          e.preventDefault();
@@ -58,6 +61,9 @@ class KeyboardKeys {
       });
    }
 
+   /**
+    * function => interaction user when press a key
+    */
    keyPressEvents() {
       window.addEventListener("keydown", (e) => {
          if (e.key == "ArrowRight") {

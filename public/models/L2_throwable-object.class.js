@@ -28,6 +28,11 @@ class ThrowableObject extends MovableObject {
             this.x += 10;
         }, 25);
     }
+    /**
+     * function to load allthrow img in array for img path to load later
+     *
+     * @param arr => array with all throw imgs
+     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
@@ -35,6 +40,9 @@ class ThrowableObject extends MovableObject {
             this.imagesRotationBottle.push(img);
         });
     }
+    /**
+     * function to animate the object
+     */
     animate() {
         setInterval(() => {
             this.animationObjects(this.IMAGES_ARRAY, this.imagesRotationBottle);

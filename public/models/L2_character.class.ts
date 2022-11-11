@@ -80,86 +80,28 @@ class Character extends MovableObject {
       this.offset.top = 25;
    }
 
+   /**
+    * animate character when user interacts with key or button
+    */
    animate() {
       setInterval(() => {
-         this.walking_sound.pause();
-         if (world.character.world.keyboard.RIGHT && this.x < world.level.level_end) {
-            this.moveRight();
-            this.otherDirection = false;
-            if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
-               this.walking_sound.pause();
-            } else {
-               this.walking_sound.play();
-            }
-            this.walking_sound.volume = 0.1;
-         }
-         if (world.character.world.keyboard.LEFT && this.x > this.stopLeft) {
-            this.moveLeft();
-            this.otherDirection = true;
-            if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
-               this.walking_sound.pause();
-            } else {
-               this.walking_sound.play();
-            }
-
-            this.walking_sound.volume = 0.1;
-         }
-
-         if ((world.character.world.keyboard.UP && !this.isAboveGround()) || (world.character.world.keyboard.SPACE && !this.isAboveGround())) {
-            this.jump();
-            this.jump_sound.volume = 0.01;
-            this.jump_sound.play();
-            this.walking_sound.pause();
-         }
-
+         this.stopWalkingSoundWhenNoInteracts();
+         this.userCharacterGoRight();
+         this.userCharacterGoLeft();
+         this.userCharacterGoJump();
          world.camera_x = -this.x + 100;
       }, 1000 / 90);
 
       setInterval(() => {
-         if (this.isDead()) {
-            this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);
-          
-            this.lose_sound.volume = 0.5;
-            this.lose_sound.play();
-         } else if (this.isHurt()) {
-            this.animationObjects(this.IMAGES_HURT, this.imageCacheHeart);
-         } else if (this.isAboveGround()) {
-            setInterval(() => {
-               if (this.hightJumpPoint == true) {
-                  if (this.y >= 130) {
-                     this.img = this.imageCacheJump[8];
-                     this.hightJumpPoint = false;
-                  } else if (this.y >= 70) {
-                     this.img = this.imageCacheJump[7];
-                  } else if (this.y >= 15) {
-                     this.img = this.imageCacheJump[6];
-                  } else if (this.y >= 0) {
-                     this.img = this.imageCacheJump[5];
-                  } else if (this.y >= -15) {
-                     this.img = this.imageCacheJump[4];
-                  }
-               } else {
-                  if (this.y <= 0) {
-                     this.hightJumpPoint = true;
-                  } else if (this.y <= 100) {
-                     this.img = this.imageCacheJump[3];
-                  } else if (this.y <= 120) {
-                     this.img = this.imageCacheJump[2];
-                  } else if (this.y <= 140) {
-                     this.img = this.imageCacheJump[1];
-                  } else {
-                     this.y = 158;
-                  }
-               }
-            }, 25);
-         } else if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {
-            this.animationObjects(this.IMAGES_WALKING, this.imageCache);
-         } else {
-            this.animationObjects(this.IMAGES_IDLE, this.imageCacheIdle);
-         }
+         this.loadCorrectImageWhenDeadHurtOrAboveGround();
       }, 50);
    }
 
+   /**
+    * function to load images for jump animation
+    *
+    * @param arr => array with jump images
+    */
    loadImagesJump(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();
@@ -168,6 +110,11 @@ class Character extends MovableObject {
       });
    }
 
+   /**
+    * function to load images for dead animation
+    *
+    * @param arr => array with dead images
+    */
    loadImagesDead(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();
@@ -176,6 +123,11 @@ class Character extends MovableObject {
       });
    }
 
+   /**
+    * function to load images for hurt animation
+    *
+    * @param arr => array with hurt images
+    */
    loadImagesHurt(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();
@@ -184,11 +136,142 @@ class Character extends MovableObject {
       });
    }
 
+   /**
+    * function to load images for idle animation
+    *
+    * @param arr => array with idle images
+    */
    loadImagesIdle(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();
          img.src = path;
          this.imageCacheIdle.push(img);
       });
+   }
+
+   /**
+    * stop walking sound when character stand on th point
+    */
+   stopWalkingSoundWhenNoInteracts() {
+      this.walking_sound.pause();
+   }
+
+   /**
+    * sound and animation when character must go right
+    */
+   userCharacterGoRight() {
+      if (world.character.world.keyboard.RIGHT && this.x < world.level.level_end) {
+         this.moveRight();
+         this.otherDirection = false;
+         if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
+            this.walking_sound.pause();
+         } else {
+            this.walking_sound.play();
+         }
+         this.walking_sound.volume = 0.1;
+      }
+   }
+
+   /**
+    * sound and animation when character must go left
+    */
+   userCharacterGoLeft() {
+      if (world.character.world.keyboard.LEFT && this.x > this.stopLeft) {
+         this.moveLeft();
+         this.otherDirection = true;
+         if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
+            this.walking_sound.pause();
+         } else {
+            this.walking_sound.play();
+         }
+
+         this.walking_sound.volume = 0.1;
+      }
+   }
+
+   /**
+    * sound and animation when character must jump
+    */
+   userCharacterGoJump() {
+      if ((world.character.world.keyboard.UP && !this.isAboveGround()) || (world.character.world.keyboard.SPACE && !this.isAboveGround())) {
+         this.jump();
+         this.jump_sound.volume = 0.01;
+         this.jump_sound.play();
+         this.walking_sound.pause();
+      }
+   }
+
+   /**
+    * function check which animation must play, when character id dead, hurt, walking, idle or jump
+    */
+   loadCorrectImageWhenDeadHurtOrAboveGround() {
+      if (this.isDead()) {
+         this.deadAnimationCharacter();
+      } else if (this.isHurt()) {
+         this.animationObjects(this.IMAGES_HURT, this.imageCacheHeart);
+      } else if (this.isAboveGround()) {
+         this.jumpAnimationCharacter();
+      } else if (world.character.world.keyboard.RIGHT || world.character.world.keyboard.LEFT) {
+         this.animationObjects(this.IMAGES_WALKING, this.imageCache);
+      } else {
+         this.animationObjects(this.IMAGES_IDLE, this.imageCacheIdle);
+      }
+   }
+
+   /**
+    * sound and animation when character is dead
+    */
+   deadAnimationCharacter() {
+      this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);
+      this.lose_sound.volume = 0.5;
+      this.lose_sound.play();
+   }
+
+   /**
+    * function check which animation must play, when character jump up and go down
+    */
+   jumpAnimationCharacter() {
+      setInterval(() => {
+         if (this.hightJumpPoint == true) {
+            this.jumpAnimationUpToDown();
+         } else {
+            this.jumpAnimationDownToUp();
+         }
+      }, 25);
+   }
+
+   /**
+    * animation when character go up to down => fall
+    */
+   jumpAnimationUpToDown() {
+      if (this.y >= 130) {
+         this.img = this.imageCacheJump[8];
+         this.hightJumpPoint = false;
+      } else if (this.y >= 70) {
+         this.img = this.imageCacheJump[7];
+      } else if (this.y >= 15) {
+         this.img = this.imageCacheJump[6];
+      } else if (this.y >= 0) {
+         this.img = this.imageCacheJump[5];
+      } else if (this.y >= -15) {
+         this.img = this.imageCacheJump[4];
+      }
+   }
+
+   /**
+    * animation when character go down to up => jump
+    */
+   jumpAnimationDownToUp() {
+      if (this.y <= 0) {
+         this.hightJumpPoint = true;
+      } else if (this.y <= 100) {
+         this.img = this.imageCacheJump[3];
+      } else if (this.y <= 120) {
+         this.img = this.imageCacheJump[2];
+      } else if (this.y <= 140) {
+         this.img = this.imageCacheJump[1];
+      } else {
+         this.y = 158;
+      }
    }
 }

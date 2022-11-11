@@ -1,7 +1,7 @@
 class Bottle extends MovableObject {
    IMAGES = ["img/6_salsa_bottle/1_salsa_bottle_on_ground.png", "img/6_salsa_bottle/2_salsa_bottle_on_ground.png"];
    blob_sound = new Audio("audio/blob.mp3");
-   
+
    randomNumber: any = 0;
    constructor() {
       super();
@@ -14,6 +14,11 @@ class Bottle extends MovableObject {
       this.loadImage(this.IMAGES[this.randomNumber]);
    }
 
+   /**
+    * function to load all bottle img in array for img path to load later
+    *
+    * @param arr => array with all bottle imgs
+    */
    loadImagesBottles(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();

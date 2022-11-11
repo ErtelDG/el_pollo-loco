@@ -11,6 +11,9 @@ class Cloud extends MovableObject {
       this.moveCloud();
    }
 
+   /**
+    *  auto move the object
+    */
    moveCloud(): void {
       this.moveLeft();
    }

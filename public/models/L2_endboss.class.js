@@ -54,48 +54,28 @@ class Endboss extends MovableObject {
         this.energy = 100;
         this.intervall();
     }
+    /**
+     * function to correct animate => object
+     */
     animate() {
         setInterval(() => {
-            if (this.characterNearbyEndboss == true) {
-                if (this.hitEndboss == true) {
-                    this.animationObjects(this.IMAGES_HURT, this.imageCacheHurt);
-                    setTimeout(() => {
-                        this.hitEndboss = false;
-                    }, 1000);
+            if (this.characterNearTheEndboss()) {
+                if (this.hitEndbossTrue()) {
+                    this.animationEndbossHurt();
                 }
                 else {
-                    if (this.endbossAlert == true) {
-                        this.animationObjects(this.IMAGES_ALERT, this.imageCacheAlert);
-                    }
-                    else if (this.endbossMoveLeft == true) {
-                        this.animationObjects(this.IMAGES_WALK, this.imageCacheWalk);
-                        this.x -= 5;
-                    }
-                    else if (this.endbossAttack == true) {
-                        this.animationObjects(this.IMAGES_ATTACK, this.imageCacheAttack);
-                    }
-                    else {
-                    }
+                    this.startAnimationEndbossAlertMoveLeftOrAttack();
                 }
             }
         }, 100);
     }
+    /**
+     * set the endboss action
+     */
     intervall() {
-        setInterval(() => {
-            this.endbossAlert = false;
-            this.endbossMoveLeft = true;
-            this.endbossAttack = false;
-        }, 2000);
-        setInterval(() => {
-            this.endbossAlert = false;
-            this.endbossMoveLeft = false;
-            this.endbossAttack = true;
-        }, 8000);
-        setInterval(() => {
-            this.endbossAttack = false;
-            this.endbossMoveLeft = false;
-            this.endbossAlert = true;
-        }, 12000);
+        this.setEndbossMoveLeft();
+        this.setEndbossAttack();
+        this.setEndbossAlert();
     }
     loadImagesAlert(arr) {
         arr.forEach((path) => {
@@ -132,5 +112,70 @@ class Endboss extends MovableObject {
     isAttack() {
         let timepassed = (new Date().getTime() - this.lastHit) / 1000;
         return timepassed < 1;
+    }
+    characterNearTheEndboss() {
+        return this.characterNearbyEndboss == true;
+    }
+    hitEndbossTrue() {
+        return this.hitEndboss == true;
+    }
+    animationEndbossHurt() {
+        this.animationObjects(this.IMAGES_HURT, this.imageCacheHurt);
+        setTimeout(() => {
+            this.hitEndboss = false;
+        }, 1000);
+    }
+    endbossAlertAnimationTrue() {
+        return this.endbossAlert == true;
+    }
+    animationEndbossAlert() {
+        return this.animationObjects(this.IMAGES_ALERT, this.imageCacheAlert);
+    }
+    endbossMoveLeftTrue() {
+        return this.endbossMoveLeft == true;
+    }
+    animationEndbossMoveLeft() {
+        this.animationObjects(this.IMAGES_WALK, this.imageCacheWalk);
+        this.x -= 5;
+    }
+    endbossAttackTrue() {
+        return this.endbossAttack == true;
+    }
+    animationEndbossAttack() {
+        return this.animationObjects(this.IMAGES_ATTACK, this.imageCacheAttack);
+    }
+    setEndbossMoveLeft() {
+        setInterval(() => {
+            this.endbossAlert = false;
+            this.endbossMoveLeft = true;
+            this.endbossAttack = false;
+        }, 2000);
+    }
+    setEndbossAttack() {
+        setInterval(() => {
+            this.endbossAlert = false;
+            this.endbossMoveLeft = false;
+            this.endbossAttack = true;
+        }, 8000);
+    }
+    setEndbossAlert() {
+        setInterval(() => {
+            this.endbossAttack = false;
+            this.endbossMoveLeft = false;
+            this.endbossAlert = true;
+        }, 12000);
+    }
+    startAnimationEndbossAlertMoveLeftOrAttack() {
+        if (this.endbossAlertAnimationTrue()) {
+            this.animationEndbossAlert();
+        }
+        else if (this.endbossMoveLeftTrue()) {
+            this.animationEndbossMoveLeft();
+        }
+        else if (this.endbossAttackTrue()) {
+            this.animationEndbossAttack();
+        }
+        else {
+        }
     }
 }

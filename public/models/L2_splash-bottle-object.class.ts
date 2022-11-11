@@ -21,6 +21,11 @@ class SplashBottleObject extends MovableObject {
       this.animate();
    }
 
+   /**
+    * function to load all splash bottle img in array for img path to load later
+    *
+    * @param arr => array with all splash bottle imgs
+    */
    loadImages(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();
@@ -29,6 +34,9 @@ class SplashBottleObject extends MovableObject {
       });
    }
 
+   /**
+    * function to animate the object
+    */
    animate() {
       setInterval(() => {
          this.animationObjects(this.IMAGES_ARRAY, this.imagesSplashBottle);

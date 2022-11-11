@@ -11,6 +11,9 @@ class Cloud extends MovableObject {
         this.y = 10 + Math.random() * 50;
         this.moveCloud();
     }
+    /**
+     *  auto move the object
+     */
     moveCloud() {
         this.moveLeft();
     }

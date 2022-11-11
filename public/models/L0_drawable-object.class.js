@@ -16,7 +16,8 @@ class DrawableObject {
         this.img.src = path;
     }
     /**
-     *     *
+     * function to load alking img
+     *
      * @param {Array} arr - ['img/image1.png','img/image2.png',....]
      */
     loadImagesWalking(arr) {
@@ -26,6 +27,11 @@ class DrawableObject {
             this.imageCache.push(img);
         });
     }
+    /**
+     * function to load statusbar img
+     *
+     * @param arr => array with img for the statusbar
+     */
     loadImagesImagesStatusbarHp(arr) {
         arr.forEach((path) => {
             let img = new Image();

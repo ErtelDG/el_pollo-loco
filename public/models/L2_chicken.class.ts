@@ -8,7 +8,7 @@ class Chicken extends MovableObject {
       "img/3_enemies_chicken/chicken_normal/1_walk/3_w.png",
    ];
    walking_enemie_sound = new Audio("audio/chicken.mp3");
-   damage_enemie = new Audio("audio/chicken_damage.mp3")
+   damage_enemie = new Audio("audio/chicken_damage.mp3");
 
    constructor() {
       super();
@@ -18,6 +18,10 @@ class Chicken extends MovableObject {
       this.speed = this.speed + Math.random() * 0.8;
       this.animate();
    }
+
+   /**
+    * function to animate the object
+    */
    animate() {
       setInterval(() => {
          this.moveLeft();

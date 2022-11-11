@@ -17,6 +17,9 @@ class DeadEndboss extends MovableObject {
       this.animate();
    }
 
+   /**
+    * function to animate the object
+    */
    animate() {
       let endossDeadSimulation = setInterval(() => {
          this.animationObjects(this.IMAGES_DEAD, this.imageCacheDead);
@@ -28,6 +31,9 @@ class DeadEndboss extends MovableObject {
       }, 400);
    }
 
+   /**
+    * function to animate dead the object
+    */
    loadImagesDead(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();

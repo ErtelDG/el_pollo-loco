@@ -17,6 +17,10 @@ class Coin extends MovableObject {
       this.offset.right = 40;
       this.offset.top = 40;
    }
+
+   /**
+    * function to animate the object
+    */
    animate() {
       setInterval(() => {
          this.animationObjects(this.IMAGES, this.imageCache);

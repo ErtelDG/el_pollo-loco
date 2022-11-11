@@ -125,6 +125,9 @@ class World {
       this.checkBottleIsOnGroundAndSplash();
    }
 
+   /**
+    * check character collision with enemies and endboss
+    */
    checkCollisions() {
       this.level.enemies.forEach(async (enemy: any) => this.characterIsCollidingEnemies(enemy));
       this.level.endboss.forEach((endboss: any) => this.characterIsCollidingEndboss(endboss));

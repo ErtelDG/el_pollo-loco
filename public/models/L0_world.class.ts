@@ -142,8 +142,7 @@ class World {
             this.playSoundPickCoin(coin);
             this.level.coins.includes(coin) == true && (await this.level.coins.splice(this.level.coins.indexOf(coin, 0), 1));
             this.character.collectsCoin();
-            this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
-            this.statusBarCoin.setPercentage(this.coinsPercentage);
+            this.updateStatusBarCoin();
          }
       });
    }
@@ -156,27 +155,14 @@ class World {
                await this.level.bottles.splice(this.level.bottles.indexOf(bottle, 0), 1);
             }
             this.character.collectBottle();
-            this.bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
-            this.statusBarBottle.setPercentage(this.bottlesPercentage);
+            this.updateStatusBarBottle();
          }
       });
    }
 
    addToMap(obj_x: any) {
-      if (obj_x.otherDirection) {
-         this.flipImage(obj_x);
-      }
-      if (this.ctx != null) {
-         try {
-            this.ctx.drawImage(obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
-         } catch (e) {
-            console.warn("Error loading image", e);
-            console.warn("Cold not load image,", obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
-            debugger;
-         }
-         // this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
-      }
-
+      if (obj_x.otherDirection) this.flipImage(obj_x);
+      this.ctx.drawImage(obj_x.img, obj_x.x, obj_x.y, obj_x.width, obj_x.height);
       if (obj_x.otherDirection) {
          this.ctx.restore();
          obj_x.x = obj_x.x * -1;
@@ -184,10 +170,7 @@ class World {
    }
 
    addObjectsToMap(obj: any) {
-      obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin | ThrowableObject | Endboss) => {
-         this.drawElements(obj_x);
-         //  this.drawRectangle(obj_x.x, obj_x.y, obj_x.width, obj_x.height);
-      });
+      obj.forEach((obj_x: Chicken | Cloud | BackgroundObject | Coin | ThrowableObject | Endboss) => this.drawElements(obj_x));
    }
 
    flipImage(character: Character) {
@@ -197,18 +180,8 @@ class World {
       character.x = character.x * -1;
    }
 
-   // drawRectangle(x: any, y: any, width: any, height: any) {
-   //    this.ctx.beginPath();
-   //    this.ctx.lineWidth = "5";
-   //    this.ctx.strokeStyle = "blue";
-   //    this.ctx.rect(x, y, width, height);
-   //    this.ctx.stroke();
-   // }
-
    drawElements(objectToDraw: Chicken | Cloud | BackgroundObject | Coin | StatusBarHp | ThrowableObject | Endboss) {
-      if (this.ctx != null) {
-         this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
-      }
+      this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
    }
 
    playBackgroundMusic() {
@@ -243,20 +216,11 @@ class World {
    }
 
    async showEnemieKill(enemy: any) {
-      enemy.damage_enemie.volume = 0.1;
-      enemy.damage_enemie.play();
-      //lebendes huhn entfernen vom bild
-      if (this.level.enemies.includes(enemy)) {
-         this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
-      }
-      //Totes Chicken hinzufügen
+      this.playDamageEnemySound(enemy);
+      if (this.level.enemies.includes(enemy)) this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
       let deadEnemy = new DeadChicken(enemy.x, enemy.y);
       await this.deadEnemies.push(deadEnemy);
-      setTimeout(() => {
-         if (this.deadEnemies.includes(deadEnemy)) {
-            this.deadEnemies.splice(this.deadEnemies.indexOf(deadEnemy, 0), 1);
-         }
-      }, 2500);
+      setTimeout(() => this.removeDeadEnemyFromArray(deadEnemy), 2500);
    }
 
    characterIsCollidingEnemies = (enemy: any) =>
@@ -264,8 +228,8 @@ class World {
 
    characterIsCollidingEndboss(endboss: any) {
       if (this.character.isColliding(endboss)) {
-         this.character.hit();
-         this.statusBarHp.setPercentage(this.character.energy);
+         this.characterCollidingWithEnemy();
+         this.hitCharacterAndUpdateHitPersentage();
       }
    }
 
@@ -284,7 +248,9 @@ class World {
    removeSplashBottle() {
       this.bottlesSplash.forEach((bottle: any) => {
          setTimeout(() => {
-            this.bottlesSplash.includes = (bottle: any) => this.bottlesSplash.splice(this.bottlesSplash.indexOf(bottle, 0), 1);
+            if (this.bottlesSplash.includes(bottle)) {
+               this.bottlesSplash.splice(this.bottlesSplash.indexOf(bottle, 0), 1);
+            }
          }, 700);
       });
    }
@@ -294,81 +260,31 @@ class World {
    }
 
    bottleColissionEnemy() {
-      //bottle enemie collision checken
       this.level.enemies.forEach((enemy: any) => {
          this.throwableObject.forEach((throwableBottle: any) => {
-            if (
-               throwableBottle.x + throwableBottle.width >= enemy.x &&
-               throwableBottle.x <= enemy.x + enemy.width &&
-               throwableBottle.y + throwableBottle.height >= enemy.y &&
-               throwableBottle.y <= enemy.y + enemy.height
-               //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
-            ) {
-               enemy.damage_enemie.volume = 0.1;
-               enemy.damage_enemie.play();
-               //platzende Flasche erstellen
-               let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
-               this.bottlesSplash.push(splashBottle);
-               if (this.throwableObject.includes(throwableBottle)) {
-                  this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
-               }
-               //Splash array bereinigen
+            if (this.coordinatesBottleColissionEnemyColission(throwableBottle, enemy)) {
+               this.playDamageEnemySound(enemy);
+               this.createNewSplashBottle(throwableBottle);
                this.removeSplashBottleArray();
-               //Totes Chicken hinzufügen
-               let deadEnemy = new DeadChicken(enemy.x, enemy.y);
-               this.deadEnemies.push(deadEnemy);
-               //lebendes huhn entfernen vom bild
-               if (this.level.enemies.includes(enemy)) {
-                  this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
-               }
+               let deadEnemy = this.createDeadChickenAndRemoveLiveChicken(enemy);
+               setTimeout(() => this.removeDeadEnemyFromArray(deadEnemy), 2500);
             }
          });
       });
    }
 
    bottleColissionEndboss() {
-      //bottle endboss collision checken
       this.level.endboss.forEach((endboss: any) => {
          this.throwableObject.forEach((throwableBottle: any) => {
-            if (
-               throwableBottle.x + throwableBottle.width - 50 >= endboss.x &&
-               throwableBottle.x <= endboss.x + endboss.width &&
-               throwableBottle.y + throwableBottle.height >= endboss.y &&
-               throwableBottle.y <= endboss.y + endboss.height
-               //<= obj.y + obj.height && obj.onCollisionCourse  ==  + this.height
-            ) {
-               endboss.damage_enemie.volume = 0.1;
-               endboss.damage_enemie.play();
-               //platzende Flasche erstellen
-               let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
-               this.bottlesSplash.push(splashBottle);
-               if (this.throwableObject.includes(throwableBottle)) {
-                  this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
-               }
+            if (this.coordinatesBottleColissionEndbossColission(throwableBottle, endboss)) {
+               this.playDamageEndbossSound(endboss);
+               this.createNewSplashBottle(throwableBottle);
                endboss.hitEndboss = true;
-
-               //Splash array bereinigen
                this.removeSplashBottleArray();
-               endboss.energy -= 20;
-               this.statusBarEndboss.setPercentage(endboss.energy);
+               this.updateEndbossEnergyAndStatusBarEndboss(endboss);
                if (endboss.energy == 0) {
-                  //Totes Chicken hinzufügen
-                  let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
-                  this.deadEnemies.push(deadEnemy);
-                  //lebendes huhn entfernen vom bild
-                  if (this.level.endboss.includes(endboss)) {
-                     this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
-                  }
-                  setInterval(() => {
-                     stopAllIntervals();
-                     closeFullscreen();
-                     this.background_sound.pause();
-                     this.win_sound.volume = 0.1;
-                     this.win_sound.play();
-                     endScreen.classList.remove("endscreen-hidden");
-                     winContain.classList.remove("endscreen-hidden");
-                     startSide.style.display = "none";
-                  }, 1000);
+                  this.createDeadEndbossAndRemoveLiveChicken(endboss);
+                  setInterval(() => this.playEndWinAnimation(), 1000);
                }
             }
          });
@@ -380,14 +296,110 @@ class World {
          bottle.splash_sound.play();
          let splashBottle = new SplashBottleObject(bottle.x, bottle.y);
          this.bottlesSplash.push(splashBottle);
-         if (this.throwableObject.includes(bottle)) {
-            this.throwableObject.splice(this.throwableObject.indexOf(bottle, 0), 1);
-         }
+         if (this.throwableObject.includes(bottle)) this.throwableObject.splice(this.throwableObject.indexOf(bottle, 0), 1);
       }
    }
 
    playSoundPickCoin(coin: any) {
       coin.pick_coin.volume = 0.1;
       coin.pick_coin.play();
+   }
+
+   playDamageEnemySound(enemy: { damage_enemie: { volume: number; play: () => void } }) {
+      enemy.damage_enemie.volume = 0.2;
+      enemy.damage_enemie.play();
+   }
+
+   playDamageEndbossSound(endboss: { damage_enemie: { volume: number; play: () => void } }) {
+      endboss.damage_enemie.volume = 0.2;
+      endboss.damage_enemie.play();
+   }
+
+   removeDeadEnemyFromArray(deadEnemy: DeadChicken) {
+      if (this.deadEnemies.includes(deadEnemy)) {
+         this.deadEnemies.splice(this.deadEnemies.indexOf(deadEnemy, 0), 1);
+      }
+   }
+
+   updateStatusBarCoin() {
+      this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
+      this.statusBarCoin.setPercentage(this.coinsPercentage);
+   }
+
+   updateStatusBarBottle() {
+      this.bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
+      this.statusBarBottle.setPercentage(this.bottlesPercentage);
+   }
+
+   hitCharacterAndUpdateHitPersentage() {
+      this.character.hit();
+      this.statusBarHp.setPercentage(this.character.energy);
+   }
+
+   createNewSplashBottle(throwableBottle: { x: number; y: number }) {
+      let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
+      this.bottlesSplash.push(splashBottle);
+      if (this.throwableObject.includes(throwableBottle)) {
+         this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
+      }
+   }
+
+   coordinatesBottleColissionEnemyColission(
+      throwableBottle: { x: number; width: any; y: number; height: any },
+      enemy: { x: number; width: any; y: number; height: any }
+   ) {
+      return (
+         throwableBottle.x + throwableBottle.width >= enemy.x &&
+         throwableBottle.x <= enemy.x + enemy.width &&
+         throwableBottle.y + throwableBottle.height >= enemy.y &&
+         throwableBottle.y <= enemy.y + enemy.height
+      );
+   }
+
+   coordinatesBottleColissionEndbossColission(
+      throwableBottle: { x: number; width: any; y: number; height: any },
+      endboss: { x: number; width: any; y: number; height: any }
+   ) {
+      return (
+         throwableBottle.x + throwableBottle.width - 50 >= endboss.x &&
+         throwableBottle.x <= endboss.x + endboss.width &&
+         throwableBottle.y + throwableBottle.height >= endboss.y &&
+         throwableBottle.y <= endboss.y + endboss.height
+      );
+   }
+
+   updateEndbossEnergyAndStatusBarEndboss(endboss: { energy: number }) {
+      endboss.energy -= 20;
+      this.statusBarEndboss.setPercentage(endboss.energy);
+   }
+
+   createDeadChickenAndRemoveLiveChicken(enemy: { x: number; y: number }) {
+      let deadEnemy = new DeadChicken(enemy.x, enemy.y);
+      this.deadEnemies.push(deadEnemy);
+
+      if (this.level.enemies.includes(enemy)) {
+         this.level.enemies.splice(this.level.enemies.indexOf(enemy, 0), 1);
+      }
+      return deadEnemy;
+   }
+
+   createDeadEndbossAndRemoveLiveChicken(endboss: { x: number; y: number }) {
+      let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
+      this.deadEnemies.push(deadEnemy);
+      //lebendes huhn entfernen vom bild
+      if (this.level.endboss.includes(endboss)) {
+         this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
+      }
+   }
+
+   playEndWinAnimation() {
+      stopAllIntervals();
+      closeFullscreen();
+      this.background_sound.pause();
+      this.win_sound.volume = 0.1;
+      this.win_sound.play();
+      endScreen.classList.remove("endscreen-hidden");
+      winContain.classList.remove("endscreen-hidden");
+      startSide.style.display = "none";
    }
 }

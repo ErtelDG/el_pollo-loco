@@ -1,8 +1,6 @@
 "use strict";
 let canvas;
 let world;
-let canvasHeight = 400;
-let canvasWidth = 720;
 let keyboard = new KeyboardKeys();
 let startScreen;
 let endScreen;
@@ -85,8 +83,6 @@ function getAllIntervalsAndStop() {
  */
 function setCancvasProperties() {
     canvas = document.getElementById("canvas");
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
 }
 /**
  * get fullscreen mode

@@ -1,6 +1,6 @@
 "use strict";
 class Cloud extends MovableObject {
-    width = canvasWidth;
+    width = 720;
     height = 250;
     IMAGES_CLOUD = ["img/5_background/layers/4_clouds/1.png", "img/5_background/layers/4_clouds/2.png"];
     constructor() {

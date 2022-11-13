@@ -1,7 +1,6 @@
 let canvas: number | HTMLCanvasElement;
 let world: World;
-let canvasHeight: number = 400;
-let canvasWidth: number = 720;
+
 let keyboard = new KeyboardKeys();
 let startScreen: HTMLElement;
 let endScreen: HTMLElement;
@@ -93,8 +92,7 @@ function getAllIntervalsAndStop() {
  */
 function setCancvasProperties() {
    canvas = document.getElementById("canvas") as HTMLCanvasElement;
-   canvas.width = canvasWidth;
-   canvas.height = canvasHeight;
+ 
 }
 
 /**

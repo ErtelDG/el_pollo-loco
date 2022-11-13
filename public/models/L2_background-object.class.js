@@ -1,11 +1,11 @@
 "use strict";
 class BackgroundObject extends MovableObject {
-    width = canvasWidth;
-    height = canvasHeight;
+    width = 720;
+    height = 400;
     constructor(imgPath, x) {
         super();
         this.loadImage(imgPath);
         this.x = x;
-        this.y = canvasHeight - this.height;
+        this.y = this.height - this.height;
     }
 }

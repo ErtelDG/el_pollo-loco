@@ -95,6 +95,11 @@ h1 {
    top: calc(4rem / 2 - 2rem / 2)
 }
 
+.hover-mouse:hover {
+   color: #FCFFBF;
+}
+
+
 .fullscreen-icon:hover {
    background-color: #FCFFBF;
 

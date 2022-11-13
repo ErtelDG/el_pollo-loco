@@ -251,7 +251,7 @@ class World {
     */
    characterHitsEnemieFromAbove(enemy: any) {
       return (
-         this.character.x + this.character.width - this.character.offset.right - 50 >= enemy.x + enemy.offset.left &&
+         this.character.x + this.character.width - this.character.offset.right >= enemy.x + enemy.offset.left &&
          this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
          this.character.y + this.character.height - this.character.offset.bottom >= enemy.y &&
          this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom

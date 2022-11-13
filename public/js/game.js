@@ -15,6 +15,7 @@ let fullscreen = document.getElementById("fullscreen");
 let soundIconImg;
 let canvasElement = document.getElementById("canvas");
 let smallScreenIcon = document.getElementById("small-screen-icon");
+let smallScreenIconText = document.getElementById("small-screen-icon-text");
 function stopAllIntervals() {
     getAllIntervalsAndStop();
 }
@@ -151,6 +152,7 @@ function stopBackgroundMusic() {
 function getFullscreenHTMLElements() {
     canvasElement.classList.add("canvas-width-fullscreen");
     smallScreenIcon.classList.remove("exitFullscreenHidden");
+    smallScreenIconText.classList.remove("exitFullscreenHidden");
 }
 /**
  * function to close the full screen mode of the user's current browser
@@ -176,4 +178,5 @@ function requestFullscreenBrowser(element) {
 function getCloseFullscreenHTMLElements() {
     canvasElement.classList.remove("canvas-width-fullscreen");
     smallScreenIcon.classList.add("exitFullscreenHidden");
+    smallScreenIconText.classList.add("exitFullscreenHidden");
 }

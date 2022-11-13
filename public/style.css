@@ -46,6 +46,14 @@
    margin-right: 4rem;
 }
 
+.text-panel {
+   font-size: 0.75rem;
+   display: flex;
+   align-items: center;
+
+   flex-wrap: wrap;
+}
+
 canvas {
    background-color: black;
 
@@ -273,7 +281,7 @@ a {
 
 .panel-contain {
    display: flex;
-   justify-content: space-between;
+   justify-content: space-evenly;
 }
 
 .arrow-left {

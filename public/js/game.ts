@@ -14,6 +14,7 @@ let fullscreen = document.getElementById("fullscreen") as HTMLElement;
 let soundIconImg: HTMLImageElement;
 let canvasElement = document.getElementById("canvas") as HTMLCanvasElement;
 let smallScreenIcon = document.getElementById("small-screen-icon") as HTMLElement;
+let smallScreenIconText = document.getElementById("small-screen-icon-text") as HTMLElement;
 
 function stopAllIntervals() {
    getAllIntervalsAndStop();
@@ -168,6 +169,7 @@ function stopBackgroundMusic() {
 function getFullscreenHTMLElements() {
    canvasElement.classList.add("canvas-width-fullscreen");
    smallScreenIcon.classList.remove("exitFullscreenHidden");
+   smallScreenIconText.classList.remove("exitFullscreenHidden");
 }
 
 /**
@@ -193,4 +195,5 @@ function requestFullscreenBrowser(element: { requestFullscreen: () => void; msRe
 function getCloseFullscreenHTMLElements() {
    canvasElement.classList.remove("canvas-width-fullscreen");
    smallScreenIcon.classList.add("exitFullscreenHidden");
+   smallScreenIconText.classList.add("exitFullscreenHidden");
 }

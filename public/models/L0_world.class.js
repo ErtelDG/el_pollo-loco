@@ -119,10 +119,16 @@ class World {
         this.level.enemies.forEach(async (enemy) => this.characterIsCollidingEnemies(enemy));
         this.level.endboss.forEach((endboss) => this.characterIsCollidingEndboss(endboss));
     }
+    /**
+     * check bottle collision with enemies
+     */
     checkBottleCollisionEnemies() {
         setInterval(() => this.bottleColissionEnemy(), 5);
         setInterval(() => this.bottleColissionEndboss(), 10);
     }
+    /**
+     * check character collision with coin => pick coin
+     */
     checkCollectsCoins() {
         this.level.coins.forEach(async (coin) => {
             if (this.character.isColliding(coin)) {
@@ -133,6 +139,9 @@ class World {
             }
         });
     }
+    /**
+     * check character collision with bottle => pick bottle
+     */
     checkPickBottle() {
         this.level.bottles.forEach(async (bottle) => {
             if (this.character.isColliding(bottle)) {
@@ -145,6 +154,11 @@ class World {
             }
         });
     }
+    /**
+     * draw the character and statusbar to the map/canvas
+     *
+     * @param obj_x => the character and statusbar to draw
+     */
     addToMap(obj_x) {
         if (obj_x.otherDirection)
             this.flipImage(obj_x);
@@ -154,24 +168,44 @@ class World {
             obj_x.x = obj_x.x * -1;
         }
     }
+    /**
+     * draw all the other objects except character/statusbar
+     *
+     * @param obj  the other objects where draw; except character/statusbar
+     */
     addObjectsToMap(obj) {
         obj.forEach((obj_x) => this.drawElements(obj_x));
     }
+    /**
+     * function mirrow the object
+     *
+     * @param character the object to mirrow
+     */
     flipImage(character) {
         this.ctx.save();
         this.ctx.translate(character.width, 0);
         this.ctx.scale(-1, 1);
         character.x = character.x * -1;
     }
+    /**
+     *
+     * @param objectToDraw object where are draw with his parameter => img, coordinate
+     */
     drawElements(objectToDraw) {
         this.ctx.drawImage(objectToDraw.img, objectToDraw.x, objectToDraw.y, objectToDraw.width, objectToDraw.height);
     }
+    /**
+     * play background music, when game run
+     */
     playBackgroundMusic() {
         if (background_sound_On_Off) {
             this.background_sound.volume = 0.1;
             this.background_sound.play();
         }
     }
+    /**
+     * set the request animation
+     */
     requestAnimation() {
         //draw wird immer wieder
         let self = this;
@@ -179,18 +213,33 @@ class World {
             self.draw();
         });
     }
+    /**
+     * character colliding with enemy, character loses energy, play damage sound and update persentage
+     */
     characterCollidingWithEnemy() {
         this.character.damage_character.volume = 0.1;
         this.character.damage_character.play();
         this.character.hit();
         this.statusBarHp.setPercentage(this.character.energy);
     }
+    /**
+     * function check, when character hit a enemy from up
+     *
+     * @param enemy => the enemy to hit from up
+     * @returns => hit => true, no hit => false
+     */
     characterHitsEnemieFromAbove(enemy) {
         return (this.character.x + this.character.width - this.character.offset.right - 50 >= enemy.x + enemy.offset.left &&
             this.character.x + this.character.offset.left <= enemy.x + enemy.width - enemy.offset.right &&
             this.character.y + this.character.height - this.character.offset.bottom >= enemy.y &&
             this.character.y + this.character.offset.top <= enemy.y + enemy.height - enemy.offset.bottom);
     }
+    /**
+     * function that removes an enemy when it is killed and displays a dead enemy
+     * play enemy damage sound
+     *
+     * @param enemy => the enemy object where is kill
+     */
     async showEnemieKill(enemy) {
         this.playDamageEnemySound(enemy);
         if (this.level.enemies.includes(enemy))
@@ -199,13 +248,27 @@ class World {
         await this.deadEnemies.push(deadEnemy);
         setTimeout(() => this.removeDeadEnemyFromArray(deadEnemy), 2500);
     }
+    /**
+     *function is check colliding character with enemy from up => enemy become damage or from the side => character become damage
+     *
+     * @param enemy => the object where colliding with character
+     * @returns is colliding from up => enemy become damage or from the side => character become damage
+     */
     characterIsCollidingEnemies = (enemy) => this.character.isColliding(enemy) ? this.characterCollidingWithEnemy() : this.characterHitsEnemieFromAbove(enemy) ? this.showEnemieKill(enemy) : {};
+    /**
+     * function is check colliding character withendboss from the side => character become damage
+     *
+     * @param endboss => the endboss object
+     */
     characterIsCollidingEndboss(endboss) {
         if (this.character.isColliding(endboss)) {
             this.characterCollidingWithEnemy();
             this.hitCharacterAndUpdateHitPersentage();
         }
     }
+    /**
+     * function when press throw key, create a new throw bottle and update the statusbar bottle and the stock of throwable bottle
+     */
     pressThrowKeyThrowBottle() {
         if (this.keyboard.D) {
             if (this.character.bottles > 0) {
@@ -217,6 +280,9 @@ class World {
             }
         }
     }
+    /**
+     * function remove splash/broken bottles
+     */
     removeSplashBottle() {
         this.bottlesSplash.forEach((bottle) => {
             setTimeout(() => {
@@ -226,9 +292,15 @@ class World {
             }, 700);
         });
     }
+    /**
+     * check is the bottle is on ground, when true set bottleSplash of true
+     */
     checkBottleIsOnGroundAndSplash() {
         setInterval(() => this.throwableObject.forEach((bottle) => this.bottleSplashTrue(bottle)), 10);
     }
+    /**
+     * function check if a throwable bottle collision an enemy
+     */
     bottleColissionEnemy() {
         this.level.enemies.forEach((enemy) => {
             this.throwableObject.forEach((throwableBottle) => {
@@ -242,6 +314,9 @@ class World {
             });
         });
     }
+    /**
+     * function check if a throwable bottle collision an endboss
+     */
     bottleColissionEndboss() {
         this.level.endboss.forEach((endboss) => {
             this.throwableObject.forEach((throwableBottle) => {
@@ -259,6 +334,11 @@ class World {
             });
         });
     }
+    /**
+     * function play animation from broken bottle and this sound
+     *
+     * @param bottle the bottle object broken
+     */
     bottleSplashTrue(bottle) {
         if (bottle.y > 300) {
             bottle.splash_sound.play();
@@ -268,35 +348,69 @@ class World {
                 this.throwableObject.splice(this.throwableObject.indexOf(bottle, 0), 1);
         }
     }
+    /**
+     * function play a collect coin sound
+     *
+     * @param coin => the coin who the character collects
+     */
     playSoundPickCoin(coin) {
         coin.pick_coin.volume = 0.1;
         coin.pick_coin.play();
     }
+    /**
+     * function play the damage sound for the enemy
+     *
+     * @param enemy => the enemy who become a damage
+     */
     playDamageEnemySound(enemy) {
         enemy.damage_enemie.volume = 0.2;
         enemy.damage_enemie.play();
     }
+    /**
+     * function play the damage sound for the endboss
+     *
+     * @param endboss => the endboss who become a damage
+     */
     playDamageEndbossSound(endboss) {
         endboss.damage_enemie.volume = 0.2;
         endboss.damage_enemie.play();
     }
+    /**
+     * funstion remove the dead enemy from the array and is no longer displayed
+     *
+     * @param deadEnemy => the object where is to remove
+     */
     removeDeadEnemyFromArray(deadEnemy) {
         if (this.deadEnemies.includes(deadEnemy)) {
             this.deadEnemies.splice(this.deadEnemies.indexOf(deadEnemy, 0), 1);
         }
     }
+    /**
+     * function update the statusbar  coin
+     */
     updateStatusBarCoin() {
         this.coinsPercentage = (100 / this.coinsInWorld) * this.character.coins;
         this.statusBarCoin.setPercentage(this.coinsPercentage);
     }
+    /**
+     * function update the statusbar bottle
+     */
     updateStatusBarBottle() {
         this.bottlesPercentage = (100 / this.bottlesInWorld) * this.character.bottles;
         this.statusBarBottle.setPercentage(this.bottlesPercentage);
     }
+    /**
+     * function started the hit function and update the percentage of the character
+     */
     hitCharacterAndUpdateHitPersentage() {
         this.character.hit();
         this.statusBarHp.setPercentage(this.character.energy);
     }
+    /**
+     * function replaced the throwable bottle by a broken bottle
+     *
+     * @param throwableBottle => the coordinate where the throwable bottle is broken
+     */
     createNewSplashBottle(throwableBottle) {
         let splashBottle = new SplashBottleObject(throwableBottle.x, throwableBottle.y + 25);
         this.bottlesSplash.push(splashBottle);
@@ -304,22 +418,47 @@ class World {
             this.throwableObject.splice(this.throwableObject.indexOf(throwableBottle, 0), 1);
         }
     }
+    /**
+     * function=> chech is the coordinate of enemy and throwable bottle is the same or not
+     *
+     * @param throwableBottle => coordinate of thr throwable bottle
+     * @param enemy => coordinate of the enmy
+     * @returns true whe the coordinate of enemy and throwable bottle is the same, when not => false
+     */
     coordinatesBottleColissionEnemyColission(throwableBottle, enemy) {
         return (throwableBottle.x + throwableBottle.width >= enemy.x &&
             throwableBottle.x <= enemy.x + enemy.width &&
             throwableBottle.y + throwableBottle.height >= enemy.y &&
             throwableBottle.y <= enemy.y + enemy.height);
     }
+    /**
+     * function=> chech is the coordinate of endboss and throwable bottle is the same or not
+     *
+     * @param throwableBottle => coordinate of thr throwable bottle
+     * @param endboss => coordinate of the endboss
+     * @returns true whe the coordinate of endboss and throwable bottle is the same, when not => false
+     */
     coordinatesBottleColissionEndbossColission(throwableBottle, endboss) {
         return (throwableBottle.x + throwableBottle.width - 50 >= endboss.x &&
             throwableBottle.x <= endboss.x + endboss.width &&
             throwableBottle.y + throwableBottle.height >= endboss.y &&
             throwableBottle.y <= endboss.y + endboss.height);
     }
+    /**
+     *function update the statusbar of the endboss
+     *
+     * @param endboss => the endboss whose status bar should be updated
+     */
     updateEndbossEnergyAndStatusBarEndboss(endboss) {
         endboss.energy -= 20;
         this.statusBarEndboss.setPercentage(endboss.energy);
     }
+    /**
+     * function replaye a enemy to a dead enemy
+     *
+     * @param enemy coordinate of the enemy
+     * @returns an dead enemy object
+     */
     createDeadChickenAndRemoveLiveChicken(enemy) {
         let deadEnemy = new DeadChicken(enemy.x, enemy.y);
         this.deadEnemies.push(deadEnemy);
@@ -328,14 +467,22 @@ class World {
         }
         return deadEnemy;
     }
+    /**
+     * function replaye a endboss to a dead endboss
+     *
+     * @param endboss coordinate of the endboss
+     * @returns an endboss enemy object
+     */
     createDeadEndbossAndRemoveLiveChicken(endboss) {
         let deadEnemy = new DeadEndboss(endboss.x, endboss.y + 80);
         this.deadEnemies.push(deadEnemy);
-        //lebendes huhn entfernen vom bild
         if (this.level.endboss.includes(endboss)) {
             this.level.endboss.splice(this.level.enemies.indexOf(endboss, 0), 1);
         }
     }
+    /**
+     * function play the final animation and music
+     */
     playEndWinAnimation() {
         stopAllIntervals();
         closeFullscreen();

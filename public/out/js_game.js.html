@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: js/game.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: js/game.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>"use strict";
+let canvas;
+let world;
+let canvasHeight = 400;
+let canvasWidth = 720;
+let keyboard = new KeyboardKeys();
+let startScreen;
+let endScreen;
+let gameOverContain;
+let winContain;
+let startSide;
+let background_sound_On_Off = true;
+let fullscreenOnOff = false;
+let fullscreen = document.getElementById("fullscreen");
+let soundIconImg;
+let canvasElement = document.getElementById("canvas");
+let smallScreenIcon = document.getElementById("small-screen-icon");
+function stopAllIntervals() {
+    getAllIntervalsAndStop();
+}
+/**
+ *  start game and created world
+ */
+function init() {
+    getIdHtmlELements();
+    hiddenStartScreen();
+    createdLevel();
+    setCancvasProperties();
+    createNewWorld();
+}
+/**
+ *  restart the game
+ */
+function restart() {
+    closeEndOpenStartScreen();
+    stopBackgroundMusic();
+    stopAllIntervals();
+    init();
+}
+/**
+ * set sound on or off
+ */
+function soundOnOff() {
+    return background_sound_On_Off ? soundOff() : soundOn();
+}
+/**
+ *  sound off
+ */
+function soundOff() {
+    background_sound_On_Off = false;
+    world.background_sound.pause();
+    soundIconImg.src = "img/10_design/sound-off-icon.png";
+}
+/**
+ *  sound on
+ */
+function soundOn() {
+    background_sound_On_Off = true;
+    world.background_sound.play();
+    soundIconImg.src = "img/10_design/sound-on-icon.png";
+}
+/**
+ * HTML Elements with ID to variables
+ */
+function getIdHtmlELements() {
+    startScreen = document.getElementById("startScreen");
+    endScreen = document.getElementById("end-screen");
+    gameOverContain = document.getElementById("game-over-container");
+    winContain = document.getElementById("win-container");
+    startSide = document.getElementById("startSide");
+    soundIconImg = document.getElementById("sound-icon-img");
+}
+/**
+ * stop all intervals
+ */
+function getAllIntervalsAndStop() {
+    var highestTimeoutId = setTimeout(";");
+    for (var i = 0; i &lt; highestTimeoutId; i++) {
+        clearTimeout(i);
+    }
+}
+/**
+ * set canvas properties
+ */
+function setCancvasProperties() {
+    canvas = document.getElementById("canvas");
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+}
+/**
+ * get fullscreen mode
+ */
+function setFullscreen() {
+    enterFullscreen(fullscreen);
+}
+/**
+ * function to set a element in fullscreen mode
+ *
+ * @param element => element to set fullscreen
+ */
+function enterFullscreen(element) {
+    getFullscreenHTMLElements();
+    fullscreenOnOff = true;
+    requestFullscreenBrowser(element);
+}
+/**
+ * function to start close the fullscreen mode
+ */
+function closeFullscreen() {
+    if (fullscreenOnOff) {
+        getCloseFullscreenHTMLElements();
+        fullscreenOnOff = false;
+        exitFullscreen();
+    }
+}
+/**
+ * close the fullscreen
+ */
+function exitFullscreen() {
+    document.exitFullscreen();
+}
+/**
+ * hidden start screen by game start
+ */
+function hiddenStartScreen() {
+    startScreen.style.display = "none";
+}
+/**
+ * created new world class
+ */
+function createNewWorld() {
+    world = new World(canvas, keyboard);
+}
+/**
+ * hidden the endscreen and show the startscreen
+ */
+function closeEndOpenStartScreen() {
+    endScreen.classList.add("endscreen-hidden");
+    gameOverContain.classList.add("endscreen-hidden");
+    startSide.style.display = "";
+}
+/**
+ * set background music to pause
+ */
+function stopBackgroundMusic() {
+    world.background_sound.pause();
+}
+/**
+ * get HTMLElement to set to fullscreen
+ */
+function getFullscreenHTMLElements() {
+    canvasElement.classList.add("canvas-width-fullscreen");
+    smallScreenIcon.classList.remove("exitFullscreenHidden");
+}
+/**
+ * function to close the full screen mode of the user's current browser
+ *
+ * @param element current browser user
+ */
+function requestFullscreenBrowser(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    }
+    else if (element.msRequestFullscreen) {
+        // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    }
+    else if (element.webkitRequestFullscreen) {
+        // iOS Safari
+        element.webkitRequestFullscreen();
+    }
+}
+/**
+ * get HTMLElement to close the fullscreen
+ */
+function getCloseFullscreenHTMLElements() {
+    canvasElement.classList.remove("canvas-width-fullscreen");
+    smallScreenIcon.classList.add("exitFullscreenHidden");
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#closeEndOpenStartScreen">closeEndOpenStartScreen</a></li><li><a href="global.html#closeFullscreen">closeFullscreen</a></li><li><a href="global.html#createNewWorld">createNewWorld</a></li><li><a href="global.html#enterFullscreen">enterFullscreen</a></li><li><a href="global.html#exitFullscreen">exitFullscreen</a></li><li><a href="global.html#getAllIntervalsAndStop">getAllIntervalsAndStop</a></li><li><a href="global.html#getCloseFullscreenHTMLElements">getCloseFullscreenHTMLElements</a></li><li><a href="global.html#getFullscreenHTMLElements">getFullscreenHTMLElements</a></li><li><a href="global.html#getIdHtmlELements">getIdHtmlELements</a></li><li><a href="global.html#hiddenStartScreen">hiddenStartScreen</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#requestFullscreenBrowser">requestFullscreenBrowser</a></li><li><a href="global.html#restart">restart</a></li><li><a href="global.html#setCancvasProperties">setCancvasProperties</a></li><li><a href="global.html#setFullscreen">setFullscreen</a></li><li><a href="global.html#soundOff">soundOff</a></li><li><a href="global.html#soundOn">soundOn</a></li><li><a href="global.html#soundOnOff">soundOnOff</a></li><li><a href="global.html#stopBackgroundMusic">stopBackgroundMusic</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sun Nov 13 2022 12:16:24 GMT+0100 (Mitteleuropäische Normalzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

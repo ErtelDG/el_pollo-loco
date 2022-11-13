@@ -25,6 +25,7 @@ function stopAllIntervals() {
 function init() {
    getIdHtmlELements();
    hiddenStartScreen();
+   startSide.classList.remove("hidden-gameplay-screen");
    createdLevel();
    setCancvasProperties();
    createNewWorld();

@@ -6,8 +6,12 @@
    font-style: normal;
 }
 
-body{
+body {
    overflow: hidden;
+}
+
+.hidden-gameplay-screen {
+   display: none !important;
 }
 
 .end-screen {
@@ -429,7 +433,7 @@ canvas {
 
    canvas {
       width: 100%;
-      height: 100%;
+
       border: none;
       border-radius: 0rem;
    }
@@ -508,6 +512,10 @@ canvas {
 @media only screen and (max-height: 420px) {
    #contain3-explanation {
       display: none
+   }
+
+   #canvas {
+      height: 100%;
    }
 }
 

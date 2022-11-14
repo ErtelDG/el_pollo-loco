@@ -6,9 +6,7 @@
    font-style: normal;
 }
 
-body {
-   overflow: hidden;
-}
+
 
 .hidden-gameplay-screen {
    display: none !important;
@@ -68,12 +66,14 @@ canvas {
 }
 
 body {
+   overflow: hidden;
    font-family: 'bleeding_cowboys', Arial, Helvetica, sans-serif;
    display: flex;
    flex-direction: column;
    align-items: center;
    overflow: hidden;
-   margin: 0;
+   padding: 0px;
+   margin: 0px;
    color: #FDF359;
 }
 
@@ -120,7 +120,7 @@ h1 {
    border-radius: 1rem;
    box-shadow: 5px 10px 8px rgba(218, 66, 1, 0.5);
    border: solid rgb(218, 66, 1) 0.25rem;
-
+   width: 100%;
 }
 
 
@@ -149,6 +149,15 @@ h1 {
    background-position: center;
    background-size: cover;
    overflow: hidden;
+}
+
+.contain-startscreen-elements {
+   max-width: 710px;
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
 .size2rem2rem {
@@ -190,11 +199,13 @@ h1 {
 }
 
 .button {
+
+   height: 1.5rem;
    position: relative;
    display: inline-flex;
    padding: 0.75rem 1rem 0.75rem 1rem;
    border: 2px solid #BFC0C0;
-   margin: 1rem 1.25rem 1rem 1.25rem;
+   margin: 1.5rem 1.25rem 1.5rem 1.25rem;
    color: #FCFFBF;
    text-transform: uppercase;
    text-decoration: none;
@@ -335,24 +346,15 @@ canvas {
 }
 
 
-@media only screen and (max-width: 575px) {
-   .explanation-text {
-      text-align: start;
-      width: 6rem !important;
-   }
 
-}
 
 
 @media only screen and (max-width: 720px) {
 
-   .contains-explanation {
-
-      margin: 0.75rem 0rem 0.75rem 0rem;
-   }
 
    #start_img_game_design {
       border-radius: 0;
+      width: 100vw;
    }
 
 
@@ -382,20 +384,35 @@ canvas {
       width: 100%;
    }
 
-   #start_img_game_design {
-      width: 100%;
-   }
 
-   .control-btn-explanation-service {
-      width: 100%;
-      flex-wrap: wrap;
-   }
+
 
    .size2rem2rem {
       width: 1rem;
       height: 1rem;
    }
 }
+
+@media only screen and (max-width: 550px) {
+   .flex-contain {
+      margin: 1rem;
+   }
+}
+
+@media only screen and (max-width: 350px) {
+   .explanation-text {
+      font-size: 0.8rem;
+      padding-left: 0px;
+   }
+
+   .size2rem2rem {
+      width: 0.5rem;
+      height: 0.5rem;
+   }
+}
+
+
+
 
 @media only screen and (max-height: 920px) {
    .startScreen {
@@ -410,26 +427,65 @@ canvas {
    }
 }
 
+@media only screen and (max-height: 740px) {
+   .control-btn-explanation-service {
+      flex-direction: column;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+   }
+
+   .flex-contain {
+      flex-direction: row;
+   }
+
+   .contains-explanation {
+      width: 200px;
+   }
+}
+
+
 @media only screen and (max-height: 680px) {
-
-   #contain6-explanation,
-   #contain3-explanation {
-      display: none
+   .button {
+      position: absolute;
+      right: 0;
+      top: 4rem;
+      background-color: #FC8429;
    }
 }
 
-@media only screen and (max-height: 620px) {
-
-   #contain5-explanation,
-   #contain2-explanation {
-      display: none
-   }
-
-}
 
 
 
 @media only screen and (max-height: 580px) {
+
+
+   #start_img_game_design {
+      margin-top: 0.5rem;
+
+   }
+
+   .explanation-text {
+      color: #FC8429;
+   }
+
+   .contain-startscreen-elements {
+      margin: 0px;
+      padding: 0px;
+      height: 100vh;
+      width: 150vh;
+   }
+
+   .control-btn-explanation-service {
+      position: absolute;
+      right: 1rem;
+      flex-direction: row;
+   }
+
+   .flex-contain {
+      flex-direction: column;
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+   }
 
    canvas {
       width: 100%;
@@ -437,6 +493,8 @@ canvas {
       border: none;
       border-radius: 0rem;
    }
+
+
 
    .size2rem2rem {
       width: 1rem;
@@ -454,21 +512,25 @@ canvas {
       margin: 0;
       padding: 0;
    }
-}
 
-@media only screen and (max-height: 560px) {
+   .button {
+      bottom: 4rem;
+      top: auto;
+      right: 1rem;
+   }
 
-   #contain4-explanation,
-   #contain1-explanation {
-      display: none
+   .contains-explanation {
+      width: 180px;
    }
 }
 
 
-@media only screen and (max-height: 500px) {
+
+
+@media only screen and (max-height: 550px) {
    .size2rem2rem {
-      width: 1rem;
-      height: 1rem;
+      width: 0.7rem;
+      height: 0.7rem;
    }
 
    .contains-explanation {
@@ -478,18 +540,12 @@ canvas {
 
    .control-btn-explanation-service {
       margin: 0;
+      right: 1rem;
    }
 
-   .button {
-      margin: 0.5rem 1.25rem 0.5rem 1.25rem;
-   }
-
-   #start_img_game_design {
-      height: 80vh;
-   }
-
-   .button {
-      height: 20vh;
+   .explanation-text {
+      font-size: 0.8rem;
+      color: #FC8429;
    }
 
    .game-over-container,
@@ -497,9 +553,7 @@ canvas {
       font-size: 3rem;
    }
 
-   h1 {
-      display: none;
-   }
+
 
 
 
@@ -509,27 +563,48 @@ canvas {
 
 }
 
-@media only screen and (max-height: 420px) {
-   #contain3-explanation {
-      display: none
+@media only screen and (max-height: 470px) {
+   h1 {
+      position: absolute;
+      top: 50px;
+      right: 1rem;
+      width: auto;
+      color: #FC8429;
+      right: 1rem;
    }
+
+   .button {
+      margin: 0px;
+      height: 0.8rem;
+      right: 1rem;
+   }
+
+   #start_img_game_design {
+      width: 100vw;
+      height: 100vh;
+      margin: 0px;
+   }
+}
+
+@media only screen and (max-height: 420px) {
+   h1 {
+      top: 8vh;
+   }
+
+   .button {
+      bottom: 10vh;
+      height: 0.5rem;
+   }
+
 
    #canvas {
       height: 100%;
    }
 }
 
-@media only screen and (max-height: 350px) {
+@media only screen and (max-width: 350px) {
    .size2rem2rem {
       width: 0.5rem;
       height: 0.5rem;
-   }
-}
-
-@media only screen and (max-height: 350px) {
-
-   #contain2-explanation,
-   #contain1-explanation {
-      display: none
    }
 }

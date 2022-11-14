@@ -23,6 +23,7 @@ function stopAllIntervals() {
  *  start game and created world
  */
 function init() {
+    alert("Hallo Mihai, habe deine Punkte erldigt. Die Zeilenabstände und Formatierung erfolgt bei der compilierung von TS zu JS. Beim compilieren werden die Zeilenabstände entfernt. Das kann ich leider nicht beheben. Gruß Dennis");
     getIdHtmlELements();
     hiddenStartScreen();
     startSide.classList.remove("hidden-gameplay-screen");

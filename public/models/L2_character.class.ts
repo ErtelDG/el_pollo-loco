@@ -3,7 +3,7 @@ class Character extends MovableObject {
    width: number = 120;
    y: number = 50;
    world: any;
-   speed = 8;
+   speed = 16;
    stopLeft = 0;
    imageCacheIdle: any = [];
    imageCacheWalking: any = [];
@@ -104,7 +104,7 @@ class Character extends MovableObject {
          this.userCharacterGoLeft();
          this.userCharacterGoJump();
          world.camera_x = -this.x + 100;
-      }, 1000 / 90);
+      }, 1000 / 30);
 
       setInterval(() => {
          this.loadCorrectImageWhenDeadHurtOrAboveGround();

@@ -121,6 +121,17 @@ function createdLevel(this: any) {
    }
 
    function createBottles() {
-      return [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()];
+      return [
+         new Bottle(),
+         new Bottle(),
+         new Bottle(),
+         new Bottle(),
+         new Bottle(),
+         new Bottle(),
+         new Bottle(),
+         new Bottle(),
+         new Bottle(),
+         new Bottle()
+      ];
    }
 }

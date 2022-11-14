@@ -17,8 +17,8 @@ class DrawableObject {
    }
 
    /**
-    * function to load alking img  
-    * 
+    * function to load alking img
+    *
     * @param {Array} arr - ['img/image1.png','img/image2.png',....]
     */
    loadImagesWalking(arr: any[]) {
@@ -31,7 +31,7 @@ class DrawableObject {
 
    /**
     * function to load statusbar img
-    * 
+    *
     * @param arr => array with img for the statusbar
     */
    loadImagesImagesStatusbarHp(arr: any[]) {
@@ -40,5 +40,28 @@ class DrawableObject {
          img.src = path;
          this.imageCacheImagesStatusbarHp.push(img);
       });
+   }
+
+   /**
+    *function to load the correct img to percentage
+    *
+    * @param percentage => persentage as number
+    *
+    * @returns matching picture to the percentage
+    */
+   resolveImageIndex(percentage: any) {
+      if (percentage == 100) {
+         return 5;
+      } else if (percentage >= 80) {
+         return 4;
+      } else if (percentage >= 60) {
+         return 3;
+      } else if (percentage >= 40) {
+         return 2;
+      } else if (percentage >= 20) {
+         return 1;
+      } else {
+         return 0;
+      }
    }
 }

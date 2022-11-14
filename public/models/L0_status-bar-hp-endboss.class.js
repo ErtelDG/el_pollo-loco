@@ -31,33 +31,6 @@ class StatusBarHpEndboss extends DrawableObject {
         this.img = imagePath;
     }
     /**
-     *function to load the correct img to percentage
-     *
-     * @param percentage => persentage as number
-     *
-     * @returns matching picture to the percentage
-     */
-    resolveImageIndex(percentage) {
-        if (percentage == 100) {
-            return 5;
-        }
-        else if (percentage >= 80) {
-            return 4;
-        }
-        else if (percentage >= 60) {
-            return 3;
-        }
-        else if (percentage >= 40) {
-            return 2;
-        }
-        else if (percentage >= 20) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
-    }
-    /**
      * function to load correct statusbar HP endboss img
      *
      * @param arr => array with all statusbar HP endboss img

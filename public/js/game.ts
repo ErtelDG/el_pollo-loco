@@ -25,7 +25,7 @@ function stopAllIntervals() {
  */
 function init() {
    alert(
-      "Hallo Mihai, habe deine Punkte erldigt. Die Zeilenabstände und Formatierung erfolgt bei der compilierung von TS zu JS. Beim compilieren werden die Zeilenabstände entfernt. Das kann ich leider nicht beheben. Gruß Dennis"
+      "=>Hallo Mihai, habe deine Punkte erledigt. Die Zeilenabstände und Formatierung erfolgt bei der compilierung von TS zu JS. Beim compilieren werden die Zeilenabstände entfernt. Das kann ich leider nicht beheben. Gruß Dennis =>Hallo Tobias, habe das Problem dass das Spiel auf einmal langsamer wird behoben. Jetzt müsste auch das anklicken der Buttons besser ablaufen. Die Funktionen von den Statusbars haben ich auf eine obere Klasse gesetzt. Die andere zwei Funktionen sind ausgelagert. Gruß Dennis"
    );
    getIdHtmlELements();
    hiddenStartScreen();
@@ -203,19 +203,36 @@ function getCloseFullscreenHTMLElements() {
    //  iconPanelBtn.classList.remove("exitFullscreenHidden");
 }
 
+/**
+ * function show and hidden the panels
+ */
 function setPanelOnOff() {
    let controlBtnElement = document.getElementById("control-btn") as HTMLElement;
    let iconContainH1PositionElement = document.getElementById("icon-contain-h1-position") as HTMLElement;
 
    if (panelOnOff == false) {
-      controlBtnElement.classList.remove("hidden-element");
-      iconContainH1PositionElement.classList.remove("icon-contain-h1-position-border");
-      canvasElement.classList.remove("canvas-width-fullscreen-without-key");
-      panelOnOff = true;
+      showPanel(controlBtnElement, iconContainH1PositionElement);
    } else {
-      controlBtnElement.classList.add("hidden-element");
-      iconContainH1PositionElement.classList.add("icon-contain-h1-position-border");
-      canvasElement.classList.add("canvas-width-fullscreen-without-key");
-      panelOnOff = false;
+      hiddenPanel(controlBtnElement, iconContainH1PositionElement);
    }
+}
+
+/**
+ * function show the panels
+ */
+function showPanel(controlBtnElement: HTMLElement, iconContainH1PositionElement: HTMLElement) {
+   controlBtnElement.classList.remove("hidden-element");
+   iconContainH1PositionElement.classList.remove("icon-contain-h1-position-border");
+   canvasElement.classList.remove("canvas-width-fullscreen-without-key");
+   panelOnOff = true;
+}
+
+/**
+ * function hidden the panels
+ */
+function hiddenPanel(controlBtnElement: HTMLElement, iconContainH1PositionElement: HTMLElement) {
+   controlBtnElement.classList.add("hidden-element");
+   iconContainH1PositionElement.classList.add("icon-contain-h1-position-border");
+   canvasElement.classList.add("canvas-width-fullscreen-without-key");
+   panelOnOff = false;
 }

@@ -488,6 +488,9 @@ class World {
         winContain.classList.remove("endscreen-hidden");
         startSide.style.display = "none";
     }
+    /**
+     * function play animation and sound when endboss hit
+     */
     bottleCollisionWithEndbossTrue(endboss, throwableBottle) {
         if (this.coordinatesBottleColissionEndbossColission(throwableBottle, endboss)) {
             this.playDamageEndbossSound(endboss);
@@ -495,10 +498,16 @@ class World {
             endboss.hitEndboss = true;
             this.removeSplashBottleArray();
             this.updateEndbossEnergyAndStatusBarEndboss(endboss);
-            if (endboss.energy == 0) {
-                this.createDeadEndbossAndRemoveLiveChicken(endboss);
-                setInterval(() => this.playEndWinAnimation(), 1000);
-            }
+            this.endAnimationCharacterWin(endboss);
+        }
+    }
+    /**
+     * play endanimation when player win
+     */
+    endAnimationCharacterWin(endboss) {
+        if (endboss.energy == 0) {
+            this.createDeadEndbossAndRemoveLiveChicken(endboss);
+            setInterval(() => this.playEndWinAnimation(), 1000);
         }
     }
 }

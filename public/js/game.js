@@ -13,8 +13,9 @@ let fullscreenOnOff = false;
 let fullscreen = document.getElementById("fullscreen");
 let soundIconImg;
 let canvasElement = document.getElementById("canvas");
-let smallScreenIcon = document.getElementById("small-screen-icon");
-let smallScreenIconText = document.getElementById("small-screen-icon-text");
+let openFullscreenBtn = document.getElementById("openFullscreenBtn");
+let closeFullscreenBtn = document.getElementById("closeFullscreenBtn");
+let iconPanelBtn = document.getElementById("iconPanelBtn");
 function stopAllIntervals() {
     getAllIntervalsAndStop();
 }
@@ -99,6 +100,7 @@ function setFullscreen() {
  */
 function enterFullscreen(element) {
     getFullscreenHTMLElements();
+    setPanelOnOff();
     fullscreenOnOff = true;
     requestFullscreenBrowser(element);
 }
@@ -149,8 +151,9 @@ function stopBackgroundMusic() {
  */
 function getFullscreenHTMLElements() {
     canvasElement.classList.add("canvas-width-fullscreen");
-    smallScreenIcon.classList.remove("exitFullscreenHidden");
-    smallScreenIconText.classList.remove("exitFullscreenHidden");
+    closeFullscreenBtn.classList.remove("exitFullscreenHidden");
+    openFullscreenBtn.classList.add("exitFullscreenHidden");
+    //iconPanelBtn.classList.add("exitFullscreenHidden");
 }
 /**
  * function to close the full screen mode of the user's current browser
@@ -175,8 +178,9 @@ function requestFullscreenBrowser(element) {
  */
 function getCloseFullscreenHTMLElements() {
     canvasElement.classList.remove("canvas-width-fullscreen");
-    smallScreenIcon.classList.add("exitFullscreenHidden");
-    smallScreenIconText.classList.add("exitFullscreenHidden");
+    closeFullscreenBtn.classList.add("exitFullscreenHidden");
+    openFullscreenBtn.classList.remove("exitFullscreenHidden");
+    //  iconPanelBtn.classList.remove("exitFullscreenHidden");
 }
 function setPanelOnOff() {
     let controlBtnElement = document.getElementById("control-btn");
@@ -184,11 +188,13 @@ function setPanelOnOff() {
     if (panelOnOff == false) {
         controlBtnElement.classList.remove("hidden-element");
         iconContainH1PositionElement.classList.remove("icon-contain-h1-position-border");
+        canvasElement.classList.remove("canvas-width-fullscreen-without-key");
         panelOnOff = true;
     }
     else {
         controlBtnElement.classList.add("hidden-element");
         iconContainH1PositionElement.classList.add("icon-contain-h1-position-border");
+        canvasElement.classList.add("canvas-width-fullscreen-without-key");
         panelOnOff = false;
     }
 }

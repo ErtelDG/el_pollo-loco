@@ -94,7 +94,11 @@ h1 {
 
 .canvas-width-fullscreen {
    width: calc(100% - 0.5rem);
-   height: calc(100% - 4.5rem);
+   height: calc(100% - 7rem);
+}
+
+.canvas-width-fullscreen-without-key {
+   height: calc(100% - 3rem) !important;
 }
 
 .icon-contain-h1 {
@@ -111,7 +115,7 @@ h1 {
    background-color: #994409;
    border-left: solid 0.25rem;
    border-right: solid 0.25rem;
-
+   height: 2.5rem;
    border-color: rgb(218, 66, 1);
 
 
@@ -423,6 +427,7 @@ canvas {
 
 
 
+
    .size2rem2rem {
       width: 1rem;
       height: 1rem;
@@ -599,7 +604,7 @@ canvas {
 
 }
 
-@media only screen and (max-height: 470px) {
+@media only screen and (max-height: 500px) {
    h1 {
       position: absolute;
       top: 50px;

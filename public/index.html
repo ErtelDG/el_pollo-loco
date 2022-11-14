@@ -93,18 +93,22 @@
       <div id="fullscreen">
          <canvas id="canvas" width="720" height="400"></canvas>
          <div  id="icon-contain-h1-position" class="icon-contain-h1-position icon-contain-h1-position-border">
-            <div class="icon-contain-h1">
-               <div class="h1-icon panel">
+            <div id="iconPanelBtn" class="icon-contain-h1">
+               <div  class="h1-icon panel">
                   <img class="icons-img" onclick="setPanelOnOff()" src="img/10_design/show-button.png">
                </div>
-               <div> Panel On/Off</div>
+               <div> Keyboard Description On/Off</div>
             </div>
             <div class="icon-contain-h1">
-               <div class="h1-icon panel">
+               <div id="openFullscreenBtn" class="h1-icon panel">
                   <img class="icons-img" onclick="setFullscreen()" src="img/10_design/full-screen.png">
+               </div>
+               <div id="closeFullscreenBtn" class="h1-icon panel exitFullscreenHidden" onclick="closeFullscreen()">
+                  <img class="icons-img" onclick="closeFullscreen()" src="img/10_design/exit-fullscreen.png">
                </div>
                <div>Fullsceen On/Off</div>
             </div>
+            
          </div>
          <div id="control-btn" class="control-btn hidden-element">
             <div class="panel-contain">
@@ -121,10 +125,8 @@
                      class="icons-img" alt="">
                </div>
                <div class="text-panel">Restart</div>
-               <div id="small-screen-icon" class="panel pointer exitFullscreenHidden" onclick="closeFullscreen()">
-                  <img class="icons-img" onclick="closeFullscreen()" src="img/10_design/exit-fullscreen.png">
-               </div>
-               <div id="small-screen-icon-text" class="text-panel exitFullscreenHidden">Close Fullscreen</div>
+             
+               <!-- <div id="small-screen-icon-text" class="text-panel exitFullscreenHidden">Close Fullscreen</div> -->
                <div id="sound-icon" class="panel pointer" onclick="soundOnOff()"><img id="sound-icon-img"
                      src="img/10_design/sound-on-icon.png" class="icons-img" alt=""></div>
 

@@ -83,8 +83,8 @@ function getIdHtmlELements() {
  * stop all intervals
  */
 function getAllIntervalsAndStop() {
-   var highestTimeoutId = setTimeout(";");
-   for (var i = 0; i < highestTimeoutId; i++) {
+   let highestTimeoutId = setTimeout(";");
+   for (let i = 0; i < highestTimeoutId; i++) {
       clearTimeout(i);
    }
 }

@@ -96,19 +96,7 @@ class MovableObject extends DrawableObject {
       }
    }
 
-   /**
-    * increase coin counter
-    */
-   collectsCoin() {
-      this.coins += 1;
-   }
-
-   /**
-    * increase bottle counter
-    */
-   collectBottle() {
-      this.bottles += 1;
-   }
+  
 
    /**
     * set colldown passed time for next hurt time

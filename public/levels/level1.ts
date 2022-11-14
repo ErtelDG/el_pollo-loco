@@ -1,8 +1,10 @@
 let level1: any;
 
 function createdLevel(this: any) {
-   level1 = new Level(
-      [
+   level1 = new Level(createChickens(), createEndboss(), createClouds(), createBackgrounds(), createCoins(), createBottles());
+
+   function createChickens() {
+      return [
          new Chicken(),
          new Chicken(),
          new Chicken(),
@@ -14,9 +16,15 @@ function createdLevel(this: any) {
          new Chicken(),
          new Chicken(),
          new Chicken(),
-      ],
-      [new Endboss()],
-      [
+      ];
+   }
+
+   function createEndboss() {
+      return [new Endboss()];
+   }
+
+   function createClouds() {
+      return [
          new Cloud(),
          new Cloud(),
          new Cloud(),
@@ -30,8 +38,11 @@ function createdLevel(this: any) {
          new Cloud(),
          new Cloud(),
          new Cloud(),
-      ],
-      [
+      ];
+   }
+
+   function createBackgrounds() {
+      return [
          new BackgroundObject("img/5_background/layers/air.png", -719),
          new BackgroundObject("img/5_background/layers/3_third_layer/2.png", -719),
          new BackgroundObject("img/5_background/layers/2_second_layer/2.png", -719),
@@ -80,8 +91,11 @@ function createdLevel(this: any) {
          new BackgroundObject("img/5_background/layers/3_third_layer/1.png", 719 * 10),
          new BackgroundObject("img/5_background/layers/2_second_layer/1.png", 719 * 10),
          new BackgroundObject("img/5_background/layers/1_first_layer/1.png", 719 * 10),
-      ],
-      [
+      ];
+   }
+
+   function createCoins() {
+      return [
          new Coin(),
          new Coin(),
          new Coin(),
@@ -103,7 +117,10 @@ function createdLevel(this: any) {
          new Coin(),
          new Coin(),
          new Coin(),
-      ],
-      [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()]
-   );
+      ];
+   }
+
+   function createBottles() {
+      return [new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle(), new Bottle()];
+   }
 }

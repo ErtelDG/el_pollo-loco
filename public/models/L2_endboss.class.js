@@ -114,10 +114,10 @@ class Endboss extends MovableObject {
         return timepassed < 1;
     }
     characterNearTheEndboss() {
-        return this.characterNearbyEndboss == true;
+        return this.characterNearbyEndboss;
     }
     hitEndbossTrue() {
-        return this.hitEndboss == true;
+        return this.hitEndboss;
     }
     animationEndbossHurt() {
         this.animationObjects(this.IMAGES_HURT, this.imageCacheHurt);
@@ -126,20 +126,20 @@ class Endboss extends MovableObject {
         }, 1000);
     }
     endbossAlertAnimationTrue() {
-        return this.endbossAlert == true;
+        return this.endbossAlert;
     }
     animationEndbossAlert() {
         return this.animationObjects(this.IMAGES_ALERT, this.imageCacheAlert);
     }
     endbossMoveLeftTrue() {
-        return this.endbossMoveLeft == true;
+        return this.endbossMoveLeft;
     }
     animationEndbossMoveLeft() {
         this.animationObjects(this.IMAGES_WALK, this.imageCacheWalk);
-        this.x -= 5;
+        this.x -= 12;
     }
     endbossAttackTrue() {
-        return this.endbossAttack == true;
+        return this.endbossAttack;
     }
     animationEndbossAttack() {
         return this.animationObjects(this.IMAGES_ATTACK, this.imageCacheAttack);

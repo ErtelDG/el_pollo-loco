@@ -81,6 +81,20 @@ class Character extends MovableObject {
    }
 
    /**
+    * increase coin counter
+    */
+   collectsCoin() {
+      this.coins += 1;
+   }
+
+   /**
+    * increase bottle counter
+    */
+   collectBottle() {
+      this.bottles += 1;
+   }
+
+   /**
     * animate character when user interacts with key or button
     */
    animate() {

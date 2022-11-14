@@ -101,7 +101,7 @@ class Endboss extends MovableObject {
          this.imageCacheWalk.push(img);
       });
    }
-   
+
    loadImagesAttack(arr: any[]) {
       arr.forEach((path: string) => {
          let img = new Image();
@@ -129,11 +129,11 @@ class Endboss extends MovableObject {
    }
 
    characterNearTheEndboss() {
-      return this.characterNearbyEndboss == true;
+      return this.characterNearbyEndboss;
    }
 
    hitEndbossTrue() {
-      return this.hitEndboss == true;
+      return this.hitEndboss;
    }
 
    animationEndbossHurt() {
@@ -144,7 +144,7 @@ class Endboss extends MovableObject {
    }
 
    endbossAlertAnimationTrue() {
-      return this.endbossAlert == true;
+      return this.endbossAlert;
    }
 
    animationEndbossAlert() {
@@ -152,16 +152,16 @@ class Endboss extends MovableObject {
    }
 
    endbossMoveLeftTrue() {
-      return this.endbossMoveLeft == true;
+      return this.endbossMoveLeft;
    }
 
    animationEndbossMoveLeft() {
       this.animationObjects(this.IMAGES_WALK, this.imageCacheWalk);
-      this.x -= 5;
+      this.x -= 12;
    }
 
    endbossAttackTrue() {
-      return this.endbossAttack == true;
+      return this.endbossAttack;
    }
    animationEndbossAttack() {
       return this.animationObjects(this.IMAGES_ATTACK, this.imageCacheAttack);

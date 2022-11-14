@@ -90,7 +90,7 @@ class World {
      * check distance to final boss to trigger event
      */
     characterComeNearbyEndboss() {
-        this.character.x > 6000
+        this.character.x > 5000
             ? this.level.endboss.forEach((endboss) => (endboss.characterNearbyEndboss = true))
             : this.level.endboss.forEach((endboss) => (endboss.characterNearbyEndboss = false));
     }
@@ -254,7 +254,14 @@ class World {
      * @param enemy => the object where colliding with character
      * @returns is colliding from up => enemy become damage or from the side => character become damage
      */
-    characterIsCollidingEnemies = (enemy) => this.character.isColliding(enemy) ? this.characterCollidingWithEnemy() : this.characterHitsEnemieFromAbove(enemy) ? this.showEnemieKill(enemy) : {};
+    characterIsCollidingEnemies = (enemy) => {
+        if (this.character.isColliding(enemy)) {
+            this.characterCollidingWithEnemy();
+        }
+        else if (this.characterHitsEnemieFromAbove(enemy)) {
+            this.showEnemieKill(enemy);
+        }
+    };
     /**
      * function is check colliding character withendboss from the side => character become damage
      *
@@ -319,19 +326,7 @@ class World {
      */
     bottleColissionEndboss() {
         this.level.endboss.forEach((endboss) => {
-            this.throwableObject.forEach((throwableBottle) => {
-                if (this.coordinatesBottleColissionEndbossColission(throwableBottle, endboss)) {
-                    this.playDamageEndbossSound(endboss);
-                    this.createNewSplashBottle(throwableBottle);
-                    endboss.hitEndboss = true;
-                    this.removeSplashBottleArray();
-                    this.updateEndbossEnergyAndStatusBarEndboss(endboss);
-                    if (endboss.energy == 0) {
-                        this.createDeadEndbossAndRemoveLiveChicken(endboss);
-                        setInterval(() => this.playEndWinAnimation(), 1000);
-                    }
-                }
-            });
+            this.throwableObject.forEach((throwableBottle) => this.bottleCollisionWithEndbossTrue(endboss, throwableBottle));
         });
     }
     /**
@@ -492,5 +487,18 @@ class World {
         endScreen.classList.remove("endscreen-hidden");
         winContain.classList.remove("endscreen-hidden");
         startSide.style.display = "none";
+    }
+    bottleCollisionWithEndbossTrue(endboss, throwableBottle) {
+        if (this.coordinatesBottleColissionEndbossColission(throwableBottle, endboss)) {
+            this.playDamageEndbossSound(endboss);
+            this.createNewSplashBottle(throwableBottle);
+            endboss.hitEndboss = true;
+            this.removeSplashBottleArray();
+            this.updateEndbossEnergyAndStatusBarEndboss(endboss);
+            if (endboss.energy == 0) {
+                this.createDeadEndbossAndRemoveLiveChicken(endboss);
+                setInterval(() => this.playEndWinAnimation(), 1000);
+            }
+        }
     }
 }

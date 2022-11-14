@@ -64,6 +64,7 @@
    flex-wrap: wrap;
 }
 
+
 canvas {
    background-color: black;
 
@@ -397,18 +398,6 @@ canvas {
    }
 
 
-   .control-btn {
-      border: none;
-      border-radius: 0;
-
-   }
-
-   canvas {
-      width: 100vw;
-      border: none;
-      border-radius: 0rem;
-   }
-
    .hidden {
       display: none;
    }
@@ -424,7 +413,43 @@ canvas {
       width: 100%;
    }
 
+   .control-btn {
+      display: flex !important;
+      margin-top: 0px;
+      height: 3rem;
+      border: none;
+      border-radius: 0;
+      justify-content: space-around;
+   }
 
+
+
+   .icon-contain-h1-position {
+      display: none;
+   }
+
+
+
+   canvas {
+      height: calc(100% - 4rem);
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
+      border-radius: 0rem;
+   }
+
+
+   #fullscreen {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+   }
+
+   .h1-pollo-loco {
+      display: none;
+   }
 
 
 
@@ -434,9 +459,33 @@ canvas {
    }
 }
 
+
+@media only screen and (max-width: 550px) {
+   .mid-panel-contain-hidden {
+      display: none;
+   }
+
+   .text-panel {
+      margin-left: 0.5rem;
+      margin-right: 1rem;
+   }
+}
+
 @media only screen and (max-width: 550px) {
    .flex-contain {
       margin: 1rem;
+   }
+}
+
+@media only screen and (max-width: 400px) {
+   .size2rem2rem {
+      width: 0.5rem;
+      height: 0.5rem;
+
+   }
+
+   .text-panel {
+      display: none;
    }
 }
 
@@ -528,14 +577,11 @@ canvas {
       margin-right: 0.5rem;
    }
 
-   canvas {
-      width: 100%;
 
-      border: none;
-      border-radius: 0rem;
+
+   .h1-pollo-loco {
+      display: none;
    }
-
-
 
    .size2rem2rem {
       width: 1rem;
@@ -547,12 +593,6 @@ canvas {
       display: none;
    }
 
-   #fullscreen {
-      height: calc(100% - 3.5rem);
-      width: 100%;
-      margin: 0;
-      padding: 0;
-   }
 
    .button {
       bottom: 4rem;
@@ -579,6 +619,8 @@ canvas {
 
    }
 
+
+
    .control-btn-explanation-service {
       margin: 0;
       right: 1rem;
@@ -594,12 +636,36 @@ canvas {
       font-size: 3rem;
    }
 
+   .control-btn {
+      display: flex !important;
+      margin-top: 0px;
+      height: 3rem;
+   }
+
+   canvas {
+      height: calc(100% - 4rem);
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
+      border-radius: 0rem;
+   }
 
 
+   #fullscreen {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+   }
+
+   .icon-contain-h1-position {
+      display: none;
+   }
 
 
    #startSide {
-      height: 97vh;
+      height: 100vh;
    }
 
 }
@@ -638,9 +704,6 @@ canvas {
    }
 
 
-   #canvas {
-      height: 100%;
-   }
 
    .panel {
       height: 0.5rem;

@@ -1,6 +1,6 @@
 let canvas: number | HTMLCanvasElement;
 let world: World;
-
+let panelOnOff = false;
 let keyboard = new KeyboardKeys();
 let startScreen: HTMLElement;
 let endScreen: HTMLElement;
@@ -93,7 +93,6 @@ function getAllIntervalsAndStop() {
  */
 function setCancvasProperties() {
    canvas = document.getElementById("canvas") as HTMLCanvasElement;
- 
 }
 
 /**
@@ -195,4 +194,19 @@ function getCloseFullscreenHTMLElements() {
    canvasElement.classList.remove("canvas-width-fullscreen");
    smallScreenIcon.classList.add("exitFullscreenHidden");
    smallScreenIconText.classList.add("exitFullscreenHidden");
+}
+
+function setPanelOnOff() {
+   let controlBtnElement = document.getElementById("control-btn") as HTMLElement;
+    let iconContainH1PositionElement = document.getElementById("icon-contain-h1-position") as HTMLElement;
+
+   if (panelOnOff == false) {
+      controlBtnElement.classList.remove("hidden-element");
+      iconContainH1PositionElement.classList.remove("icon-contain-h1-position-border");
+      panelOnOff = true;
+   } else {
+      controlBtnElement.classList.add("hidden-element");
+       iconContainH1PositionElement.classList.add("icon-contain-h1-position-border");
+      panelOnOff = false;
+   }
 }

@@ -15,43 +15,53 @@ class KeyboardKeys {
      */
     btnPressEvents() {
         document.getElementById("arrow-left")?.addEventListener("touchstart", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             keyboard.LEFT = true;
         });
         document.getElementById("arrow-left")?.addEventListener("touchend", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             keyboard.LEFT = false;
         });
         document.getElementById("arrow-right")?.addEventListener("touchstart", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             keyboard.RIGHT = true;
         });
         document.getElementById("arrow-right")?.addEventListener("touchend", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             keyboard.RIGHT = false;
         });
         document.getElementById("start-icon")?.addEventListener("touchstart", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             restart();
         });
         document.getElementById("sound-icon")?.addEventListener("touchstart", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             soundOnOff();
         });
         document.getElementById("arrow-up")?.addEventListener("touchstart", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             keyboard.UP = true;
         });
         document.getElementById("arrow-up")?.addEventListener("touchend", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             keyboard.UP = false;
         });
         document.getElementById("throw-bottle")?.addEventListener("touchstart", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             keyboard.D = true;
         });
         document.getElementById("throw-bottle")?.addEventListener("touchend", (e) => {
-            e.preventDefault();
+            if (e.cancelable)
+                e.preventDefault();
             keyboard.D = false;
         });
     }

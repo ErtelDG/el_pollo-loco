@@ -68,7 +68,7 @@
                   <div class="panel size2rem2rem"><img src="img/10_design/arrow-jump.png" class="icons-img arrow-jump"
                         alt="">
                   </div>
-                  <div class="explanation-text">Throw</div>
+                  <div class="explanation-text">Throw - D</div>
                </div>
                <div id="contain5-explanation" class="contains-explanation">
                   <div class="panel size2rem2rem"><img src="img/10_design/play.png" class="icons-img" alt="">
@@ -87,13 +87,26 @@
 
    <div id="startSide" class="hidden-gameplay-screen">
       <!-- game -->
-      <h1 class="hidden">El Pollo Loco <div class="fullscreen-icon panel"> <img class="icons-img"
-               onclick="setFullscreen()" src="img/10_design/full-screen.png"></div>
+      <h1 class="h1-pollo-loco" class="hidden">El Pollo Loco
 
       </h1>
       <div id="fullscreen">
          <canvas id="canvas" width="720" height="400"></canvas>
-         <div id="control-btn" class="control-btn">
+         <div  id="icon-contain-h1-position" class="icon-contain-h1-position icon-contain-h1-position-border">
+            <div class="icon-contain-h1">
+               <div class="h1-icon panel">
+                  <img class="icons-img" onclick="setPanelOnOff()" src="img/10_design/show-button.png">
+               </div>
+               <div> Panel On/Off</div>
+            </div>
+            <div class="icon-contain-h1">
+               <div class="h1-icon panel">
+                  <img class="icons-img" onclick="setFullscreen()" src="img/10_design/full-screen.png">
+               </div>
+               <div>Fullsceen On/Off</div>
+            </div>
+         </div>
+         <div id="control-btn" class="control-btn hidden-element">
             <div class="panel-contain">
                <div id="arrow-left" class="panel arrow-left pointer"><img src="img/10_design/arrow.png"
                      class="icons-img" alt=""></div>
@@ -125,9 +138,10 @@
                <div id="throw-bottle" class="panel arrow-jump pointer"><img src="img/10_design/arrow-jump.png"
                      class="icons-img" alt="">
                </div>
-               <div class="text-panel">Throw Bottle</div>
+               <div class="text-panel">Throw - D</div>
             </div>
          </div>
+
       </div>
    </div>
    <div id="end-screen" class="end-screen endscreen-hidden">

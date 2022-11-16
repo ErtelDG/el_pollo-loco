@@ -195,12 +195,15 @@ class Character extends MovableObject {
      * sound and animation when character must jump
      */
     userCharacterGoJump() {
-        if ((world.character.world.keyboard.UP && !this.isAboveGround()) || (world.character.world.keyboard.SPACE && !this.isAboveGround())) {
+        if (this.whenIsPressAJumpKeyTrue()) {
             this.jump();
             this.jump_sound.volume = 0.01;
             this.jump_sound.play();
             this.walking_sound.pause();
         }
+    }
+    whenIsPressAJumpKeyTrue() {
+        return (world.character.world.keyboard.UP && !this.isAboveGround()) || (world.character.world.keyboard.SPACE && !this.isAboveGround());
     }
     /**
      * function check which animation must play, when character id dead, hurt, walking, idle or jump

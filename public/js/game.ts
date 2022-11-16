@@ -24,9 +24,7 @@ function stopAllIntervals() {
  *  start game and created world
  */
 function init() {
-   alert(
-      "=>Hallo Mihai, habe deine Punkte erledigt. Die Zeilenabstände und Formatierung erfolgt bei der compilierung von TS zu JS. Beim compilieren werden die Zeilenabstände entfernt. Das kann ich leider nicht beheben. Gruß Dennis =>Hallo Tobias, habe das Problem dass das Spiel auf einmal langsamer wird behoben. Jetzt müsste auch das anklicken der Buttons besser ablaufen. Die Funktionen von den Statusbars haben ich auf eine obere Klasse gesetzt. Die andere zwei Funktionen sind ausgelagert. Gruß Dennis"
-   );
+   
    getIdHtmlELements();
    hiddenStartScreen();
    startSide.classList.remove("hidden-gameplay-screen");

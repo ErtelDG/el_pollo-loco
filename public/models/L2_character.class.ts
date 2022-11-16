@@ -174,7 +174,7 @@ class Character extends MovableObject {
     * sound and animation when character must go right
     */
    userCharacterGoRight() {
-      if (world.character.world.keyboard.RIGHT && this.x < world.level.level_end) {
+      if (this.pressRightAndCharacterIsNotAtTheWorldEnd()) {
          this.moveRight();
          this.otherDirection = false;
          if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
@@ -186,11 +186,15 @@ class Character extends MovableObject {
       }
    }
 
+   pressRightAndCharacterIsNotAtTheWorldEnd() {
+      return world.character.world.keyboard.RIGHT && this.x < world.level.level_end;
+   }
+
    /**
     * sound and animation when character must go left
     */
    userCharacterGoLeft() {
-      if (world.character.world.keyboard.LEFT && this.x > this.stopLeft) {
+      if (this.pressLeftAndCharacterIsNotAtTheWorldStart()) {
          this.moveLeft();
          this.otherDirection = true;
          if (world.character.world.keyboard.UP || world.character.world.keyboard.SPACE) {
@@ -201,6 +205,10 @@ class Character extends MovableObject {
 
          this.walking_sound.volume = 0.1;
       }
+   }
+
+   pressLeftAndCharacterIsNotAtTheWorldStart() {
+      return world.character.world.keyboard.LEFT && this.x > this.stopLeft;
    }
 
    /**

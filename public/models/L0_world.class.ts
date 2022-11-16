@@ -73,6 +73,18 @@ class World {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.ctx.translate(this.camera_x, 0);
       this.addObjectsToMap(this.level.backgroundObjects);
+      this.drawSolidObjectsToMap();
+      this.addToMap(this.character);
+      this.ctx.translate(-this.camera_x, 0);
+      this.addStatusBarsToMap();
+      if (this.character.x > 5800) {
+         this.addToMap(this.statusBarEndboss);
+      }
+      this.ctx.translate(this.camera_x, 0);
+      this.ctx.translate(-this.camera_x, 0);
+   }
+
+   drawSolidObjectsToMap() {
       this.addObjectsToMap(this.bottlesSplash);
       this.addObjectsToMap(this.level.bottles);
       this.addObjectsToMap(this.level.clouds);
@@ -81,16 +93,12 @@ class World {
       this.addObjectsToMap(this.deadEnemies);
       this.addObjectsToMap(this.level.coins);
       this.addObjectsToMap(this.throwableObject);
-      this.addToMap(this.character);
-      this.ctx.translate(-this.camera_x, 0);
+   }
+
+   addStatusBarsToMap() {
       this.addToMap(this.statusBarHp);
       this.addToMap(this.statusBarBottle);
       this.addToMap(this.statusBarCoin);
-      if (this.character.x > 5800) {
-         this.addToMap(this.statusBarEndboss);
-      }
-      this.ctx.translate(this.camera_x, 0);
-      this.ctx.translate(-this.camera_x, 0);
    }
 
    /**

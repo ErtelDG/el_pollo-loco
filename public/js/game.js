@@ -138,6 +138,7 @@ function createNewWorld() {
 function closeEndOpenStartScreen() {
     endScreen.classList.add("endscreen-hidden");
     gameOverContain.classList.add("endscreen-hidden");
+    winContain.classList.add("endscreen-hidden");
     startSide.style.display = "";
 }
 /**

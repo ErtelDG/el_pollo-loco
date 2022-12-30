@@ -151,9 +151,9 @@ function createNewWorld() {
  * hidden the endscreen and show the startscreen
  */
 function closeEndOpenStartScreen() {
-   endScreen.classList.add("endscreen-hidden");
    gameOverContain.classList.add("endscreen-hidden");
    winContain.classList.add("endscreen-hidden");
+   endScreen.classList.add("endscreen-hidden");
    startSide.style.display = "";
 }
 
